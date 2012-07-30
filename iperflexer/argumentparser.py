@@ -31,5 +31,9 @@ class Arguments(object):
                                  help="Enable pudb (if installed).",
                                  default=False,
                                  action="store_true")
+        self.parser.add_argument("-t", '--tee',
+                                 help="Send lines standard error as they come in.",
+                                 default=False,
+                                 action="store_true")
         return self.parser.parse_args()
 # end class Arguments

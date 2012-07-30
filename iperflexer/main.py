@@ -32,34 +32,38 @@ def enable_debugging():
     except ImportError:
         raise ArgumentError("`pudb` argument given but unable to import `pudb`")
 
-def pipe(args):
+def pipe(args, infile=None, outfile=None):
     """
     Reads input from standard in and sends output to standard out.
     """
-    units = UNITS[args.units.lower()]
+    if infile is None:
+        infile = sys.stdin
+    if outfile is None:
+        outfile = sys.stdout
+    try:
+        units = UNITS[args.units.lower()]
+    except KeyError:
+        raise ArgumentError("Unknown Units: {0}".format(args.units))
+        return
     parser = IperfParser(units=units)
-    for line in sys.stdin:
+    for line in infile:
         parser.add(line)
+        if args.tee:
+            sys.stderr.write(line)
     for bandwidth in parser.bandwidths:
-        sys.stdout.write(ADD_NEWLINE.format(bandwidth))
+        outfile.write(ADD_NEWLINE.format(bandwidth))
+    parser.reset()
     return
 
 def analyze(args):
     """
     Reads data from files and outputs to files
     """
-    units = UNITS[args.units.lower()]
-    parser = IperfParser(units=units)
     for name in find(args.glob):
         basename, _ = os.path.splitext(name)
-        new_name = basename + "_{0}.csv".format(units)
-        for line in open(name):
-            parser.add(line)
-
-        with open(new_name, WRITEABLE) as output:
-            for line in parser.bandwidths:
-                output.write(ADD_NEWLINE.format(line))
-        parser.reset()
+        new_name = basename + "_parsed.csv"
+        pipe(args, open(name), open(new_name, WRITEABLE))
+    return
 
 def main():
     args = Arguments().parse_args()
