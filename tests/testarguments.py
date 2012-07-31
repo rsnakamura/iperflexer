@@ -55,7 +55,7 @@ class TestArguments(TestCase):
             self.assertIsNone(args.glob)
             self.assertFalse(args.pudb)
             self.assertEqual("Mbits", args.units)
-            #self.assertTrue(args.stdout)
+            self.assertFalse(args.save)
         return
 
     def test_stdout(self):
