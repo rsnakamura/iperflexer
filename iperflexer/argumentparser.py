@@ -24,6 +24,8 @@ class Arguments(object):
         self.parser.add_argument("-g", "--glob",
                                  help="A file-glob to match input file names.",
                                  default=None)
+        self.parser.add_argument("-s", '--stdout',
+                                 help='If a file-glob is used for input')
         self.parser.add_argument("-u", "--units",
                                  help="Output units per second [bits,Bytes,KBits,KBytes,Mbits,MBytes,Gbits,GBytes] (default=%(default)s)",
                                  default="Mbits")
