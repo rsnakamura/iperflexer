@@ -2,7 +2,7 @@ from unittest import TestCase
 
 from mock import MagicMock, patch 
 
-from iperflexer.main import main
+import iperflexer
 
 PUDB = MagicMock()
 
@@ -72,6 +72,20 @@ class TestMain(TestCase):
     @patch('sys.stdin', SAMPLE)
     @patch('sys.stdout.write', STDOUT)
     def test_pipe(self):
-        main()
+        iperflexer.main.main()
         #STDOUT.assert_called_with('0.0')
         
+    @patch("sys.argv", ['takataka', '-g', '*perf'])
+    @patch('sys.stdout.write', STDOUT)
+    def test_analyze(self):
+        from iperflexer import main
+        finder = MagicMock()
+        finder.return_value= ["i.perf"]
+        main.find = finder
+        opener = MagicMock()
+        opener.return_value = SAMPLE
+        with patch('__builtin__.open', opener):
+            main.main()
+        finder.assert_called_with('*perf')
+        return
+# end class TestMain
