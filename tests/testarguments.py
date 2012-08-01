@@ -58,7 +58,10 @@ class TestArguments(TestCase):
             self.assertFalse(args.save)
         return
 
-    def test_stdout(self):
+    def test_output(self):
+        self.arguments._parser = None
+        with patch('sys.argv', ['takataka', '-s']):
+            args = self.arguments.parse_args()
+            self.assertTrue(args.save)
         
-        return
-# end class TestArguments
+# class TestArguments
