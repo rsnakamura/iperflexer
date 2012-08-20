@@ -51,7 +51,7 @@ class TestOatBran(TestCase):
         n2 = "0.1"
         self.assertRegexpMatches(n1, bran.INTEGER)
         match = re.search(bran.GROUP(e=bran.INTEGER), n2)
-        self.assertEqual("0", match.groups()[0])
+        self.assertIsNone(match)
         return
 
     def test_float(self):
