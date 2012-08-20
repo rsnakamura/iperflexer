@@ -60,12 +60,12 @@ def analyze(args):
     Reads data from files and outputs to files
     """
     for name in find(args.glob):
+        basename, _ = os.path.splitext(name)
+        new_name = basename + "_parsed.csv"
         if args.save:
-            basename, _ = os.path.splitext(name)
-            new_name = basename + "_parsed.csv"
             output = open(new_name, WRITEABLE)
         else:
-            output = sys.stdout
+            output = None
         pipe(args, open(name), output)
     return
 
