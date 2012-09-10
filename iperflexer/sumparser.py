@@ -74,6 +74,7 @@ class SumParser(IperfParser):
         match = self(line)
         if match is not None and self.valid(match):
             bandwidth = self.bandwidth(match)
+            self.intervals[float(match[ParserKeys.start])] = bandwidth
             self.logger.info(self.log_format.format(match[ParserKeys.start],
                                                     bandwidth,
                                                     self.units))

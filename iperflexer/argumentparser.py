@@ -28,13 +28,20 @@ class Arguments(object):
         self.parser.add_argument("-u", "--units",
                                  help="Output units per second [bits,Bytes,KBits,KBytes,Mbits,MBytes,Gbits,GBytes] (default=%(default)s)",
                                  default="Mbits")
+        
         self.parser.add_argument('-s', '--save',
                                  help="If  glob is provided, save to a file instead of sending to stdout.",
                                  default=False,
                                  action="store_true")
+
+        self.parser.add_argument("-v", "--voodoo",
+                                 help="Assume that Iperf doesn't know how to add so add threads yourself.",
+                                 action="store_true", default=False)
+        
         self.parser.add_argument('--pudb',
                                  help="Enable pudb (if installed).",
                                  default=False,
+                                 
                                  action="store_true")
         self.parser.add_argument("-t", '--tee',
                                  help="Send lines standard error as they come in.",

@@ -5,6 +5,7 @@ import os
 # iperflexer
 from argumentparser import Arguments
 from iperfparser import IperfParser
+from sumparser import SumParser
 from unitconverter import UnitNames
 from finder import find
 
@@ -45,7 +46,11 @@ def pipe(args, infile=None, outfile=None):
     except KeyError:
         raise ArgumentError("Unknown Units: {0}".format(args.units))
         return
-    parser = IperfParser(units=units)
+
+    if args.voodoo:
+        parser = IperfParser(units=units)
+    else:
+        parser = SumParser(units=units)
     for line in infile:
         parser.add(line)
         if args.tee:
