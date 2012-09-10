@@ -1,11 +1,3 @@
-# Copyright (c) <year> <copyright holders>
-
-# Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-# The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
 """
 Oat Bran helps with regular expressions
 
@@ -27,6 +19,11 @@ def CLASS(e):
 def NOT(e):
     return "[^{e}]+".format(e=e)
 
+def NOT_FOLLOWED_BY(e):
+    return "(?!{e})".format(e=e)
+
+def NOT_PRECEDED_BY(e):
+    return "(?<!{e})".format(e=e)
 
 # cardinality
 ONE_OR_MORE = "+"
@@ -64,6 +61,20 @@ OR = "|"
 def WORD_BOUNDARY(e):
     return r"\b{e}\b".format(e=e)
 
+def STRING_BOUNDARY(e):
+    """
+    :return: expr that matches an entire line
+    """
+    return r"^{e}$".format(e=e)
+
+# string help
+STRING_START = "^"
+STRING_END = "$"
+ALPHA_NUMS = r"\w"
+
+#anything and everything
+ANYTHING = r"."
+EVERYTHING = ANYTHING + ZERO_OR_MORE
 
 # numbers
 DIGIT = r"\d"
@@ -72,9 +83,11 @@ NON_ZERO = CLASS("1-9")
 SINGLE_DIGIT = WORD_BOUNDARY(DIGIT)
 TWO_DIGITS = WORD_BOUNDARY(NON_ZERO + DIGIT)
 ONE_HUNDREDS = WORD_BOUNDARY("1" + DIGIT + DIGIT)
-INTEGER = DIGIT + ONE_OR_MORE
+NATURAL = DIGIT + ONE_OR_MORE
 
-FLOAT = INTEGER + DECIMAL_POINT + INTEGER
+INTEGER = NOT_PRECEDED_BY(DECIMAL_POINT) +  "-" + ZERO_OR_ONE + NATURAL + NOT_FOLLOWED_BY(DECIMAL_POINT)
+
+FLOAT = "-" + ZERO_OR_ONE + NATURAL + DECIMAL_POINT + NATURAL
 REAL = GROUP(FLOAT + OR + INTEGER)
 
 SPACE = r"\s"
@@ -85,6 +98,7 @@ OPTIONAL_SPACES = SPACE + ZERO_OR_MORE
 DASH = "-"
 LETTER = CLASS(e=string.ascii_letters)
 LETTERS = LETTER + ONE_OR_MORE
+OPTIONAL_LETTERS = LETTER + ZERO_OR_MORE
 
 # SPECIAL CASES
 # NETWORKING

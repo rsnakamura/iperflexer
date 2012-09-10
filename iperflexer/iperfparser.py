@@ -128,7 +128,6 @@ class IperfParser(BaseClass):
         :param:
 
          - `line`: a string of iperf output
-
         :return: match dict or None
         """
         try:
@@ -140,6 +139,7 @@ class IperfParser(BaseClass):
 
         try:
             match = self.regex[ParserKeys.human].search(line).groupdict()
+            self.logger.debug("Matched: {0}".format(line))            
             self.format = ParserKeys.human
             self.logger.debug("Setting format to {0}".format(self.format))
             return match
@@ -148,6 +148,7 @@ class IperfParser(BaseClass):
 
         try:
             match = self.regex[ParserKeys.csv].search(line).groupdict()
+            self.logger.debug("Matched: {0}".format(line))
             self.format = ParserKeys.csv
             self.logger.debug("Setting format to {0}".format(self.format))
             return match

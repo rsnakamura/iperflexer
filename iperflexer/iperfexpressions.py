@@ -108,7 +108,7 @@ class CsvExpression(ExpressionBase):
         :return: the expression to match the thread id
         """
         if self._thread_column is None:
-            self._thread_column = bran.NAMED(ParserKeys.thread, bran.INTEGER)
+            self._thread_column = bran.NAMED(ParserKeys.thread, bran.NATURAL)
         return self._thread_column
     
     @property
