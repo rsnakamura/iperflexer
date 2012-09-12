@@ -14,26 +14,28 @@ from baseclass import BaseClass
 from iperfexpressions import HumanExpression, ParserKeys
 from iperfexpressions import CsvExpression
 from unitconverter import UnitConverter
-
+from coroutine import coroutine
 
 
 class IperfParser(BaseClass):
     """
     The Iperf Parser extracts bandwidth and other information from the output
     """
-    def __init__(self, expected_interval=1, interval_tolerance=0.1, units="Mbits"):
+    def __init__(self, expected_interval=1, interval_tolerance=0.1, units="Mbits", threads=4):
         """
         :param:
 
          - `expected_interval`: the seconds between sample reports
          - `interval_tolerance`: upper bound of difference between actual and expected
          - `units`: desired output units (must match iperf output case - e.g. MBytes)
+         - `threads`: (number of threads) needed for coroutine and pipe
         """
         super(IperfParser, self).__init__()
         self._logger = None
         self.expected_interval = expected_interval
         self.interval_tolerance = interval_tolerance
         self.units = units
+        self.threads = threads
         self._regex = None
         self._human_regex = None
         self._csv_regex = None
@@ -156,6 +158,39 @@ class IperfParser(BaseClass):
             pass
         return
 
+    @coroutine
+    def pipe(self, target):
+        """
+        
+        :warnings:
+
+         - For bad connections with threads this might break (as the threads die)
+         - Use for good connections or live data only (use `bandwidths` and completed data for greater fidelity)
+         
+        :parameters:
+
+         - `target`: a target to send matched output to
+
+        :send:
+
+         - bandwidth converted to self.units as a float
+        """
+        threads = defaultdict(lambda:[0,0])
+        thread_count = 0
+        bandwidth = 1
+        while True:
+            line = (yield)
+            match = self(line)
+            if match is not None and self.valid(match):
+                # threads is a dict of interval:(thread_count, bandwidths)
+                interval = match[ParserKeys.start]
+                threads[interval][thread_count] += 1
+                threads[interval][bandwidth] += self.bandwidth(match)
+                for key in threads:
+                    if key == min(threads) and threads[interval][thread_count]==self.threads:
+                        target.send(threads[interval][bandwidth])
+        return
+    
     def reset(self):
         """
         Resets the attributes set during parsing

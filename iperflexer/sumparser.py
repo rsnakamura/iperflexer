@@ -13,6 +13,7 @@ The sumparser parses sums and logs the bandwidth sum
 from iperfparser import IperfParser 
 from iperfexpressions import HumanExpression, ParserKeys, CsvExpression
 import oatbran as bran
+from coroutine import coroutine
 
 BITS = 'bits'
 
@@ -79,3 +80,29 @@ class SumParser(IperfParser):
                                                     bandwidth,
                                                     self.units))
         return
+
+    @coroutine
+    def pipe(self, target):
+        """
+        
+        :warnings:
+
+         - For bad connections with threads this might break (as the threads die)
+         - Use for good connections or live data only (use `bandwidths` and completed data for greater fidelity)
+         
+        :parameters:
+
+         - `target`: a target to send matched output to
+
+        :send:
+
+         - bandwidth converted to self.units as a float
+        """
+        while True:
+            line = (yield)
+            match = self(line)
+            if match is not None and self.valid(match):
+                # threads is a dict of interval:(thread_count, bandwidths)
+                target.send(self.bandwidth(match))
+        return
+# end class SumParser
