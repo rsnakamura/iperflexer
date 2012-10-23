@@ -52,7 +52,7 @@ def pipe(args, infile=None, outfile=None):
     else:
         parser = SumParser(units=units)
     for line in infile:
-        parser.add(line)
+        parser(line)
         if args.tee:
             sys.stderr.write(line)
     for bandwidth in parser.bandwidths:

@@ -159,14 +159,14 @@ class TestThreadSums(TestCase):
 
     def test_bandwiths(self):
         for line in FIRST_SET:
-            self.parser.add(line)
+            self.parser(line)
         self.assertIn(0.0, self.parser.intervals)
         self.assertAlmostEqual(sum(BANDWIDTHS), self.parser.intervals[0.0])
         return
 
     def test_reset(self):
         for line in FIRST_SET:
-            self.parser.add(line)
+            self.parser(line)
         self.parser.reset()
         self.assertIsNone(self.parser.format)
         self.assertIsNone(self.parser._bandwidths)
@@ -175,7 +175,7 @@ class TestThreadSums(TestCase):
     def test_sums(self):
         self.parser.reset()
         for line in SAMPLE:
-            self.parser.add(line)
+            self.parser(line)
         index = 0
         for bandwidth in self.parser.bandwidths:
             self.assertAlmostEqual(SUMS[index], bandwidth)

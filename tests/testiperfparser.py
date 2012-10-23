@@ -127,19 +127,20 @@ HLINE = "[  3]  8.0- 9.0 sec  35.4 MBytes   297 Mbits/sec"
 
 class TestIperfParserSearch(TestCase):
     def setUp(self):
-        self.parser = iperfparser.IperfParser()
+        self.parser = iperfparser.IperfParser(threads=1)
         return
 
     def test_human(self):
-        match = self.parser(HLINE)
-        self.assertEqual(ParserKeys.human, self.parser.format)
-        self.assertEqual(match[ParserKeys.bandwidth], "297")
+        parser = iperfparser.IperfParser(threads=1)
+        match = parser(HLINE)
+        self.assertEqual(ParserKeys.human, parser.format)
+        self.assertAlmostEqual(match, 297)
         return
 
     def test_csv(self):
         match = self.parser(CLINE1)
         self.assertEqual(ParserKeys.csv, self.parser.format)
-        self.assertEqual(match[ParserKeys.bandwidth], CBANDWIDTHS[0])
+        self.assertAlmostEqual(match, 3.145728)
         return
 
 
@@ -155,24 +156,33 @@ INVCLINE = "20120717125325,192.168.10.51,55391,192.168.10.59,5001,3,0.0-10.0,440
 
 class TestIperfParserValidate(TestCase):
     def setUp(self):
-        self.parser = iperfparser.IperfParser()
+        self.parser = iperfparser.IperfParser(threads=1)
         return
 
     def test_human_valid(self):
-        match = self.parser(HLINE)
-        self.assertTrue(self.parser.valid(match))
+        parser = iperfparser.IperfParser(threads=1)
+        bandwidth = parser(HLINE)
+        self.assertEqual(297, bandwidth)
         return
 
     def test_human_invalid(self):
-        match = self.parser(INVHLINE)
-        self.assertFalse(self.parser.valid(match))
+        parser = iperfparser.IperfParser(threads=1)
+        bandwidth = parser(INVHLINE)
+        self.assertIsNone(bandwidth)
         return
 
-    def test_csv_valid(self):
+    def test_csv_valid(self):        
         match = self.parser(CLINE1)
-        self.assertTrue(self.parser.valid(match))
+        self.assertAlmostEqual(3.145728,match)
 
     def test_csv_invalid(self):
         match = self.parser(INVCLINE)
-        self.assertFalse(self.parser.valid(match))
+        self.assertIsNone(match)
 # end class TestIperfParserValidate
+
+if __name__ == "__main__":
+    import pudb
+    pudb.set_trace()
+    parser = iperfparser.IperfParser(threads=1)
+    match = parser(HLINE)
+    parser.valid(match)

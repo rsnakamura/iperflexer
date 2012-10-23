@@ -30,11 +30,11 @@ class TestSumParser(TestCase):
 
         parser = sumparser.SumParser()
         parser._logger = logger
-        parser.add(HUMAN)
+        parser(HUMAN)
         logger.info.assert_called_with(parser.log_format.format(0.0, 957.0, "Mbits"))
         parser.reset()
 
-        parser.add(CSV)
+        parser(CSV)
         logger.info.assert_called_with(parser.log_format.format(0.0, 6.291456, "Mbits"))
 
 
@@ -45,6 +45,14 @@ class TestSumParser(TestCase):
 
         parser = sumparser.SumParser(threads=1)
         parser._logger = logger
-        parser.add(CSV_SINGLE)
+        parser(CSV_SINGLE)
         logger.info.assert_called_with(parser.log_format.format(8.0, 934.412288, "Mbits"))
         return
+
+
+
+if __name__ == "__main__":
+    import pudb
+    pudb.set_trace()
+    parser = sumparser.SumParser(threads=1)
+    parser(CSV_SINGLE)
