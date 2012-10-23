@@ -7,6 +7,7 @@ from iperflexer import sumparser
 
 HUMAN = "[SUM]  0.0- 1.0 sec   114 MBytes   957 Mbits/sec"
 CSV = "20120720091543,192.168.20.62,0,192.168.20.50,5001,-1,0.0-1.0,786432,6291456"
+CSV_SINGLE = "20121012155511,192.168.10.63,3453,192.168.10.50,5001,3,8.0-9.0,116801536,934412288"
 
 class TestSumParser(TestCase):
     def setUp(self):
@@ -31,8 +32,19 @@ class TestSumParser(TestCase):
         parser._logger = logger
         parser.add(HUMAN)
         logger.info.assert_called_with(parser.log_format.format(0.0, 957.0, "Mbits"))
-        self.parser.reset()
+        parser.reset()
+
         parser.add(CSV)
         logger.info.assert_called_with(parser.log_format.format(0.0, 6.291456, "Mbits"))
+
+
         return
-        
+
+    def test_add_single(self):
+        logger = MagicMock()
+
+        parser = sumparser.SumParser(threads=1)
+        parser._logger = logger
+        parser.add(CSV_SINGLE)
+        logger.info.assert_called_with(parser.log_format.format(8.0, 934.412288, "Mbits"))
+        return

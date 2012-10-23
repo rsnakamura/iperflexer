@@ -62,8 +62,12 @@ class SumParser(IperfParser):
         :return: a dictionary of compiled regular expressions
         """
         if self._regex is None:
-            self._regex = {ParserKeys.human:HumanExpressionSum().regex,
-                           ParserKeys.csv:CsvExpressionSum().regex}
+            if self.threads == 1:
+                  self._regex = {ParserKeys.human:HumanExpression().regex,
+                                 ParserKeys.csv:CsvExpression().regex}
+            else:
+                self._regex = {ParserKeys.human:HumanExpressionSum().regex,
+                               ParserKeys.csv:CsvExpressionSum().regex}
         return self._regex
 
     def add(self, line):
