@@ -48,9 +48,9 @@ def pipe(args, infile=None, outfile=None):
         return
 
     if args.voodoo:
-        parser = IperfParser(units=units)
+        parser = IperfParser(units=units, maximum=args.maximum)
     else:
-        parser = SumParser(units=units)
+        parser = SumParser(units=units, maximum=args.maximum)
     for line in infile:
         parser(line)
         if args.tee:

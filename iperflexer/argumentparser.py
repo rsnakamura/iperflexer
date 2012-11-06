@@ -40,12 +40,18 @@ class Arguments(object):
         
         self.parser.add_argument('--pudb',
                                  help="Enable pudb (if installed).",
-                                 default=False,
-                                 
+                                 default=False,                        
                                  action="store_true")
+        self.parser.add_argument('--pdb',
+                                 help="Enable pdb",
+                                 default=False, action="store_true")
         self.parser.add_argument("-t", '--tee',
                                  help="Send lines standard error as they come in.",
                                  default=False,
                                  action="store_true")
+
+        self.parser.add_argument("-m", "--maximum",
+                                 help="Maximum allowed bandwidth (default=%(default)s",
+                                 default=1000000, type=int)
         return self.parser.parse_args()
 # end class Arguments

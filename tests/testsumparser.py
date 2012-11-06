@@ -9,9 +9,14 @@ HUMAN = "[SUM]  0.0- 1.0 sec   114 MBytes   957 Mbits/sec"
 CSV = "20120720091543,192.168.20.62,0,192.168.20.50,5001,-1,0.0-1.0,786432,6291456"
 CSV_SINGLE = "20121012155511,192.168.10.63,3453,192.168.10.50,5001,3,8.0-9.0,116801536,934412288"
 
+HUMAN_OVERFLOW = "[SUM]  0.0- 1.0 sec   114 MBytes   12356432685 Mbits/sec"
+CSV_SINGLE_OVERFLOW = "20120720091543,192.168.20.62,0,192.168.20.50,5001,-1,8.0-9.0,786432,147573952589676281856"
+
 class TestSumParser(TestCase):
     def setUp(self):
-        self.parser = sumparser.SumParser()
+        self.logger = MagicMock()
+        self.parser = sumparser.SumParser(maximum=1000)
+        self.parser._logger = self.logger
         return
 
     def test_bandwidth(self):
@@ -50,7 +55,16 @@ class TestSumParser(TestCase):
         return
 
 
+    def test_maximum(self):        
+        self.parser(HUMAN_OVERFLOW)
+        self.logger.info.assert_called_with(self.parser.log_format.format(0.0, 0.0, "Mbits"))
+        return
 
+    def test_maximum_csv(self):
+        self.parser(CSV_SINGLE_OVERFLOW)
+        self.logger.info.assert_called_with(self.parser.log_format.format(8.0,0.0, "Mbits"))
+        return
+    
 if __name__ == "__main__":
     import pudb
     pudb.set_trace()
