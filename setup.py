@@ -17,7 +17,6 @@ setup(name='iperflexer',
       url = '',
       author_email="russellofallion@gmail.com",
       license = "MIT",
-      install_requires = ['pudb', 'mock'],
       packages = find_packages(exclude=["__main__"]),
       include_package_data = True,
       package_data = {"":["*.txt", "*.rst", "*.ini"]},
@@ -27,6 +26,7 @@ setup(name='iperflexer',
 	  """
       )
 
+#      install_requires = ['pudb', 'mock'],
 # an example last line would be cpm= cpm.main: main
 
 # If you want to require other packages add (to setup parameters):
