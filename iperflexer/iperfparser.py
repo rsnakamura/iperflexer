@@ -23,7 +23,7 @@ class IperfParser(BaseClass):
     The Iperf Parser extracts bandwidth and other information from the output
     """
     def __init__(self, expected_interval=1, interval_tolerance=0.1, units="Mbits", threads=4,
-                 maximum=1000000):
+                 maximum=10**9):
         """
         :param:
 
@@ -214,6 +214,7 @@ class IperfParser(BaseClass):
         """
         self.format = None
         self._interval_threads = None
+        self._intervals = None
         self._thread_count = None
         self._threads = None
         return

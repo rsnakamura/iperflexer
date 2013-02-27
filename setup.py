@@ -24,6 +24,7 @@ setup(name='iperflexer',
 	  [console_scripts]
           takataka=iperflexer.main:main
 	  """
+
       )
 
 #      install_requires = ['pudb', 'mock'],
