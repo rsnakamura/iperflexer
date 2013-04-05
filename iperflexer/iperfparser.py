@@ -22,7 +22,8 @@ class IperfParser(BaseClass):
     """
     The Iperf Parser extracts bandwidth and other information from the output
     """
-    def __init__(self, expected_interval=1, interval_tolerance=0.1, units="Mbits", threads=4,
+    def __init__(self, expected_interval=1, interval_tolerance=0.1, units="Mbits",
+                 threads=4,
                  maximum=10**9):
         """
         :param:
@@ -62,7 +63,7 @@ class IperfParser(BaseClass):
         intervals = sorted(self.intervals.keys())
         for interval in intervals:
             yield self.intervals[interval]
-            
+
 
     @property
     def regex(self):
@@ -73,7 +74,7 @@ class IperfParser(BaseClass):
             self._regex = {ParserKeys.human:HumanExpression().regex,
                            ParserKeys.csv:CsvExpression().regex}
         return self._regex
-    
+
     @property
     def intervals(self):
         """
@@ -92,7 +93,7 @@ class IperfParser(BaseClass):
         if self._conversion is None:
             self._conversion = UnitConverter()
         return self._conversion
-    
+
     def valid(self, match):
         """
         :param:
