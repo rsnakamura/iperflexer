@@ -23,17 +23,6 @@ import sys, os
 # If your documentation needs a minimal Sphinx version, state it here.
 #needs_sphinx = '1.0'
 
-rst_prolog = """
-.. |APE| replace:: *All-In-One Performance Evaluation Tools (APETools)*
-.. |DUT| replace:: *Device Under Test (DUT)*
-.. |TPC| replace:: *Traffic PC (TPC)*
-.. |CPC| replace:: *Control PC (CPC)*
-.. |AP| replace::  *Access Point (AP)*
-.. |TOT| replace:: *Throughput Over Time (TOT)*
-.. |ADB| replace:: *Android Debug Bridge (ADB)*
-.. |SSH| replace:: *Secure Shell (SSH)*
-.. |NAXXX| replace:: *Networked Power Switch (NAXXX)*
-"""
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
@@ -43,6 +32,7 @@ extensions = ['sphinx.ext.autosummary',
               'sphinx.ext.coverage',
               'sphinx.ext.pngmath',
               'sphinx.ext.viewcode',
+              'sphinx.ext.ifconfig',
               'sphinxcontrib.plantuml',
               'sphinx.ext.graphviz']
 
@@ -113,7 +103,12 @@ pygments_style = 'sphinx'
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-#html_theme = 'haikuticle'
+import os
+on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
+if on_rtd:
+    html_theme = 'default'
+else:
+    html_theme = 'haikuticle'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -318,3 +313,9 @@ autosummary_generate = True
 autodoc_default_flags = ['members', 'inherited-members', 'show_inheritance']
 autoclass_content = 'both'
 autodoc_member_order = 'groupwise'
+
+def setup(app):
+    app.add_config_value('repository', 'bitbucket', True)
+    return
+
+repository = 'rtfd'

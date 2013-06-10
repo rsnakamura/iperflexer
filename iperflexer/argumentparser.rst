@@ -18,10 +18,12 @@ The Arguments Class
 
 This was originally called the `ArgumentParser` but re-named `Arguments` so as not to be confused with the python `ArgumentParser`.
 
-.. uml::
+.. ifconfig:: repository != 'rtfd'
 
-   Arguments o-- argparse.ArgumentParser
-   Arguments : Namespace parse_args()
+    .. uml::
+    
+       Arguments o-- argparse.ArgumentParser
+       Arguments : Namespace parse_args()
 
 .. autosummary::
    :toctree: api
