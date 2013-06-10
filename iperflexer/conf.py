@@ -12,6 +12,7 @@
 # serve to show the default.
 
 import sys, os
+repository = 'rtfd'
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -33,7 +34,6 @@ extensions = ['sphinx.ext.autosummary',
               'sphinx.ext.pngmath',
               'sphinx.ext.viewcode',
               'sphinx.ext.ifconfig',
-              'sphinxcontrib.plantuml',
               'sphinx.ext.graphviz']
 
 # change plantuml to use svg
@@ -318,4 +318,5 @@ def setup(app):
     app.add_config_value('repository', 'bitbucket', True)
     return
 
-repository = 'rtfd'
+if repository != 'rtfd':    
+    extensions.append('sphinxcontrib.plantuml')
