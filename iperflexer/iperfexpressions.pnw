@@ -1,18 +1,40 @@
-# Copyright (c) 2012 Russell Nakamura
+The Iperf Expressions
+=====================
+.. currentmodule:: iperflexer.iperfexpressions
 
-# Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software # without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+This module holds a set of regular expressions to help with lexing the iperf input.
 
-# The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
+<<name='imports', echo=False>>=
+#python standard library
 import re
 from abc import ABCMeta, abstractproperty
 
+#this code
 from baseclass import BaseClass
 import oatbran as bran
+@
 
+.. _iperfexpressions-expression-base:
 
+The ExpressionBase
+------------------
+
+The ``ExpressionBase`` is an Abstract Base Class that provides a logger for children and requires that they implement an `expression` property. 
+
+.. ifconfig:: repository != 'rtfd'
+
+   .. uml::
+
+      ExpressionBase -|> BaseClass
+      ExpressionBase : String expression
+      ExpressionBase : re.RegexObject regex
+
+.. autosummary::
+   :toctree: api
+
+   ExpressionBase
+   
+<<name='ExpressionBase', echo=False>>=
 class ExpressionBase(BaseClass):
     """
     An Abstract Base class for regular expression containers
@@ -33,14 +55,50 @@ class ExpressionBase(BaseClass):
         """
         return self._expression
 
-    @abstractproperty
+    @property
     def regex(self):
         """
+        A compiled version of the expression
+        
         :rtype: re.RegexObject
         :return: compiled regex object
         """
+        if self._regex is None:
+            self._regex = re.compile(self.expression())
         return self._regex
+@
 
+The HumanExpression
+-------------------
+
+This is a concrete implementation of the :ref:`ExpressionBase <iperfexpressions-expression-base>`.
+
+.. ifconfig:: repository != 'rtfd'
+
+   .. uml::
+
+      HumanExpression -|> ExpressionBase
+      HumanExpression : String thread_column
+      HumanExpression : String expression
+      HumanExpression : re.RegexObject regex
+
+.. autosummary::
+   :toctree:
+
+   HumanExpression
+
+The `expression` is composed of parts from :ref:`Oatbran <oatbran-expressions>` so I will not re-define the base components. The following is an approximation of the expression (all the parts that are in all-capital letters are from oatbran):
+
+.. math::
+
+   threads &\gets `[' + OPTIONAL\_SPACES + INTEGER + `]'\\
+   interval &\gets FLOAT + OPTIONAL\_SPACES + `-' + FLOAT + SPACES + `sec'\\    
+   transfer &\gets REAL + SPACES + [`GKM'] + ? + `Bytes'\\    
+   bandwidth &\gets REAL + SPACES + [`GKM'] + ? + (`bits'| `bytes') + `/sec'\\   
+   expression  &\gets threads + SPACES + interval + SPACES + transfer + SPACES + bandwidth\\
+
+   
+<<name='HumanExpression', echo=False>>=
 class HumanExpression(ExpressionBase):
     """
     The Human Expression matches the human-readable iperf output
@@ -53,6 +111,8 @@ class HumanExpression(ExpressionBase):
     @property
     def thread_column(self):
         """
+        an expression for the thread-number column
+        
         :return: the expression to match the thread column        
         """
         if self._thread_column is None:
@@ -64,6 +124,8 @@ class HumanExpression(ExpressionBase):
     @property
     def expression(self):
         """
+        The regular expression for Human-Readable iperf output
+        
         :rtype: String
         :return: regular expression to match iperf output
         """
@@ -81,18 +143,12 @@ class HumanExpression(ExpressionBase):
 
             self._expression = bran.SPACES.join([self.thread_column, interval_column,
                                                  transfer_column, bandwidth_column])
+            self.logger.debug('HumanExpression: {0}'.format(self._expression))
         return self._expression
-
-    @property
-    def regex(self):
-        """
-        :return: compiled regex object
-        """
-        if self._regex is None:
-            self._regex = re.compile(self.expression)
-        return self._regex
 # end class HumanExpression
+@
 
+<<name='CSVExpression', echo=False>>=
 class CsvExpression(ExpressionBase):
     """
     The Csv Expression holds the expression to match iperf's csz format
@@ -150,8 +206,9 @@ class CsvExpression(ExpressionBase):
             self._regex = re.compile(self.expression)
         return self._regex
 # end class CsvExpression
-    
-    
+@
+
+<<name='CombinedExpression', echo=False>>=
 class CombinedExpression(ExpressionBase):
     """
     A Combined expression matches either case (but doesn't break up the line).
@@ -200,8 +257,9 @@ class CombinedExpression(ExpressionBase):
             self._regex = re.compile(self.expression)
         return self._regex
 # end class CombinedExpression
+@
 
-
+<<name='parserkeys', echo=False>>=
 class ParserKeys(object):
     """
     A holder of the keys to the groupdict
@@ -225,3 +283,4 @@ class ParserKeys(object):
     human = "human"
     csv = "csv"
 # end class ParserKeys
+@

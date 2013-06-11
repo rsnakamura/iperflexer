@@ -1,10 +1,6 @@
-"""
-A module for base classes that have common methods to inherit.
-
-Primarily just logging for now.
-"""
 
 import logging
+
 
 DOT_JOIN = "{0}.{1}"
 

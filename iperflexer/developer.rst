@@ -4,10 +4,13 @@ Developer Documentation
 Code Description:
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    ArgumentParser <argumentparser>
-   
+   BaseClass <baseclass>
+   Coroutines <coroutine>
+   Finder <finder>
+   IperfExpressions <iperfexpressions>
 
 
 Indices and tables
