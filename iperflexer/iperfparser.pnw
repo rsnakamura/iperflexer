@@ -1,4 +1,10 @@
+The IperfParser
+===============
+.. currentmodule:: iperflexer.iperfparser
 
+This is the class that performs the work if extracting the data-column.
+
+<<name='license'>>=
 # Copyright 2013 Russell Nakamura
   
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -11,8 +17,9 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANYKIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License. 
+@
 
-
+<<name='imports', echo=False>>=
 #python Standard Library
 from collections import defaultdict
 import os
@@ -24,8 +31,18 @@ from iperfexpressions import HumanExpression, ParserKeys
 from iperfexpressions import CsvExpression
 from unitconverter import UnitConverter
 from coroutine import coroutine
+@
+.. autosummary::
+   :toctree: api
 
+   IperfParser
 
+.. uml::
+
+   IperfParser -|> BaseClass
+   IperfParser : bandwidths
+   
+<<name='IperfParser', echo=False>>=
 class IperfParser(BaseClass):
     """
     The Iperf Parser extracts bandwidth and other information from the output
@@ -241,3 +258,4 @@ class IperfParser(BaseClass):
         base, ext = os.path.splitext(basename)
         return "{0}.csv".format(base)
 # end class IperfParser
+@
