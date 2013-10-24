@@ -34,7 +34,8 @@ extensions = ['sphinx.ext.autosummary',
               'sphinx.ext.pngmath',
               'sphinx.ext.viewcode',
               'sphinx.ext.ifconfig',
-              'sphinx.ext.graphviz']
+              'sphinx.ext.graphviz',
+              'sphinxcontrib.plantuml']
 
 # change plantuml to use svg
 plantuml_output_format = 'svg'

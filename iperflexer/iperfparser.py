@@ -68,7 +68,9 @@ class IperfParser(BaseClass):
     @property
     def bandwidths(self):
         """
-        :return: iterator over the bandwidths
+        Traverses self.interval's keys in sorted order and generates their bandwidths.
+        
+        :yield: self.interval's values in the sorted order of the intervals
         """
         intervals = sorted(self.intervals.keys())
         for interval in intervals:
@@ -189,6 +191,7 @@ class IperfParser(BaseClass):
     @coroutine
     def pipe(self, target):
         """
+        A coroutine to use in a pipeline
         
         :warnings:
 
@@ -232,6 +235,8 @@ class IperfParser(BaseClass):
 
     def filename(self, basename):
         """
+        Changes the extension of the basename to .csv
+        
         :param:
 
          - `basename`: a the raw-iperf filename (without path)

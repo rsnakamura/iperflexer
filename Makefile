@@ -1,19 +1,23 @@
 # Makefile for Sphinx documentation
 #
+THIS_NAME = iperflexer
+RSYNC_NAME = iperf_lexer
+RSYNC_CATEGORY = commands
 
 # You can set these variables from the command line.
 SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
 PAPER         =
 BUILDDIR      = build
-START_DIR 	  = $(pwd)
 
 # Internal variables.
 PAPEROPT_a4     = -D latex_paper_size=a4
 PAPEROPT_letter = -D latex_paper_size=letter
-ALLSPHINXOPTS   = -d $(BUILDDIR)/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) iperflexer
+ALLSPHINXOPTS   = -d $(BUILDDIR)/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) $(THIS_NAME)
 # the i18n builder cannot share the environment and doctrees with the others
-I18NSPHINXOPTS  = $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) iperflexer
+I18NSPHINXOPTS  = $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) $(THIS_NAME	)
+
+RSYNC_DIR = ~/repositories/repository_documentation/build/html/$(RSYNC_CATEGORY)/$(RSYNC_NAME)
 
 .PHONY: help clean html dirhtml singlehtml pickle json htmlhelp qthelp devhelp epub latex latexpdf text man changes linkcheck doctest gettext
 
@@ -46,6 +50,8 @@ html:
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."
+	@echo "Synching with the repository_documentation"
+	rsync -ravz $(BUILDDIR)/html/ $(RSYNC_DIR)
 
 dirhtml:
 	$(SPHINXBUILD) -b dirhtml $(ALLSPHINXOPTS) $(BUILDDIR)/dirhtml
@@ -78,17 +84,17 @@ qthelp:
 	@echo
 	@echo "Build finished; now you can run "qcollectiongenerator" with the" \
 	      ".qhcp project file in $(BUILDDIR)/qthelp, like this:"
-	@echo "# qcollectiongenerator $(BUILDDIR)/qthelp/ComcastRoadTrip.qhcp"
+	@echo "# qcollectiongenerator $(BUILDDIR)/qthelp/ThroughputOverTime.qhcp"
 	@echo "To view the help file:"
-	@echo "# assistant -collectionFile $(BUILDDIR)/qthelp/ComcastRoadTrip.qhc"
+	@echo "# assistant -collectionFile $(BUILDDIR)/qthelp/ThroughputOverTime.qhc"
 
 devhelp:
 	$(SPHINXBUILD) -b devhelp $(ALLSPHINXOPTS) $(BUILDDIR)/devhelp
 	@echo
 	@echo "Build finished."
 	@echo "To view the help file:"
-	@echo "# mkdir -p $$HOME/.local/share/devhelp/ComcastRoadTrip"
-	@echo "# ln -s $(BUILDDIR)/devhelp $$HOME/.local/share/devhelp/ComcastRoadTrip"
+	@echo "# mkdir -p $$HOME/.local/share/devhelp/ThroughputOverTime"
+	@echo "# ln -s $(BUILDDIR)/devhelp $$HOME/.local/share/devhelp/ThroughputOverTime"
 	@echo "# devhelp"
 
 epub:
