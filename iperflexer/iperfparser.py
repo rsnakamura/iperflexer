@@ -80,6 +80,8 @@ class IperfParser(BaseClass):
     @property
     def regex(self):
         """
+        A dictionary holding the regular expressions for the 2 formats
+        
         :return: format:regex dictionary
         """
         if self._regex is None:

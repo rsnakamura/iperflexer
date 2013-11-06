@@ -54,7 +54,7 @@ class Arguments(object):
                                  default=False,
                                  action="store_true")
 
-        self.parser.add_argument('--threads',
+        self.parser.add_argument('-p','--threads',
                                  help="Specify thread count (default=%(default)s)",
                                  default=4, type=int)
 
