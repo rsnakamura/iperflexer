@@ -1,17 +1,18 @@
-"""
-A module to hold the generators for the concatenator.
-"""
 
 # python libraries
 import fnmatch
 import os
 import re
 
+
 WRITEABLE = 'w'
 EOSection = ''
 
+
 def find(glob, start=None):
     """
+    Generates files matching the glob
+    
     :param:
 
      - `glob`: A file-glob to match interesting files.
@@ -26,8 +27,11 @@ def find(glob, start=None):
             yield os.path.join(path, name)
     return
 
+
 def concatenate(glob, start=None):
     """
+    Generates lines from all files that match the glob.
+    
     :param:
 
      - `glob`: A file-glob to match interesting files.
@@ -40,8 +44,11 @@ def concatenate(glob, start=None):
             yield line
     return
 
+
 def sections(glob, start, end, top=None):
     """
+    Generates section generators
+    
     :param:
 
      - `glob`: A file glob that matches source files
@@ -58,8 +65,11 @@ def sections(glob, start, end, top=None):
             yield section(concatenator, end, line)
     return
 
+
 def section(iterator, end, firstline=None):
     """
+    Generates lines from the iterator until `end` is matched or iterator stops
+    
     :param:
 
      - `iterator`: An iterator of lines
@@ -79,7 +89,8 @@ def section(iterator, end, firstline=None):
             yield line
         except StopIteration:
             return
-            
+
+
 def line_counter(glob, start, end, interesting):
     """
     Counts interesting lines within sections

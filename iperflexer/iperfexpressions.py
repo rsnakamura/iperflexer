@@ -1,14 +1,9 @@
-# Copyright (c) 2012 Russell Nakamura
 
-# Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software # without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-# The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
+#python standard library
 import re
 from abc import ABCMeta, abstractproperty
 
+#this code
 from baseclass import BaseClass
 import oatbran as bran
 
@@ -33,13 +28,18 @@ class ExpressionBase(BaseClass):
         """
         return self._expression
 
-    @abstractproperty
+    @property
     def regex(self):
         """
+        A compiled version of the expression
+        
         :rtype: re.RegexObject
         :return: compiled regex object
         """
+        if self._regex is None:
+            self._regex = re.compile(self.expression)
         return self._regex
+
 
 class HumanExpression(ExpressionBase):
     """
@@ -53,6 +53,8 @@ class HumanExpression(ExpressionBase):
     @property
     def thread_column(self):
         """
+        an expression for the thread-number column
+        
         :return: the expression to match the thread column        
         """
         if self._thread_column is None:
@@ -64,6 +66,8 @@ class HumanExpression(ExpressionBase):
     @property
     def expression(self):
         """
+        The regular expression for Human-Readable iperf output
+        
         :rtype: String
         :return: regular expression to match iperf output
         """
@@ -81,21 +85,14 @@ class HumanExpression(ExpressionBase):
 
             self._expression = bran.SPACES.join([self.thread_column, interval_column,
                                                  transfer_column, bandwidth_column])
+            self.logger.debug('HumanExpression: {0}'.format(self._expression))
         return self._expression
-
-    @property
-    def regex(self):
-        """
-        :return: compiled regex object
-        """
-        if self._regex is None:
-            self._regex = re.compile(self.expression)
-        return self._regex
 # end class HumanExpression
+
 
 class CsvExpression(ExpressionBase):
     """
-    The Csv Expression holds the expression to match iperf's csz format
+    The Csv Expression holds the expression to match iperf's csv format
     """
     def __init__(self):
         super(CsvExpression, self).__init__()
@@ -150,8 +147,8 @@ class CsvExpression(ExpressionBase):
             self._regex = re.compile(self.expression)
         return self._regex
 # end class CsvExpression
-    
-    
+
+
 class CombinedExpression(ExpressionBase):
     """
     A Combined expression matches either case (but doesn't break up the line).

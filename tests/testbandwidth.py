@@ -15,12 +15,11 @@ CLINE1 = "20120714055910,192.168.20.91,59210,192.168.20.59,5001,5,8.0-9.0,393216
 
 class TestBandwidth(TestCase):
     def setUp(self):
-        self.parser = iperfparser.IperfParser()
+        self.parser = iperfparser.IperfParser(threads=1)
         return
 
     def check_bandwidth(self, line, expected):
-        match = self.parser(line)
-        bandwidth = self.parser.bandwidth(match)
+        bandwidth = self.parser(line)
         self.assertAlmostEqual(expected, bandwidth)
         return
     

@@ -106,7 +106,7 @@ class TestEdgeIperf(TestCase):
 
     def test_bandwiths(self):
         for line in EDGE:
-            self.parser.add(line)
+            self.parser(line)
         
         for index, interval in enumerate(INTERVALS):
             self.assertAlmostEqual(BANDWIDTHS[index], self.parser.intervals[interval])
@@ -120,7 +120,7 @@ class TestEdgeIperfCSV(TestCase):
     def test_bandwiths(self):
         self.parser.reset()
         for line in EDGECSV:
-            self.parser.add(line)
+            self.parser(line)
         for index, interval in enumerate(INTERVALSCSV):
             self.assertAlmostEqual(BANDWIDTHSCSV[index], self.parser.intervals[interval])
         return

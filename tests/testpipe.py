@@ -69,11 +69,14 @@ class TestSumParser(TestCase):
         return
 
     def test_human_pipe(self):
+        self.parser.reset()
+        target = MagicMock()
+        pipe = self.parser.pipe(target)
         for line in FRAGMENT:
-            self.pipe.send(line)
+            pipe.send(line)
         expected = 26.2
-        print self.target.send.mock_calls
-        name, args, kwargs =  self.target.send.mock_calls[0]
+        print target.send.mock_calls
+        name, args, kwargs =  target.send.mock_calls[0]
         actual =  float(args[0])
         self.assertAlmostEqual(expected, actual)
         return
@@ -87,3 +90,16 @@ class TestSumParser(TestCase):
         self.assertAlmostEqual(expected, actual)
         return
 # end class TestSumParser
+
+if __name__ == "__main__":
+    import pudb; pudb.set_trace()
+    parser = IperfParser()
+    target = MagicMock()
+    pipe = parser.pipe(target)
+    for line in FRAGMENT:
+        pipe.send(line)
+    expected = 26.2
+    print target.send.mock_calls
+    name, args, kwargs =  target.send.mock_calls[0]
+    actual =  float(args[0])
+    

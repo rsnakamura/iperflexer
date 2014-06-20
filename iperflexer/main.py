@@ -48,11 +48,14 @@ def pipe(args, infile=None, outfile=None):
         return
 
     if args.voodoo:
-        parser = IperfParser(units=units)
+        parser = IperfParser(units=units,
+                             maximum=args.maximum,
+                             threads=args.threads)
     else:
-        parser = SumParser(units=units)
+        parser = SumParser(units=units, maximum=args.maximum,
+                           threads=args.threads)
     for line in infile:
-        parser.add(line)
+        parser(line)
         if args.tee:
             sys.stderr.write(line)
     for bandwidth in parser.bandwidths:
