@@ -45,13 +45,10 @@ help:
 
 clean:
 	-rm -rf $(BUILDDIR)/*
-upload_html:
-	@echo
-	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."
-	@echo "Synching with the repository_documentation"
+
+pypi_html:
 	python setup.py build_sphinx
 	python setup.py register upload_sphinx
-	rsync -ravz $(BUILDDIR)/html/ $(RSYNC_DIR)
 
 html:
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
