@@ -39,20 +39,16 @@ You can get a list of the options using the help option.
 ::
 
     usage: parseiperf [-h] [-g GLOB] [-u UNITS] [-s] [-v] [--pudb] [--pdb] [-t]
-    
                       [-p THREADS] [-m MAXIMUM]
     
     optional arguments:
       -h, --help            show this help message and exit
-      -g GLOB, --glob GLOB  A file-glob to match input file names. (default=Non
-    e)
+      -g GLOB, --glob GLOB  A file-glob to match input file names. (default=None)
       -u UNITS, --units UNITS
                             Output units per second
                             [bits,Bytes,KBits,KBytes,Mbits,MBytes,Gbits,GBytes]
-    
                             (default=Mbits)
-      -s, --save            If glob is provided, save to a file instead of send
-    ing
+      -s, --save            If glob is provided, save to a file instead of sending
                             to stdout. (default=False)
       -v, --voodoo          Add threads yourself instead of using 'sum' lines.
                             (default=False)
@@ -64,7 +60,6 @@ You can get a list of the options using the help option.
                             Specify thread count (default=4)
       -m MAXIMUM, --maximum MAXIMUM
                             Maximum allowed bandwidth (default=1000000)
-    
     
     
 
@@ -156,4 +151,6 @@ I think that's everything. If it is, then when you're next to the `Makefile` you
 
    make html
 
-And it will output the html files to ``build/html``. I also `rsync` the html files to a folder where my apache server can see it so if you build it before I remember to get rid of that in the Makefile you will likely see an error but that shouldn't affect the built documentation (although if just by coincidence you have the exact same file structure as me it might clobber something (sorry)).
+And it will output the html files to ``build/html``. 
+
+.. note:: I `rsync` the html files to a folder where my apache server can see it so if you build it before I remember to get rid of that in the Makefile you will likely see an error but that shouldn't affect the built documentation (although if just by coincidence you have the exact same file structure as me it might clobber something (sorry)). I am also syncing the html to `python <https://pythonhosted.org/iperflexer/>`_ so until this is frozen you might be prompted for a password.

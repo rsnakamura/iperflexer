@@ -29,7 +29,7 @@ These are the documents created from the source files.
    The Finder <finder.rst>
    The Iperf Expressions <iperfexpressions.rst>
    The IperfParser <iperfparser.rst>
-   The Iperf Lexer <readme.rst>
+   The Iperf Lexer (Read Me) <readme.rst>
 
 .. toctree::
    :maxdepth: 1
