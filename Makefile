@@ -51,6 +51,8 @@ html:
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."
 	@echo "Synching with the repository_documentation"
+	python setup.py build_sphinx
+	python setup.py register upload_sphinx
 	rsync -ravz $(BUILDDIR)/html/ $(RSYNC_DIR)
 
 dirhtml:

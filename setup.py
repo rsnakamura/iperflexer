@@ -15,7 +15,7 @@ with open('readme.rst') as reader:
     long_description = reader.read()
     
 setup(name='iperflexer',
-      version="2014.12.21.2",
+      version="2014.12.21.3",
       description="A program to parse iperf files",
       long_description=long_description,
       author="russell",

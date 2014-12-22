@@ -1,5 +1,5 @@
-The Iperf Lexer
-===============
+The Iperf Lexer (Read Me)
+=========================
 <<name='imports', echo=False>>=
 # python standard library
 from __future__ import print_function
