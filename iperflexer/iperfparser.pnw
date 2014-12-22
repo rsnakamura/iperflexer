@@ -2,22 +2,7 @@ The IperfParser
 ===============
 .. currentmodule:: iperflexer.iperfparser
 
-This is the class that performs the work if extracting the data-column.
-
-<<name='license', echo=False>>=
-# Copyright 2013 Russell Nakamura
-  
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-  
-# You may obtain a copy of the License at
-#     http://www.apache.org/licenses/LICENSE-2.0
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANYKIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License. 
-@
+This is the class that performs the work of extracting the data-column.
 
 <<name='imports', echo=False>>=
 #python Standard Library
@@ -25,6 +10,7 @@ from collections import defaultdict
 import os
 
 # this code
+from iperflexer import MAXIMUM_BANDWITH
 from baseclass import BaseClass
 
 from iperfexpressions import HumanExpression, ParserKeys
@@ -35,10 +21,6 @@ from coroutine import coroutine
 
 The `IperfParser` extracts a column from the iperf-output. Currently it only extracts bandwidth. Either it needs to be made more flexible (or a better idea might be to create a family of column extractors). The `IperfParser` is differentiated from the `SumParser` in that it re-adds adds the parallel threads and in-fills zeros for missing time-intervals.
 
-.. autosummary::
-   :toctree: api
-
-   IperfParser
 
 .. uml::
 
@@ -54,6 +36,22 @@ The `IperfParser` extracts a column from the iperf-output. Currently it only ext
    IperfParser : __call__(line)
    IperfParser : bandwidth(match)
    IperfParser : valid(match)
+
+.. autosummary::
+   :toctree: api
+
+   IperfParser
+   IperfParser.bandwidths
+   IperfParser.regex
+   IperfParser.intervals
+   IperfParser.conversion
+   IperfParser.valid
+   IperfParser.bandwidth
+   IperfParser.__call__
+   IperfParser.search
+   IperfParser.pipe
+   IperfParser.reset
+
 
 Properties
 ----------
@@ -77,7 +75,7 @@ class IperfParser(BaseClass):
     """
     def __init__(self, expected_interval=1, interval_tolerance=0.1, units="Mbits",
                  threads=4,
-                 maximum=10**9):
+                 maximum=MAXIMUM_BANDWITH):
         """
         IperfParser Constructor
         

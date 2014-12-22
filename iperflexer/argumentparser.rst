@@ -45,7 +45,7 @@ The following are the accepted command-line-arguments. *Short Name* means a flag
 
 For example, to set the tee flag using the short-name and the voodoo flag using the long-name::
 
-    takataka -t --voodoo
+    pareiperf -t --voodoo
 
 .. csv-table:: Command Line Arguments
    :header: Short Name, Long Name, Default, Description

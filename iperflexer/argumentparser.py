@@ -24,7 +24,7 @@ class Arguments(object):
         :return: namespace with command-line arguments
         """
         self.parser.add_argument("-g", "--glob",
-                                 help="A file-glob to match input file names.",
+                                 help="A file-glob to match input file names. (default=%(default)s)",
                                  default=None)
 
         self.parser.add_argument("-u", "--units",
@@ -32,25 +32,25 @@ class Arguments(object):
                                  default="Mbits")
         
         self.parser.add_argument('-s', '--save',
-                                 help="If  glob is provided, save to a file instead of sending to stdout.",
+                                 help="If  glob is provided, save to a file instead of sending to stdout. (default=%(default)s)",
                                  default=False,
                                  action="store_true")
 
         self.parser.add_argument("-v", "--voodoo",
-                                 help="Add threads yourself.",
+                                 help="Add threads yourself instead of using 'sum' lines. (default=%(default)s)",
                                  action="store_true", default=False)
         
         self.parser.add_argument('--pudb',
-                                 help="Enable pudb (if installed).",
+                                 help="Enable pudb (if installed). (default=%(default)s)",
                                  default=False,                        
                                  action="store_true")
         
         self.parser.add_argument('--pdb',
-                                 help="Enable pdb",
+                                 help="Enable pdb (default=%(default)s)",
                                  default=False, action="store_true")
         
         self.parser.add_argument("-t", '--tee',
-                                 help="Send lines standard error as they come in.",
+                                 help="Send lines standard error as they come in. (default=%(default)s)",
                                  default=False,
                                  action="store_true")
 

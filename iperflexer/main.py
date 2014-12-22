@@ -1,4 +1,5 @@
 # python
+from __future__ import print_function
 import sys
 import os
 
@@ -30,7 +31,8 @@ def enable_debugging():
     try:
         import pudb
         pudb.set_trace()
-    except ImportError:
+    except ImportError as error:
+        print(error)
         raise ArgumentError("`pudb` argument given but unable to import `pudb`")
 
 def pipe(args, infile=None, outfile=None):

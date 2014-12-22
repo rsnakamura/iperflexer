@@ -1,28 +1,34 @@
-#!/usr/bin/env python
+from __future__ import print_function
 
 try:
     from setuptools import setup, find_packages
-except ImportError:
-    import distribute_setup
-    distribute_setup.use_setuptools()
-    from setuptools import setup, find_packages
+except ImportError as error:
+    #print(error)
+    #print('setuptools package required')
+    #import sys
+    #sys.exit()
+    from distribute_setup import use_setuptools
+    use_setuptools()
 
-from datetime import datetime
-
+# put the readme in for pypi
+with open('readme.rst') as reader:
+    long_description = reader.read()
+    
 setup(name='iperflexer',
-      version= datetime.today().strftime("%Y.%m.%d"),
-      description="A program to parse data files",
+      version="2014.12.21.2",
+      description="A program to parse iperf files",
+      long_description=long_description,
       author="russell",
       platforms=['linux'],
-      url = '',
-      author_email="russellofallion@gmail.com",
+      url = 'https://bitbucket.org/cloisteredmonkey-admin/iperflexer',
+      author_email="necromuralist@gmail.com",
       license = "MIT",
-      packages = find_packages(exclude=["__main__"]),
+      packages = find_packages(),
       include_package_data = True,
-      package_data = {"":["*.txt", "*.rst", "*.ini"]},
+      package_data = {"":["*.rst", "*.ini"]},
       entry_points = """
 	  [console_scripts]
-          takataka=iperflexer.main:main
+      parseiperf=iperflexer.main:main
 	  """
 
       )
