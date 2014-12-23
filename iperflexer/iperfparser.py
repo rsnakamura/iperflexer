@@ -4,6 +4,7 @@ from collections import defaultdict
 import os
 
 # this code
+from iperflexer import MAXIMUM_BANDWITH
 from baseclass import BaseClass
 
 from iperfexpressions import HumanExpression, ParserKeys
@@ -18,7 +19,7 @@ class IperfParser(BaseClass):
     """
     def __init__(self, expected_interval=1, interval_tolerance=0.1, units="Mbits",
                  threads=4,
-                 maximum=10**9):
+                 maximum=MAXIMUM_BANDWITH):
         """
         IperfParser Constructor
         
@@ -46,7 +47,6 @@ class IperfParser(BaseClass):
         self._threads = None
         self.format = None
         self._bandwidths = None
-
         self.thread_count = 0
         self.current_thread = None
         return
@@ -61,7 +61,6 @@ class IperfParser(BaseClass):
         intervals = sorted(self.intervals.keys())
         for interval in intervals:
             yield self.intervals[interval]
-
 
     @property
     def regex(self):
@@ -240,7 +239,7 @@ if __name__ == '__main__':
     parser = IperfParser(expected_interval=10, threads=1)
 
     import numpy
-    with open('test0.iperf') as f:
+    with open('features/steps/samples/test0.iperf') as f:
         for line in f:
             output = parser(line)
             if output is not None:

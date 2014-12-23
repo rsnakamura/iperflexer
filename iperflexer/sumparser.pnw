@@ -1,13 +1,34 @@
+The SumParser
+=============
 
+The sumparser parses sums and logs the bandwidth sum.
+
+<<name='imports', echo=False>>=
 from iperfparser import IperfParser 
 from iperfexpressions import HumanExpression, ParserKeys, CsvExpression
 import oatbran as bran
 from coroutine import coroutine
+@
 
-
+<<name='constants'>>=
 BITS = 'bits'
+@
 
+The HumanExpressionSum Class
+----------------------------
 
+.. uml::
+
+   HumanExpression <|-- HumanExpressionSum
+
+.. module:: iperflexer.sumparser
+.. autosummary::
+   :toctree: api
+
+   HumanExpression
+   HumanExpression.thread_column   
+
+<<name='HumanExpressionSum', echo=False>>=
 class HumanExpressionSum(HumanExpression):
     """
     Changes the thread-column regular expression to match SUMS if needed
@@ -35,8 +56,22 @@ class HumanExpressionSum(HumanExpression):
             self._thread_column = bran.L_BRACKET + thread + bran.R_BRACKET
         return self._thread_column
 # end class HumanExpressionSum
+@
 
+CsvExpressionSum Class
+----------------------
 
+.. uml::
+
+   CsvExpression <|-- CsvExpressionSum
+
+.. autosummary::
+   :toctree: api
+
+   CsvExpressionSum
+   CsvExpressionSum.thread_column   
+
+<<name='CsvExpressionSum', echo=False>>=
 class CsvExpressionSum(CsvExpression):
     """
     Changes the thread column to look for -1 if needed
@@ -64,8 +99,24 @@ class CsvExpressionSum(CsvExpression):
             self._thread_column = bran.NAMED(ParserKeys.thread, thread)
         return self._thread_column
 # end class CsvExpressionSum    
+@    
 
+The SumParser
+-------------
 
+.. uml::
+
+   IperfParser <|-- SumParser
+
+.. autosummary::
+   :toctree: api
+
+   SumParser
+   SumParser.__call__
+   SumParser.pipe
+   SumParser.last_line_bandwidth   
+
+<<name='SumParser', echo=False>>=
 class SumParser(IperfParser):
     """
     The SumParser emits bandwidth sum lines
@@ -135,3 +186,4 @@ class SumParser(IperfParser):
                 target.send(self.bandwidth(match))
         return
 # end class SumParser
+@

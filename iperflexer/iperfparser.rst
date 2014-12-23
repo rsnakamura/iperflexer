@@ -36,7 +36,7 @@ The `IperfParser` extracts a column from the iperf-output. Currently it only ext
    IperfParser.bandwidth
    IperfParser.__call__
    IperfParser.search
-   IperfParser.pipe
+   IperfParser.pipe   
    IperfParser.reset
 
 
@@ -61,7 +61,7 @@ This is a dictionary holding the regular expressions for the csv-format and the 
         parser = IperfParser(expected_interval=10, threads=1)
     
         import numpy
-        with open('test0.iperf') as f:
+        with open('features/steps/samples/test0.iperf') as f:
             for line in f:
                 output = parser(line)
                 if output is not None:
