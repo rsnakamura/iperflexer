@@ -1,0 +1,64 @@
+------------------------------------------------------------
+Client connecting to moiragetes, TCP port 5001
+TCP window size: 87040 Byte (default)
+------------------------------------------------------------
+[  6] local 192.168.10.11 port 56437 connected with 192.168.10.2 port 5001
+[  3] local 192.168.10.11 port 56434 connected with 192.168.10.2 port 5001
+[  4] local 192.168.10.11 port 56435 connected with 192.168.10.2 port 5001
+[  5] local 192.168.10.11 port 56436 connected with 192.168.10.2 port 5001
+[ ID] Interval       Transfer     Bandwidth
+[  3]  0.0- 1.0 sec  3014656 Bytes  24117248 bits/sec
+[  6]  0.0- 1.0 sec  3145728 Bytes  25165824 bits/sec
+[  4]  0.0- 1.0 sec  3145728 Bytes  25165824 bits/sec
+[  5]  0.0- 1.0 sec  3145728 Bytes  25165824 bits/sec
+[SUM]  0.0- 1.0 sec  12451840 Bytes  99614720 bits/sec
+[  6]  1.0- 2.0 sec  2883584 Bytes  23068672 bits/sec
+[  3]  1.0- 2.0 sec  3014656 Bytes  24117248 bits/sec
+[  4]  1.0- 2.0 sec  2883584 Bytes  23068672 bits/sec
+[  5]  1.0- 2.0 sec  2883584 Bytes  23068672 bits/sec
+[SUM]  1.0- 2.0 sec  11665408 Bytes  93323264 bits/sec
+[  6]  2.0- 3.0 sec  2883584 Bytes  23068672 bits/sec
+[  3]  2.0- 3.0 sec  2883584 Bytes  23068672 bits/sec
+[  4]  2.0- 3.0 sec  2883584 Bytes  23068672 bits/sec
+[  5]  2.0- 3.0 sec  2883584 Bytes  23068672 bits/sec
+[SUM]  2.0- 3.0 sec  11534336 Bytes  92274688 bits/sec
+[  4]  3.0- 4.0 sec  2883584 Bytes  23068672 bits/sec
+[  3]  3.0- 4.0 sec  2883584 Bytes  23068672 bits/sec
+[  5]  3.0- 4.0 sec  2883584 Bytes  23068672 bits/sec
+[  6]  3.0- 4.0 sec  3014656 Bytes  24117248 bits/sec
+[SUM]  3.0- 4.0 sec  11665408 Bytes  93323264 bits/sec
+[  3]  4.0- 5.0 sec  2883584 Bytes  23068672 bits/sec
+[  5]  4.0- 5.0 sec  2883584 Bytes  23068672 bits/sec
+[  6]  4.0- 5.0 sec  2883584 Bytes  23068672 bits/sec
+[  4]  4.0- 5.0 sec  3014656 Bytes  24117248 bits/sec
+[SUM]  4.0- 5.0 sec  11665408 Bytes  93323264 bits/sec
+[  6]  5.0- 6.0 sec  2883584 Bytes  23068672 bits/sec
+[  4]  5.0- 6.0 sec  2883584 Bytes  23068672 bits/sec
+[  3]  5.0- 6.0 sec  3014656 Bytes  24117248 bits/sec
+[  5]  5.0- 6.0 sec  3014656 Bytes  24117248 bits/sec
+[SUM]  5.0- 6.0 sec  11796480 Bytes  94371840 bits/sec
+[  6]  6.0- 7.0 sec  2883584 Bytes  23068672 bits/sec
+[  4]  6.0- 7.0 sec  2883584 Bytes  23068672 bits/sec
+[  3]  6.0- 7.0 sec  2883584 Bytes  23068672 bits/sec
+[  5]  6.0- 7.0 sec  2883584 Bytes  23068672 bits/sec
+[SUM]  6.0- 7.0 sec  11534336 Bytes  92274688 bits/sec
+[  3]  7.0- 8.0 sec  2883584 Bytes  23068672 bits/sec
+[  5]  7.0- 8.0 sec  2883584 Bytes  23068672 bits/sec
+[  6]  7.0- 8.0 sec  3014656 Bytes  24117248 bits/sec
+[  4]  7.0- 8.0 sec  3014656 Bytes  24117248 bits/sec
+[SUM]  7.0- 8.0 sec  11796480 Bytes  94371840 bits/sec
+[  6]  8.0- 9.0 sec  2883584 Bytes  23068672 bits/sec
+[  5]  8.0- 9.0 sec  3014656 Bytes  24117248 bits/sec
+[  3]  8.0- 9.0 sec  3014656 Bytes  24117248 bits/sec
+[  4]  8.0- 9.0 sec  2883584 Bytes  23068672 bits/sec
+[SUM]  8.0- 9.0 sec  11796480 Bytes  94371840 bits/sec
+[  6]  9.0-10.0 sec  2883584 Bytes  23068672 bits/sec
+[  6]  0.0-10.1 sec  29491200 Bytes  23442550 bits/sec
+[  4]  9.0-10.0 sec  2883584 Bytes  23068672 bits/sec
+[  4]  0.0-10.1 sec  29491200 Bytes  23439162 bits/sec
+[  3]  9.0-10.0 sec  2883584 Bytes  23068672 bits/sec
+[  3]  0.0-10.1 sec  29491200 Bytes  23398117 bits/sec
+[  5]  9.0-10.0 sec  2883584 Bytes  23068672 bits/sec
+[SUM]  9.0-10.0 sec  11534336 Bytes  92274688 bits/sec
+[  5]  0.0-10.1 sec  29491200 Bytes  23415206 bits/sec
+[SUM]  0.0-10.1 sec  117964800 Bytes  93592467 bits/sec

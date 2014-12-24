@@ -1,7 +1,7 @@
 Index Builder
 =============
 
-.. currentmodule:: commoncode.index_builder
+.. module:: iperflexer.infrastructure.index_builder
 
 .. _index-builder-introduction:
 Introduction
@@ -57,6 +57,4 @@ For sub-folders there are different cases. I think most of the time it is easies
    :toctree: api
 
    subfolder_toctree
-
-
 

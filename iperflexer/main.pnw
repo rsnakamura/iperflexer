@@ -1,4 +1,6 @@
-
+The Main Module
+===============
+<<name='imports', echo=False>>=
 # python
 from __future__ import print_function
 import sys
@@ -10,15 +12,20 @@ from iperfparser import IperfParser
 from sumparser import SumParser
 from unitconverter import UnitNames
 from finder import find
+@
 
+Argument Error
+--------------
 
+<<name='ArgumentError', wrap=False>>=
 class ArgumentError(Exception):
     """
     An error to raise if something is wrong with the arguments
     """
 # end class ArgumentError
+@
 
-
+<<name='constants', wrap=False>>=
 UNITS = {'bits': UnitNames.bits,
          'kbits': UnitNames.kbits,
          'mbits': UnitNames.mbits,
@@ -30,8 +37,12 @@ UNITS = {'bits': UnitNames.bits,
 
 WRITEABLE = 'w'
 ADD_NEWLINE = "{0}\n"
+@
 
+Enable Debugging
+----------------
 
+<<name='enable_debugging', wrap=False>>=
 def enable_debugging():
     try:
         import pudb
@@ -39,8 +50,13 @@ def enable_debugging():
     except ImportError as error:
         print(error)
         raise ArgumentError("`pudb` argument given but unable to import `pudb`")
+@    
+
+Pipe Function
+-------------
 
 
+<<name='pipe', wrap=False>>=
 def pipe(args, infile=None, outfile=None):
     """
     Reads input from standard in and sends output to standard out.
@@ -75,8 +91,12 @@ def pipe(args, infile=None, outfile=None):
             outfile.write(ADD_NEWLINE.format(bandwidth))
     parser.reset()
     return
+@
 
+Find Files Function
+-------------------
 
+<<name='find_files', echo=False>>=
 def find_files(args):
     """
     Reads data from files and outputs to files
@@ -90,8 +110,12 @@ def find_files(args):
             output = None
         pipe(args, open(name), output)
     return
+@
 
+Main
+----
 
+<<name='main', wrap=False>>=
 def main():
     args = Arguments().parse_args()
     if args.pudb:
@@ -101,3 +125,4 @@ def main():
     else:
         find_files(args)
     return
+@

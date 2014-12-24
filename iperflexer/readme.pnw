@@ -61,7 +61,7 @@ The ``--units`` tells the `iperflexer` what units the bandwidths should use. One
 Saves
 ~~~~~
 
-As noted above, the default behavior is to send output to standard output, concatenating the values for multiple data-files, but if you passed in a file-name-glob you can use the ``--save`` option and it will save the output for each input file to a separate file. The output-file-names will be the input-file-names with `.csv` appended to them.
+As noted above, the default behavior is to send output to standard output, concatenating the values for multiple data-files, but if you passed in a file-name-glob you can use the ``--save`` option and it will save the output for each input file to a separate file. The output-file-names will be the input-file-names with `_parsed.csv` appended to them.
 
 VooDoo
 ~~~~~~
@@ -76,12 +76,12 @@ The ``--pudb`` and ``--pdb`` options will start the chosen debugger before runni
 Tee
 ~~~
 
-The ``--tee`` option tells the command to send the output to standard error and standard output. This way if you use it in the originally intended way (piping to another command) you can still see what happened.
+The ``--tee`` option tells the command to send the un-parsed iperf lines to standard error. This way if you use it in the originally intended way (piping to another command) you can still see what happened or you can pipe it to another command (such as another instance of the ``parseiperf`` command).
 
 Threads
 ~~~~~~~
 
-Since the ``voodoo-parser`` re-adds the threads it needs to know how many of them there are, so if you use it, pass in the ``--threads`` option to change it from the default of 4 if you need to. I could have made it infer-them, but I wanted to be able to work with data where the connection was bad and the threads sometimes died and this seemed to be the safest way to do it. It doesn't really matter if all the threads finish their reporting, it's mostly for the bad connections.
+Since the ``voodoo-parser`` re-adds the threads it needs to know how many of them there are, so if you use it, pass in the ``--threads`` option to change it from the default of 4 if you need to. I could have made it infer-them, but I wanted to be able to work with data where the connection was bad and the threads sometimes died and this seemed to be the safest way to do it. It doesn't really matter if all the threads finish their reporting, it's mostly for the bad connections. In practice only differentiating files with one thread from ones with more than one seems to really be necessary (e.g. a file with 5 threads will still work with ``-p7`` but not ``-p1``).
 
 .. note:: If you only use one thread (likely meaning you didn't use iperf's ``--parallel`` option) it will still parse the output but you have to explicitly tell it that there's one thread (``-p 1``) or it won't work (even if you don't use the voodoo-parser).
 
@@ -91,6 +91,25 @@ Maximum
 ~~~~~~~
 
 Sometimes when the bandwidth gets really small iperf seems to react by generating an unbelievably large number. When the ``iperflexer`` sees a bandwidth that's larger than what's set as the ``--maximum`` (default is :math:`10^6`) it will report the value as 0.
+
+Last Line Bandwidth
+~~~~~~~~~~~~~~~~~~~
+
+If set, this will grab the last sum-line whose interval is bigger than the interval given (which is assumed to be the bandwidth-rate that iperf calculated for the session). This will generally be different from the value you would get if you were to re-add the interval counts, especially if any of the threads doesn't report back in time for the interval (it looks like iperf drops the value for the interval's reporting but adds it in once the thread does report back). Since it's usually the last line you could probably get it with some clever `tail` and `sed` combining or some other command-line combination, but this will also convert the units for you and allow you to process a set of files. Suppose you wanted to create a column of the bandwidth summaries for files that start with 'client' and end with 'iperf' and you want to store the outcome in 'client_summaries.csv'. You could do it with::
+
+   parseiperf -g "client*iperf" -l > client_summaries.csv
+
+.. warning:: The default assumes that the files have more than one thread. The actual thread count doesn't have to match the setting, it just has to be more than one. If the input is for an iperf session with only one thread you need to pass in ``-p 1`` or you will get an incorrect answer. Conversely, if it has more than one thread and you pass in ``-p1`` it will also fail.
+
+Interval
+~~~~~~~~
+
+The expected reporting interval (e.g. every second is ``-i 1``). If the interval found on a line exceeds the expected interval, then it is assumed to be a summation line and not used by the bandwidths, but is used by the SumParser.last_line_bandwidth. 
+
+Tolerance
+~~~~~~~~~
+
+The amount that the calculated reporting interval is for a line can differ from the expected interval. This was created to prevent float rounding problems, but probably doesn't need to be set.
 
 Building the Documentation
 --------------------------
@@ -132,4 +151,4 @@ I think that's everything. If it is, then when you're next to the `Makefile` you
 
 And it will output the html files to ``build/html``. 
 
-.. note:: I `rsync` the html files to a folder where my apache server can see it so if you build it before I remember to get rid of that in the Makefile you will likely see an error but that shouldn't affect the built documentation (although if just by coincidence you have the exact same file structure as me it might clobber something (sorry)). I am also syncing the html to `python <https://pythonhosted.org/iperflexer/>`_ so until this is frozen you might be prompted for a password.
+.. note:: I `rsync` the html files to a folder where my apache server can see it so if you build it before I remember to get rid of that in the Makefile you will likely see an error but that shouldn't affect the built documentation (although if just by coincidence you have the exact same file structure as me it might clobber something (sorry)). 

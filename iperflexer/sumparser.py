@@ -1,11 +1,12 @@
 
+#python standard library
+import os
+
+#this package
 from iperfparser import IperfParser 
 from iperfexpressions import HumanExpression, ParserKeys, CsvExpression
 import oatbran as bran
 from coroutine import coroutine
-
-
-BITS = 'bits'
 
 
 class HumanExpressionSum(HumanExpression):
@@ -88,6 +89,8 @@ class SumParser(IperfParser):
 
     def __call__(self, line):
         """
+        The Main interface to add raw iperf lines to the parser
+        
         :param:
 
          - `line`: a line of iperf output
@@ -113,7 +116,8 @@ class SumParser(IperfParser):
     @coroutine
     def pipe(self, target):
         """
-        
+        A coroutine pipeline segment
+                
         :warnings:
 
          - For bad connections with threads this might break (as the threads die)
@@ -135,3 +139,74 @@ class SumParser(IperfParser):
                 target.send(self.bandwidth(match))
         return
 # end class SumParser
+
+
+in_pweave = __name__ == '__builtin__'
+
+
+if in_pweave:
+    data_folder = 'features/steps/samples/'
+    data_path = os.path.join(data_folder, 'client_data.iperf')
+    parser = SumParser()
+    for line in open(data_path):
+        bandwidth = parser(line)
+        if bandwidth is not None:
+            print(bandwidth)
+
+
+if in_pweave:
+    parser.reset()
+
+    for line in open(data_path):
+        parser(line)
+    
+    for bandwidth in parser.bandwidths:
+        print(bandwidth)
+
+
+
+if in_pweave:
+    parser.reset()
+
+    for line in open(data_path):
+        parser(line)
+    
+    bandwidths = [bandwidth for bandwidth in parser.bandwidths]
+    calculated_average = sum(bandwidths)/len(bandwidths)
+    print('Calculated Mean: {0} Mbits/Second'.format(calculated_average))
+    print("Iperf's Mean: {0} Mbits/Second".format(parser.last_line_bandwidth))
+
+
+if in_pweave:
+    #set up the unitconverter
+    from unitconverter import UnitConverter
+    converter = UnitConverter()
+    data_path = os.path.join(data_folder, 'client_p4_bits.iperf')
+
+    #setup the parsers to use bits
+    sum_parser = parser
+    voodoo = IperfParser(units='bits')
+    sum_parser.reset()
+    sum_parser.units = 'bits'
+
+    # load them up with the raw lines
+    for line in open(data_path):
+        sum_parser(line)
+        voodoo(line)
+
+    # convert the sums to Mbits and take the average
+    bandwidths = [bandwidth for bandwidth in parser.bandwidths]
+    total_bandwidth = sum(bandwidths) * converter['bits']['Mbits']
+    calculated_average = total_bandwidth/len(bandwidths)
+
+    # same for the re-added threads
+    v_bandwidths = [bandwidth for bandwidth in voodoo.bandwidths]
+    v_total = sum(v_bandwidths) * converter['bits']['Mbits']
+    v_average = v_total/len(v_bandwidths)
+
+    # now iperf's
+    iperf_mean = sum_parser.last_line_bandwidth * converter['bits']['Mbits']
+    
+    print('Calculated Mean: {0} Mbits/Second'.format(calculated_average))
+    print("Iperf's Mean: {0} Mbits/Second".format(iperf_mean))
+    print("Thread Re-calculated Mean: {0} Mbits/Second".format(v_average))          

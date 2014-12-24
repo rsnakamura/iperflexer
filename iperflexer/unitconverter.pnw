@@ -1,4 +1,9 @@
+The Unit Converter
+==================
 
+The unit converter is a table to convert Data Rates.
+
+<<name='unit_names', wrap=False>>=
 class UnitNames(object):
     """
     Unit Names is a namespace to hold units
@@ -13,8 +18,9 @@ class UnitNames(object):
     mbytes = "MBytes"
     gbytes = "GBytes"
 # end UnitNames
+@
 
-
+<<name='constants', wrap=False>>=
 IDENTITY = 1
 ONE = 1.0
 KILO = 10**3
@@ -25,8 +31,9 @@ GIGA = KILO * MEGA
 TO_GIGA = ONE/GIGA
 BYTE = 8
 TO_BYTE = ONE/BYTE
+@
 
-
+<<name='converters', wrap=False>>=
 to_units = [UnitNames.bits, UnitNames.kbits,UnitNames.mbits , UnitNames.gbits,
              UnitNames.bytes, UnitNames.kbytes, UnitNames.mbytes, UnitNames.gbytes]
 
@@ -54,8 +61,9 @@ from_bytes = dict(zip(to_units, byte_row_1 + bit_row_1))
 from_kbytes = dict(zip(to_units, byte_row_2 + bit_row_2))
 from_mbytes = dict(zip(to_units, byte_row_3 + bit_row_3))
 from_gbytes = dict(zip(to_units, byte_row_4 + bit_row_4))
+@
 
-
+<<name='UnitConverter'>>=
 class UnitConverter(dict):
     """
     The UnitConverter is a conversion lookup table.
@@ -78,10 +86,16 @@ class UnitConverter(dict):
         self[UnitNames.gbytes] = from_gbytes
         return
 # end class UnitConverter
+@
 
+The expected way to use this is to multiply your original value by the value returned by the converter. For instance, to convert from bits to Mbits you could do this.
 
+<<name='example'>>=
 if __name__ == "__builtin__":
     converter = UnitConverter()
     bits = 10**6
     converted = bits * converter['bits']['Mbits']
     print(converted)
+@
+
+.. note:: The meaning of the prefixes is different for the Transfer and the Bandwidth columns. The Transfer refers to binary data so it is in base-2 (e.g. `kilo` means :math:`2^{10}`) while Bandwidth is a network-value so it is in base-10 (`kilo` means :math:`10^3`). So this converter only works for Bandwidth.

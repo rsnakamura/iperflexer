@@ -1,5 +1,12 @@
 
+# python standard library
 import argparse
+import subprocess
+
+
+if __name__ == '__builtin__':
+    # we're in pweave
+    print(subprocess.check_output('parseiperf -h'.split()))
 
 
 class Arguments(object):
@@ -30,6 +37,14 @@ class Arguments(object):
         self.parser.add_argument("-u", "--units",
                                  help="Output units per second [bits,Bytes,KBits,KBytes,Mbits,MBytes,Gbits,GBytes] (default=%(default)s)",
                                  default="Mbits")
+
+        self.parser.add_argument('-i', '--interval',
+                                 help="Reporting intervals (default=%(default)s)",
+                                 default=1, type=float)
+
+        self.parser.add_argument('--tolerance',
+                                 help='Interval tolerance (if parsed interval differs from expected by more than tolerance, assume summation lines) (default=%(default)s)',
+                                 default=0.1, type=float)
         
         self.parser.add_argument('-s', '--save',
                                  help="If  glob is provided, save to a file instead of sending to stdout. (default=%(default)s)",
@@ -61,5 +76,8 @@ class Arguments(object):
         self.parser.add_argument("-m", "--maximum",
                                  help="Maximum allowed bandwidth (default=%(default)s)",
                                  default=1000000, type=int)
+        self.parser.add_argument('-l', '--lastlinebandwidth',
+                                help="Get Iperf's final bandwidth value (default=%(default)s)",
+                                 default=False, action="store_true")
         return self.parser.parse_args()
 # end class Arguments
