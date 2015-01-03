@@ -1,7 +1,7 @@
 The SumParser
 =============
 
-The sumparser parses sum-lines and stortes the bandwidth sum. Unlike the `IperfParser` it uses the summed lines that iperf calculates. This means that if intervals and parallel threads were used and within one (or more) of those intervals one or more of the threads didn't report its value then the interval-sums will have fewer values than there were intervals (iperf will just skip summing an interval that didn't have all the threads reporting back). The ``IperfParser``, in contrast, will under-report the interval (unless the thread was actually dead) but it will at least give you a value. On the other hand, if all the sum-lines were there, then this would presumably be the more accurate method since we're taking what iperf itself reports.
+The sumparser parses sum-lines and stores the bandwidth sum. Unlike the `IperfParser` it uses the summed lines that iperf calculates. This means that if intervals and parallel threads were used and within one (or more) of those intervals one or more of the threads didn't report its value then the interval-sums will have fewer values than there were intervals (iperf will just skip summing an interval that didn't have all the threads reporting back). The ``IperfParser``, in contrast, will under-report the interval (unless the thread was actually dead) but it will at least give you a value. On the other hand, if all the sum-lines were there, then this would presumably be the more accurate method since we're taking what iperf itself reports.
 
 .. '
 
@@ -203,11 +203,11 @@ Checking The Call Output
 The ``__call__`` is the main way to use it. There are two ways to get the interval sums from the SumParser (and the IperfParser). One is to poll the returned value from the ``__call__`` to see if a value was returned.
 
 <<name='check_pweave', echo=False>>=
-in_pweave = __name__ == '__builtin__'
+in_documentation = __name__ == '__builtin__'
 @
 
 <<name='check_call', wrap=False>>=
-if in_pweave:
+if in_documentation:
     data_folder = 'features/steps/samples/'
     data_path = os.path.join(data_folder, 'client_data.iperf')
     parser = SumParser()
@@ -227,7 +227,7 @@ Traversing the Values
 The original way to use it is to add all the lines and traverse the bandwidths afterwards. For the ``IperfParser`` this might be the safer way to use it if the data is being fed to it live while iperf is running, since it's adding up the threads, but for the ``SumParser`` I can't think of a down-side to either way (other than the warning about missing data for late threads noted at the top).
 
 <<name='traverse_bandwidths', wrap=False>>=
-if in_pweave:
+if in_documentation:
     parser.reset()
 
     for line in open(data_path):
@@ -245,30 +245,56 @@ When the `SumParser` matches a line that has an interval larger than what it is 
 
 Based on some empirical checking and some threads on the iperf discussion boards it looks like this is the most accurate value if there is a discrepancy between it and the added interval sums.
 
+A Comparison to the Sums
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Here I'll compare what happens when you add the sum-lines up and take the mean versus using the ``last_line_bandwidth`` (iperf's calculated rate). ``parser.bandwidths`` is a generator of interval bandwidths and ``parser.intervals`` is a  dictionary that maps `interval:bandwidth`. Since the ``bandwidths`` attribute is a generator I can't take it's length so I'm using the length of the ``intervals`` instead.
+
+.. '
+
 <<name='last_line_bandwidth', wrap=False>>=
-if in_pweave:
+if in_documentation:
     parser.reset()
 
     for line in open(data_path):
         parser(line)
     
-    bandwidths = [bandwidth for bandwidth in parser.bandwidths]
-    calculated_average = sum(bandwidths)/len(bandwidths)
-    print('Calculated Mean: {0} Mbits/Second'.format(calculated_average))
-    print("Iperf's Mean: {0} Mbits/Second".format(parser.last_line_bandwidth))
+    calculated_average = sum(parser.bandwidths)/len(parser.intervals)
 @
+
+Now the outcome.
+
+.. csv-table:: Calculated Sums-mean vs Iperf's Mean
+   :header: Source, Bandwidth (Mbits/Second)
+
+<<name='mbits_table', echo=False, wrap=False, results='sphinx'>>=
+if in_documentation:
+    print('   Sum Lines, {0}'.format(calculated_average))
+    print("   Iperf, {0}".format(parser.last_line_bandwidth))
+@
+
+.. '
 
 So... the calculated mean is higher... I don't really know what this means. My guess would be that this is a problem of loss of precision in converting everything into Mbits/second. Let's try an iperf file that used bits as the units.
 
+Bit Sums
+~~~~~~~~
+
+First I'll set up the IperfParser and SumParser to convert to bits (which means no conversion in this case, since the source file was in bits). I'll also import the UnitConverter, a dict that has a sub-dict that returns the conversion factor when converting from one unit to another (it takes the form `unitconverter[<from units>][<to units>] = <conversion factor>`). The file that's going to be checked is :download:`client_p4_bits.iperf <features/steps/samples/client_p4_bits.iperf>` which is the output of the client-side output (the transmitter) when run with four parallel threads and the output format in bits.
+
+.. '
+
 <<name='bits_sums', wrap=False>>=
-if in_pweave:
+if in_documentation:
     #set up the unitconverter
     from unitconverter import UnitConverter
     converter = UnitConverter()
     data_path = os.path.join(data_folder, 'client_p4_bits.iperf')
 
-    #setup the parsers to use bits
+    # rename the sum-parser used earlier to make it clearer
     sum_parser = parser
+    
+    #setup the parsers to use bits
     voodoo = IperfParser(units='bits')
     sum_parser.reset()
     sum_parser.units = 'bits'
@@ -277,24 +303,36 @@ if in_pweave:
     for line in open(data_path):
         sum_parser(line)
         voodoo(line)
+@
 
+Now we add the interval bandwidths together, convert the total from bits to Mbits and then take the mean. 
+
+<<name='voodoo_sum_iperf_comparison', wrap=False>>=
+if in_documentation:
     # convert the sums to Mbits and take the average
-    bandwidths = [bandwidth for bandwidth in parser.bandwidths]
-    total_bandwidth = sum(bandwidths) * converter['bits']['Mbits']
-    calculated_average = total_bandwidth/len(bandwidths)
+    total_bandwidth = sum(sum_parser.bandwidths) * converter['bits']['Mbits']
+    calculated_average = total_bandwidth/len(sum_parser.intervals)
 
     # same for the re-added threads
-    v_bandwidths = [bandwidth for bandwidth in voodoo.bandwidths]
-    v_total = sum(v_bandwidths) * converter['bits']['Mbits']
-    v_average = v_total/len(v_bandwidths)
+    v_total = sum(voodoo.bandwidths) * converter['bits']['Mbits']
+    v_average = v_total/len(voodoo.intervals)
 
     # now iperf's
     iperf_mean = sum_parser.last_line_bandwidth * converter['bits']['Mbits']
-    
-    print('Calculated Mean: {0} Mbits/Second'.format(calculated_average))
-    print("Iperf's Mean: {0} Mbits/Second".format(iperf_mean))
-    print("Thread Re-calculated Mean: {0} Mbits/Second".format(v_average))          
 @
 
-So in this case, since there were no threads with missing intervals the SumParser and the IperfParser came up with the same values but both were higher than iperf's calculated final value.
+And here's what we get.
 
+.. '
+
+.. csv-table:: Bandwidth Comparison
+   :header: Source, Mean Bandwidth (Mbits/Second)   
+
+<<name='outcome_table', echo=False, results='sphinx', wrap=False>>=
+if in_documentation:
+    print("   Iperf, {0}".format(iperf_mean))    
+    print('   Sum-Lines, {0}'.format(calculated_average))
+    print("   Threads, {0}".format(v_average))          
+@
+
+So in this case, since there were no threads with missing intervals the SumParser and the IperfParser came up with the same values but both were higher than iperf's calculated final value. It appears that there's more going on than just a round-off error.
