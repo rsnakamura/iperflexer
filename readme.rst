@@ -113,9 +113,8 @@ Threads
 
 Since the ``voodoo-parser`` re-adds the threads it needs to know how many of them there are, so if you use it, pass in the ``--threads`` option to change it from the default of 4 if you need to. I could have made it infer-them, but I wanted to be able to work with data where the connection was bad and the threads sometimes died and this seemed to be the safest way to do it. It doesn't really matter if all the threads finish their reporting, it's mostly for the bad connections. In practice only differentiating files with one thread from ones with more than one seems to really be necessary (e.g. a file with 5 threads will still work with ``-p7`` but not ``-p1``).
 
-.. note:: If you only use one thread (likely meaning you didn't use iperf's ``--parallel`` option) it will still parse the output but you have to explicitly tell it that there's one thread (``-p 1``) or it won't work (even if you don't use the voodoo-parser).
+.. warning:: The default assumes that the files have more than one thread. The actual thread count doesn't have to match the setting, it just has to be more than one. If the input is for an iperf session with only one thread you need to pass in ``-p 1`` or you will get an incorrect answer. Conversely, if it has more than one thread and you pass in ``-p1`` it will also fail.
 
-.. '
 
 Maximum
 ~~~~~~~
@@ -129,7 +128,7 @@ If set, this will grab the last sum-line whose interval is bigger than the inter
 
    parseiperf -g "client*iperf" -l > client_summaries.csv
 
-.. warning:: The default assumes that the files have more than one thread. The actual thread count doesn't have to match the setting, it just has to be more than one. If the input is for an iperf session with only one thread you need to pass in ``-p 1`` or you will get an incorrect answer. Conversely, if it has more than one thread and you pass in ``-p1`` it will also fail.
+.. '   
 
 Interval
 ~~~~~~~~

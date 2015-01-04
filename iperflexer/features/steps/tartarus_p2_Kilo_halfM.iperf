@@ -1,0 +1,40 @@
+------------------------------------------------------------
+Client connecting to tartarus, TCP port 5001
+TCP window size: 85.0 KByte (default)
+------------------------------------------------------------
+[  4] local 192.168.1.2 port 36818 connected with 192.168.1.3 port 5001
+[  3] local 192.168.1.2 port 36819 connected with 192.168.1.3 port 5001
+[ ID] Interval       Transfer     Bandwidth
+[  3]  0.0- 1.0 sec  6144 KBytes  6144 KBytes/sec
+[  4]  0.0- 1.0 sec  6144 KBytes  6144 KBytes/sec
+[SUM]  0.0- 1.0 sec  12288 KBytes  12288 KBytes/sec
+[  4]  1.0- 2.0 sec  5632 KBytes  5632 KBytes/sec
+[  3]  1.0- 2.0 sec  5632 KBytes  5632 KBytes/sec
+[SUM]  1.0- 2.0 sec  11264 KBytes  11264 KBytes/sec
+[  4]  2.0- 3.0 sec  5632 KBytes  5632 KBytes/sec
+[  3]  2.0- 3.0 sec  5632 KBytes  5632 KBytes/sec
+[SUM]  2.0- 3.0 sec  11264 KBytes  11264 KBytes/sec
+[  4]  3.0- 4.0 sec  5632 KBytes  5632 KBytes/sec
+[  3]  3.0- 4.0 sec  5632 KBytes  5632 KBytes/sec
+[SUM]  3.0- 4.0 sec  11264 KBytes  11264 KBytes/sec
+[  4]  4.0- 5.0 sec  6144 KBytes  6144 KBytes/sec
+[  3]  4.0- 5.0 sec  6144 KBytes  6144 KBytes/sec
+[SUM]  4.0- 5.0 sec  12288 KBytes  12288 KBytes/sec
+[  4]  5.0- 6.0 sec  5632 KBytes  5632 KBytes/sec
+[  3]  5.0- 6.0 sec  5632 KBytes  5632 KBytes/sec
+[SUM]  5.0- 6.0 sec  11264 KBytes  11264 KBytes/sec
+[  3]  6.0- 7.0 sec  5632 KBytes  5632 KBytes/sec
+[  4]  6.0- 7.0 sec  5632 KBytes  5632 KBytes/sec
+[SUM]  6.0- 7.0 sec  11264 KBytes  11264 KBytes/sec
+[  4]  7.0- 8.0 sec  5632 KBytes  5632 KBytes/sec
+[  3]  7.0- 8.0 sec  5632 KBytes  5632 KBytes/sec
+[SUM]  7.0- 8.0 sec  11264 KBytes  11264 KBytes/sec
+[  4]  8.0- 9.0 sec  5632 KBytes  5632 KBytes/sec
+[  3]  8.0- 9.0 sec  5632 KBytes  5632 KBytes/sec
+[SUM]  8.0- 9.0 sec  11264 KBytes  11264 KBytes/sec
+[  4]  9.0-10.0 sec  6144 KBytes  6144 KBytes/sec
+[  4]  0.0-10.2 sec  58368 KBytes  5740 KBytes/sec
+[  3]  9.0-10.0 sec  6144 KBytes  6144 KBytes/sec
+[SUM]  9.0-10.0 sec  12288 KBytes  12288 KBytes/sec
+[  3]  0.0-10.2 sec  58368 KBytes  5737 KBytes/sec
+[SUM]  0.0-10.2 sec  116736 KBytes  11474 KBytes/sec

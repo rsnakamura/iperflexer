@@ -38,6 +38,7 @@ These are the documents created from the source files.
    :maxdepth: 1
 
    Appendices <appendices/index.rst>
+   The Iperf Lexer <features/index.rst>
    The Infrastructure <infrastructure/index.rst>
    User Guide <user/index.rst>
 

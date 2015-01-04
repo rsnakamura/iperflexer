@@ -18,6 +18,15 @@ Scenario Outline: User converts binary units
   | bits      | mebibytes |
   | bits      | gibibytes |
   | bits      | tebibytes |
+  | bits      | pebibits  |
+  | bits      | pebibytes |
+  | bits      | exbibits  |
+  | bits      | exbibytes |
+  | bits      | zebibits  |
+  | bits      | zebibytes |
+  | bits      | yobibits  |
+  | bits      | yobibytes |
+
 
   
 
