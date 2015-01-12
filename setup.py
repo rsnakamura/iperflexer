@@ -1,4 +1,5 @@
-from __future__ import print_function
+from distutils.command.sdist import sdist
+import os
 
 try:
     from setuptools import setup, find_packages
@@ -13,9 +14,36 @@ except ImportError as error:
 # put the readme in for pypi
 with open('readme.rst') as reader:
     long_description = reader.read()
+
+# from the Hitchhiker's Guide to Python
+# http://the-hitchhikers-guide-to-packaging.readthedocs.org/en/latest/specification.html
+class sdist_hg(sdist):
+    user_options = sdist.user_options + [
+        ('dev', None, "Add a dev marker")
+        ]
+
+    def initialize_options(self):
+        sdist.initialize_options(self)
+        self.dev = 0
+
+    def run(self):
+        if self.dev:
+            suffix = '.dev%d' % self.get_tip_revision()
+            self.distribution.metadata.version += suffix
+            sdist.run(self)
+            
+    def get_tip_revision(self, path=os.getcwd()):
+        from mercurial.hg import repository
+        from mercurial.ui import ui
+        from mercurial import node
+        repo = repository(ui(), path)
+        tip = repo.changelog.tip()
+        return repo.changelog.rev(tip)
+
     
 setup(name='iperflexer',
-      version="2014.12.22.1",
+      version="1!0.1.2",
+      cmdclass = {'sdist':sdist_hg},
       description="A program to parse iperf files",
       long_description=long_description,
       author="russell",

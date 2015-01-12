@@ -77,8 +77,10 @@ class HumanExpression(ExpressionBase):
                                bran.NAMED(n=ParserKeys.end, e=bran.FLOAT) +
                                bran.SPACES + 'sec')
             transfer_column = (bran.NAMED(n=ParserKeys.transfer, e=bran.REAL)
-                               + bran.SPACES + bran.CLASS('GKM')
-                               + bran.ZERO_OR_ONE + "Bytes")
+                               + bran.SPACES
+                               + bran.NAMED(n=ParserKeys.transfer_units,
+                                            e=(bran.CLASS('GKM'))
+                                            + bran.ZERO_OR_ONE + "Bytes"))
             bandwidth_column = (bran.NAMED(n=ParserKeys.bandwidth, e=bran.REAL) +
                                 bran.SPACES + bran.NAMED(n=ParserKeys.units, e=bran.CLASS(e="GKM")
                                 + bran.ZERO_OR_ONE + bran.GROUP( "bits" + bran.OR + "Bytes")) + "/sec")
@@ -209,6 +211,7 @@ class ParserKeys(object):
     start = "start"
     end = "end"
     transfer = "transfer"
+    transfer_units = 'transfer_units'
     bandwidth = 'bandwidth'
 
     #csv-only

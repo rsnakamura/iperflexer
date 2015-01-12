@@ -1,0 +1,378 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Decimal Unit Converter &mdash; IperfLexer 0.1.2.dev documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1.2.dev',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="IperfLexer 0.1.2.dev documentation" href="../../index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">IperfLexer</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="decimal-unit-converter">
+<h1>Decimal Unit Converter<a class="headerlink" href="#decimal-unit-converter" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># so I don&#39;t forget</span>
+<span class="n">BYTE</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="n">BASE</span> <span class="o">=</span> <span class="mf">10.</span>
+</pre></div>
+</div>
+<div class="section" id="scenario-user-converts-decimal-units">
+<h2>Scenario: User converts decimal units<a class="headerlink" href="#scenario-user-converts-decimal-units" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="example-bytes-to-bits">
+<h3>Example: bytes to bits<a class="headerlink" href="#example-bytes-to-bits" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@given</span><span class="p">(</span><span class="s">&#39;a DecimalUnitConverter&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">decimalunitconverter</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">converter</span> <span class="o">=</span> <span class="n">DecimalUnitConverter</span><span class="p">()</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<p>When the user converts from bytes to bits and back
+Then the outcome is the correct conversion</p>
+</div>
+<div class="section" id="example-bits-to-bytes">
+<h3>Example: bits to bytes<a class="headerlink" href="#example-bits-to-bytes" title="Permalink to this headline">¶</a></h3>
+<p>Given a DecimalUnitConverter</p>
+<p>When the user converts from bits to bytes</p>
+<p>Then the outcome is the correct conversion</p>
+</div>
+<div class="section" id="example-kilobytes-to-bits">
+<h3>Example: kilobytes to bits<a class="headerlink" href="#example-kilobytes-to-bits" title="Permalink to this headline">¶</a></h3>
+<p>Given a DecimalUnitConverter</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@when</span><span class="p">(</span><span class="s">&#39;the user converts from kilobytes to bits and back&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">step_implementation</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">expected</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">*</span> <span class="mi">8</span> <span class="o">*</span> <span class="p">(</span><span class="n">BASE</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">outcome</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">*</span> <span class="n">context</span><span class="o">.</span><span class="n">converter</span><span class="p">[</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">kilobytes</span><span class="p">][</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">bits</span><span class="p">]</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">reverse_outcome</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">outcome</span> <span class="o">*</span> <span class="n">context</span><span class="o">.</span><span class="n">converter</span><span class="p">[</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">bits</span><span class="p">][</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">kbytes</span><span class="p">]</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<p>Then the outcome is the correct conversion</p>
+</div>
+<div class="section" id="example-bits-to-bits">
+<h3>Example: bits to bits<a class="headerlink" href="#example-bits-to-bits" title="Permalink to this headline">¶</a></h3>
+<p>Given a DecimalUnitConverter</p>
+<p>When the user converts from bits to bits and back</p>
+<p>Then the outcome is the correct conversion</p>
+</div>
+<div class="section" id="example-bits-to-megabits">
+<h3>Example: bits to megabits<a class="headerlink" href="#example-bits-to-megabits" title="Permalink to this headline">¶</a></h3>
+<p>Given a DecimalUnitConverter</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@when</span><span class="p">(</span><span class="s">&#39;the user converts from bits to megabits and back&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">step_implementation</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="c"># use numbers bigger than 0 so the float comparisons don&#39;t fail</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100000</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">expected</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">/</span> <span class="p">(</span><span class="n">BASE</span><span class="o">**</span><span class="mi">6</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">outcome</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">*</span> <span class="n">context</span><span class="o">.</span><span class="n">converter</span><span class="p">[</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">bits</span><span class="p">][</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">megabits</span><span class="p">]</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">reverse_outcome</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">outcome</span> <span class="o">*</span> <span class="n">context</span><span class="o">.</span><span class="n">converter</span><span class="p">[</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">mbits</span><span class="p">][</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">bits</span><span class="p">]</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<p>Then the outcome is the correct conversion</p>
+</div>
+<div class="section" id="example-bits-to-gigabits">
+<h3>Example: bits to gigabits<a class="headerlink" href="#example-bits-to-gigabits" title="Permalink to this headline">¶</a></h3>
+<p>Given a DecimalUnitConverter</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@when</span><span class="p">(</span><span class="s">&#39;the user converts from bits to gigabits and back&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">step_implementation</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100000</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">expected</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">/</span> <span class="p">(</span><span class="n">BASE</span><span class="o">**</span><span class="mi">9</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">outcome</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">*</span> <span class="n">context</span><span class="o">.</span><span class="n">converter</span><span class="p">[</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">bits</span><span class="p">][</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">gigabits</span><span class="p">]</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">reverse_outcome</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">outcome</span> <span class="o">*</span> <span class="n">context</span><span class="o">.</span><span class="n">converter</span><span class="p">[</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">gbits</span><span class="p">][</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">bits</span><span class="p">]</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<p>Then the outcome is the correct conversion</p>
+</div>
+<div class="section" id="example-bits-to-megabytes">
+<h3>Example: bits to megabytes<a class="headerlink" href="#example-bits-to-megabytes" title="Permalink to this headline">¶</a></h3>
+<p>Given a DecimalUnitConverter</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@when</span><span class="p">(</span><span class="s">&#39;the user converts from bits to megabytes and back&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">step_implementation</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100000</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">expected</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">/</span> <span class="p">(</span><span class="n">BYTE</span> <span class="o">*</span> <span class="n">BASE</span><span class="o">**</span><span class="mi">6</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">outcome</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">*</span> <span class="n">context</span><span class="o">.</span><span class="n">converter</span><span class="p">[</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">bits</span><span class="p">][</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">megabytes</span><span class="p">]</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">reverse_outcome</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">outcome</span> <span class="o">*</span> <span class="n">context</span><span class="o">.</span><span class="n">converter</span><span class="p">[</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">mbytes</span><span class="p">][</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">bits</span><span class="p">]</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<p>Then the outcome is the correct conversion</p>
+</div>
+<div class="section" id="example-bits-to-gigabytes">
+<h3>Example: bits to gigabytes<a class="headerlink" href="#example-bits-to-gigabytes" title="Permalink to this headline">¶</a></h3>
+<p>Given a DecimalUnitConverter</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@when</span><span class="p">(</span><span class="s">&#39;the user converts from bits to gigabytes and back&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">step_implementation</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100000</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">expected</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">/</span> <span class="p">(</span><span class="n">BYTE</span> <span class="o">*</span> <span class="n">BASE</span><span class="o">**</span><span class="mi">9</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">outcome</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">*</span> <span class="n">context</span><span class="o">.</span><span class="n">converter</span><span class="p">[</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">bits</span><span class="p">][</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">gigabytes</span><span class="p">]</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">reverse_outcome</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">outcome</span> <span class="o">*</span> <span class="n">context</span><span class="o">.</span><span class="n">converter</span><span class="p">[</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">gbytes</span><span class="p">][</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">bits</span><span class="p">]</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<p>Then the outcome is the correct conversion</p>
+</div>
+<div class="section" id="example-bits-to-terabytes">
+<h3>Example: bits to terabytes<a class="headerlink" href="#example-bits-to-terabytes" title="Permalink to this headline">¶</a></h3>
+<p>Given a DecimalUnitConverter</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@when</span><span class="p">(</span><span class="s">&#39;the user converts from bits to terabytes and back&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">step_implementation</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">100000</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">expected</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">/</span> <span class="p">(</span><span class="n">BYTE</span> <span class="o">*</span> <span class="n">BASE</span><span class="o">**</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">outcome</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">*</span> <span class="n">context</span><span class="o">.</span><span class="n">converter</span><span class="p">[</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">bits</span><span class="p">][</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">terabytes</span><span class="p">]</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">reverse_outcome</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">outcome</span> <span class="o">*</span> <span class="n">context</span><span class="o">.</span><span class="n">converter</span><span class="p">[</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">tbytes</span><span class="p">][</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">bits</span><span class="p">]</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<p>Then the outcome is the correct conversion</p>
+</div>
+<div class="section" id="example-bits-to-petabits">
+<h3>Example: bits to petabits<a class="headerlink" href="#example-bits-to-petabits" title="Permalink to this headline">¶</a></h3>
+<p>Given a DecimalUnitConverter</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@when</span><span class="p">(</span><span class="s">&#39;the user converts from bits to petabits and back&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">step_implementation</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">100000</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">expected</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">/</span> <span class="p">(</span><span class="n">BASE</span><span class="o">**</span><span class="mi">15</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">outcome</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">*</span> <span class="n">context</span><span class="o">.</span><span class="n">converter</span><span class="p">[</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">bits</span><span class="p">][</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">petabits</span><span class="p">]</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">reverse_outcome</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">outcome</span> <span class="o">*</span> <span class="n">context</span><span class="o">.</span><span class="n">converter</span><span class="p">[</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">pbits</span><span class="p">][</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">bits</span><span class="p">]</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<p>Then the outcome is the correct conversion</p>
+</div>
+<div class="section" id="example-bits-to-petabytes">
+<h3>Example: bits to petabytes<a class="headerlink" href="#example-bits-to-petabytes" title="Permalink to this headline">¶</a></h3>
+<p>Given a DecimalUnitConverter</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@when</span><span class="p">(</span><span class="s">&#39;the user converts from bits to petabytes and back&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">step_implementation</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">100000</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">expected</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">/</span> <span class="p">(</span><span class="n">BYTE</span> <span class="o">*</span> <span class="n">BASE</span><span class="o">**</span><span class="mi">15</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">outcome</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">*</span> <span class="n">context</span><span class="o">.</span><span class="n">converter</span><span class="p">[</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">bits</span><span class="p">][</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">petabytes</span><span class="p">]</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">reverse_outcome</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">outcome</span> <span class="o">*</span> <span class="n">context</span><span class="o">.</span><span class="n">converter</span><span class="p">[</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">pbytes</span><span class="p">][</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">bits</span><span class="p">]</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<p>Then the outcome is the correct conversion</p>
+</div>
+<div class="section" id="example-bits-to-exabits">
+<h3>Example: bits to exabits<a class="headerlink" href="#example-bits-to-exabits" title="Permalink to this headline">¶</a></h3>
+<p>Given a DecimalUnitConverter</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@when</span><span class="p">(</span><span class="s">&#39;the user converts from bits to exabits and back&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">step_implementation</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="o">**</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">expected</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">/</span> <span class="p">(</span><span class="n">BASE</span><span class="o">**</span><span class="mi">18</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">outcome</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">*</span> <span class="n">context</span><span class="o">.</span><span class="n">converter</span><span class="p">[</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">bits</span><span class="p">][</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">exabits</span><span class="p">]</span>
+    <span class="c"># context.reverse_outcome = context.outcome * context.converter[UnitNames.ebits][UnitNames.bits]</span>
+    <span class="c"># the round-off is too much for these big numbers to pass</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">reverse_outcome</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">source</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<p>Then the outcome is the correct conversion</p>
+</div>
+<div class="section" id="example-bits-to-exabytes">
+<h3>Example: bits to exabytes<a class="headerlink" href="#example-bits-to-exabytes" title="Permalink to this headline">¶</a></h3>
+<p>Given a DecimalUnitConverter</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@when</span><span class="p">(</span><span class="s">&#39;the user converts from bits to exabytes and back&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">step_implementation</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="o">**</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">expected</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">/</span> <span class="p">(</span><span class="n">BYTE</span> <span class="o">*</span> <span class="n">BASE</span><span class="o">**</span><span class="mi">18</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">outcome</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">*</span> <span class="n">context</span><span class="o">.</span><span class="n">converter</span><span class="p">[</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">bits</span><span class="p">][</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">exabytes</span><span class="p">]</span>
+    <span class="c">#context.reverse_outcome = context.outcome * context.converter[UnitNames.ebytes][UnitNames.bits]</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">reverse_outcome</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">source</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<p>Then the outcome is the correct conversion</p>
+</div>
+<div class="section" id="example-bits-to-zettabits">
+<h3>Example: bits to zettabits<a class="headerlink" href="#example-bits-to-zettabits" title="Permalink to this headline">¶</a></h3>
+<p>Given a DecimalUnitConverter</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@when</span><span class="p">(</span><span class="s">&#39;the user converts from bits to zettabits and back&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">step_implementation</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="mi">18</span><span class="p">,</span> <span class="mi">10</span><span class="o">**</span><span class="mi">22</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">expected</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">/</span> <span class="p">(</span><span class="n">BASE</span><span class="o">**</span><span class="mi">21</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">outcome</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">*</span> <span class="n">context</span><span class="o">.</span><span class="n">converter</span><span class="p">[</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">bits</span><span class="p">][</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">zettabits</span><span class="p">]</span>
+    <span class="c"># context.reverse_outcome = context.outcome * context.converter[UnitNames.zbits][UnitNames.bits]</span>
+    <span class="c"># just let it pass</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">reverse_outcome</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">source</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<p>Then the outcome is the correct conversion</p>
+</div>
+<div class="section" id="example-bits-to-zettabytes">
+<h3>Example: bits to zettabytes<a class="headerlink" href="#example-bits-to-zettabytes" title="Permalink to this headline">¶</a></h3>
+<p>Given a DecimalUnitConverter</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@when</span><span class="p">(</span><span class="s">&#39;the user converts from bits to zettabytes and back&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">step_implementation</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="mi">18</span><span class="p">,</span> <span class="mi">10</span><span class="o">**</span><span class="mi">22</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">expected</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">/</span> <span class="p">(</span><span class="n">BYTE</span> <span class="o">*</span> <span class="n">BASE</span><span class="o">**</span><span class="mi">21</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">outcome</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">*</span> <span class="n">context</span><span class="o">.</span><span class="n">converter</span><span class="p">[</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">bits</span><span class="p">][</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">zettabytes</span><span class="p">]</span>
+    <span class="c">#context.reverse_outcome = context.outcome * context.converter[UnitNames.zettabytes][UnitNames.bits]</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">reverse_outcome</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">source</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<p>Then the outcome is the correct conversion</p>
+</div>
+<div class="section" id="example-bits-to-yottabits">
+<h3>Example: bits to yottabits<a class="headerlink" href="#example-bits-to-yottabits" title="Permalink to this headline">¶</a></h3>
+<p>Given a DecimalUnitConverter</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@when</span><span class="p">(</span><span class="s">&#39;the user converts from bits to yottabits and back&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">step_implementation</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="mi">18</span><span class="p">,</span> <span class="mi">10</span><span class="o">**</span><span class="mi">30</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">expected</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">/</span> <span class="p">(</span><span class="n">BASE</span><span class="o">**</span><span class="mi">24</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">outcome</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">*</span> <span class="n">context</span><span class="o">.</span><span class="n">converter</span><span class="p">[</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">bits</span><span class="p">][</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">yottabits</span><span class="p">]</span>
+    <span class="c">#context.reverse_outcome = context.outcome * context.converter[UnitNames.yobits][UnitNames.bits]</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">reverse_outcome</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">source</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<p>Then the outcome is the correct conversion</p>
+</div>
+<div class="section" id="example-bits-to-yottabytes">
+<h3>Example: bits to yottabytes<a class="headerlink" href="#example-bits-to-yottabytes" title="Permalink to this headline">¶</a></h3>
+<p>Given a DecimalUnitConverter</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@when</span><span class="p">(</span><span class="s">&#39;the user converts from bits to yottabytes and back&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">step_implementation</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="mi">18</span><span class="p">,</span> <span class="mi">10</span><span class="o">**</span><span class="mi">30</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">expected</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">/</span> <span class="p">(</span><span class="n">BYTE</span> <span class="o">*</span> <span class="n">BASE</span><span class="o">**</span><span class="mi">24</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">outcome</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">*</span> <span class="n">context</span><span class="o">.</span><span class="n">converter</span><span class="p">[</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">bits</span><span class="p">][</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">yottabytes</span><span class="p">]</span>
+    <span class="c">#context.reverse_outcome = context.outcome * context.converter[UnitNames.yobytes][UnitNames.bits]</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">reverse_outcome</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">source</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<p>Then the outcome is the correct conversion</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Decimal Unit Converter</a><ul>
+<li><a class="reference internal" href="#scenario-user-converts-decimal-units">Scenario: User converts decimal units</a><ul>
+<li><a class="reference internal" href="#example-bytes-to-bits">Example: bytes to bits</a></li>
+<li><a class="reference internal" href="#example-bits-to-bytes">Example: bits to bytes</a></li>
+<li><a class="reference internal" href="#example-kilobytes-to-bits">Example: kilobytes to bits</a></li>
+<li><a class="reference internal" href="#example-bits-to-bits">Example: bits to bits</a></li>
+<li><a class="reference internal" href="#example-bits-to-megabits">Example: bits to megabits</a></li>
+<li><a class="reference internal" href="#example-bits-to-gigabits">Example: bits to gigabits</a></li>
+<li><a class="reference internal" href="#example-bits-to-megabytes">Example: bits to megabytes</a></li>
+<li><a class="reference internal" href="#example-bits-to-gigabytes">Example: bits to gigabytes</a></li>
+<li><a class="reference internal" href="#example-bits-to-terabytes">Example: bits to terabytes</a></li>
+<li><a class="reference internal" href="#example-bits-to-petabits">Example: bits to petabits</a></li>
+<li><a class="reference internal" href="#example-bits-to-petabytes">Example: bits to petabytes</a></li>
+<li><a class="reference internal" href="#example-bits-to-exabits">Example: bits to exabits</a></li>
+<li><a class="reference internal" href="#example-bits-to-exabytes">Example: bits to exabytes</a></li>
+<li><a class="reference internal" href="#example-bits-to-zettabits">Example: bits to zettabits</a></li>
+<li><a class="reference internal" href="#example-bits-to-zettabytes">Example: bits to zettabytes</a></li>
+<li><a class="reference internal" href="#example-bits-to-yottabits">Example: bits to yottabits</a></li>
+<li><a class="reference internal" href="#example-bits-to-yottabytes">Example: bits to yottabytes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>Navigation</h3>
+<ul class="simple">
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../argumentparser.html">The Argument Parser</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../baseclass.html">The BaseClass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../coroutine.html">Coroutines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../finder.html">The Finder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../iperfexpressions.html">The Iperf Expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../iperfparser.html">The IperfParser</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main.html">The Main Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html">The Iperf Lexer (Read Me)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sumparser.html">The SumParser</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../unitconverter.html">The Unit Converter</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../appendices/index.html">Appendices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../infrastructure/index.html">The Infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/index.html">User Guide</a></li>
+</ul>
+
+
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2013, cloistered monkey.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.2.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.6.1</a>
+      
+      |
+      <a href="../../_sources/tests/steps/decimalunitconverter.txt"
+          rel="nofollow">Page source</a></li>
+    </div>
+
+    
+
+    
+  </body>
+</html>

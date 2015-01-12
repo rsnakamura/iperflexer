@@ -128,6 +128,7 @@ class SumParser(IperfParser):
         super(SumParser, self).__init__(*args, **kwargs)
         self.log_format = "({0}) {1} {2}/sec"
         self.last_line_bandwidth = None
+        self.last_line_transfer = None
         return
 
     @property
@@ -155,14 +156,14 @@ class SumParser(IperfParser):
         bandwidth = None
         if match is not None:
             bandwidth = self.bandwidth(match)
-            if self.valid(match):                        
-                self.intervals[float(match[ParserKeys.start])] = bandwidth
-                self.logger.info(self.log_format.format(match[ParserKeys.start],
-                                                        bandwidth,
-                                                        self.units))
+            if self.valid(match):
+                start = float(match[ParserKeys.start])
+                self.intervals[start] = bandwidth
+                self.transfer_intervals[start] = self.transfer(match)
             else:
                 # Assume it's the last line summary
                 self.last_line_bandwidth = bandwidth
+                self.last_line_transfer = self.transfer(match)
                 return
         return bandwidth
 
@@ -200,7 +201,7 @@ Using the SumParser
 Checking The Call Output
 ------------------------
 
-The ``__call__`` is the main way to use it. There are two ways to get the interval sums from the SumParser (and the IperfParser). One is to poll the returned value from the ``__call__`` to see if a value was returned.
+The ``__call__`` is the main way to use it. There are two ways to get the interval sums from the SumParser (and the IperfParser). One is to poll the returned value from the ``__call__`` to see if a value was returned. I'll start by working with :download:`client-side <tests/steps/client_data.iperf>` input that has two threads and one-second reporting intervals.
 
 <<name='check_pweave', echo=False>>=
 in_documentation = __name__ == '__builtin__'
@@ -208,9 +209,10 @@ in_documentation = __name__ == '__builtin__'
 
 <<name='check_call', wrap=False>>=
 if in_documentation:
-    data_folder = 'features/steps/samples/'
+    data_folder = 'tests/steps/samples/'
     data_path = os.path.join(data_folder, 'client_data.iperf')
-    parser = SumParser()
+    parser = SumParser(threads=2)
+
     for line in open(data_path):
         bandwidth = parser(line)
         if bandwidth is not None:
@@ -224,7 +226,9 @@ if in_documentation:
 Traversing the Values
 ---------------------
 
-The original way to use it is to add all the lines and traverse the bandwidths afterwards. For the ``IperfParser`` this might be the safer way to use it if the data is being fed to it live while iperf is running, since it's adding up the threads, but for the ``SumParser`` I can't think of a down-side to either way (other than the warning about missing data for late threads noted at the top).
+The original way to use it is to add all the lines and traverse the bandwidths afterwards. For the ``IperfParser`` this might be the safer way to use it if the data is being fed to it live while iperf is running, since it's adding up the threads.
+
+.. warning:: The way iperf seems to work is that if you are using multiple threads and one or more of the threads misses a reporting interval it will report the thread information but not a summed-line. This means that the SumParser will have fewer data-points than the actual number of intervals that really exist (and the times will be shifted backwards). If you don't inspect the raw output before using the SumParser you could end up with incorrect data. If you need to work with the intervals, use the IperfParser.
 
 <<name='traverse_bandwidths', wrap=False>>=
 if in_documentation:
@@ -248,13 +252,14 @@ Based on some empirical checking and some threads on the iperf discussion boards
 A Comparison to the Sums
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-Here I'll compare what happens when you add the sum-lines up and take the mean versus using the ``last_line_bandwidth`` (iperf's calculated rate). ``parser.bandwidths`` is a generator of interval bandwidths and ``parser.intervals`` is a  dictionary that maps `interval:bandwidth`. Since the ``bandwidths`` attribute is a generator I can't take it's length so I'm using the length of the ``intervals`` instead.
+Here I'll compare what happens when you add the sum-lines up and take the mean versus using the ``last_line_bandwidth`` (iperf's calculated rate). ``parser.bandwidths`` is a generator of interval bandwidths and ``parser.intervals`` is a  dictionary that maps `interval:bandwidth`. Since the ``bandwidths`` attribute is a generator I can't take it's length so I'm using the length of the ``intervals`` instead. 
 
 .. '
 
 <<name='last_line_bandwidth', wrap=False>>=
 if in_documentation:
     parser.reset()
+    parser.threads = 4
 
     for line in open(data_path):
         parser(line)
@@ -275,29 +280,34 @@ if in_documentation:
 
 .. '
 
-So... the calculated mean is higher... I don't really know what this means. My guess would be that this is a problem of loss of precision in converting everything into Mbits/second. Let's try an iperf file that used bits as the units.
+So... the re-calculated mean is higher... I don't really know what this means. My guess would be that this is a problem of loss of precision in converting everything into Mbits/second. Let's try an iperf file that used bits as the units.
 
 Bit Sums
 ~~~~~~~~
 
-First I'll set up the IperfParser and SumParser to convert to bits (which means no conversion in this case, since the source file was in bits). I'll also import the UnitConverter, a dict that has a sub-dict that returns the conversion factor when converting from one unit to another (it takes the form `unitconverter[<from units>][<to units>] = <conversion factor>`). The file that's going to be checked is :download:`client_p4_bits.iperf <features/steps/samples/client_p4_bits.iperf>` which is the output of the client-side output (the transmitter) when run with four parallel threads and the output format in bits.
+First I'll set up the IperfParser and SumParser to convert to bits (which means no conversion in this case, since the source file was in bits). I'll also import the UnitConverter, a dict that has a sub-dict that returns the conversion factor when converting from one unit to another (it takes the form `unitconverter[<from units>][<to units>] = <conversion factor>`). The file that's going to be checked is :download:`tests/steps/samples/client_p4_bits.iperf <features/steps/samples/client_p4_bits.iperf>` which is the output of the client-side output (the transmitter) when run with four parallel threads and the output format in bits.
 
 .. '
 
 <<name='bits_sums', wrap=False>>=
 if in_documentation:
     #set up the unitconverter
-    from unitconverter import UnitConverter
+    from unitconverter import UnitConverter 
+    from unitconverter import UnitNames
+    from unitconverter import BinaryUnitNames as b_names
+    from unitconverter import  BinaryUnitconverter 
     converter = UnitConverter()
+    b_converter = BinaryUnitconverter()
     data_path = os.path.join(data_folder, 'client_p4_bits.iperf')
 
     # rename the sum-parser used earlier to make it clearer
     sum_parser = parser
     
     #setup the parsers to use bits
-    voodoo = IperfParser(units='bits')
+    voodoo = IperfParser(units=UnitNames.bits, threads=4)
     sum_parser.reset()
-    sum_parser.units = 'bits'
+    sum_parser.units = UnitNames.bits
+    sum_parser.threads = 4
 
     # load them up with the raw lines
     for line in open(data_path):
@@ -310,7 +320,7 @@ Now we add the interval bandwidths together, convert the total from bits to Mbit
 <<name='voodoo_sum_iperf_comparison', wrap=False>>=
 if in_documentation:
     # convert the sums to Mbits and take the average
-    total_bandwidth = sum(sum_parser.bandwidths) * converter['bits']['Mbits']
+    total_bandwidth = sum(sum_parser.bandwidths) * converter[UnitNames.bits][UnitNames.mbits]
     calculated_average = total_bandwidth/len(sum_parser.intervals)
 
     # same for the re-added threads
@@ -336,3 +346,118 @@ if in_documentation:
 @
 
 So in this case, since there were no threads with missing intervals the SumParser and the IperfParser came up with the same values but both were higher than iperf's calculated final value. It appears that there's more going on than just a round-off error.
+
+Transfers
+---------
+
+I think that there are multiple things going on. One is that I'm assuming that each interval is exactly 1 second, but that's not necessarily the case. Also, the last transfer isn't included in the interval reports, just in the final report. I'll try a file with bits again, but this time I specified two threads and a buffer of 512 KiloBytes.
+
+<<name='load_data', wrap=False>>=
+if in_documentation:
+    voodoo = IperfParser(units=UnitNames.bits, threads=2)
+    sum_parser = SumParser(threads=2, units=UnitNames.bits)
+
+    filename = os.path.join(data_folder, 'tartarus_p2_bits_halfM.iperf')
+    with open(filename) as reader:
+        for line in reader:
+            voodoo(line)
+            sum_parser(line)
+    print(line)
+@
+
+Looking at the last line output you can see that it actually ran for a reported 10.2 seconds (or at least one of the threads did). We'll try the re-calculation on the transfers.
+
+.. '
+
+<<name='transfers', wrap=False>>=
+if in_documentation:
+    mbytes = b_converter[b_names.bytes][b_names.mebibytes]
+    
+    recalculated_transfer = sum(voodoo.transfers)
+    recalculated_transfer_mbytes = recalculated_transfer * mbytes
+    
+    iperfs_transfer = sum_parser.last_line_transfer
+    iperfs_transfer_mbytes = iperfs_transfer * mbytes
+@
+
+.. csv-table:: Data Transfered
+   :header: Source, Transfer (MBytes)
+   
+<<name='print_transfers', wrap=False, echo=False, results='sphinx'>>=
+if in_documentation:
+    print("   Re-Calculated,{0}".format(recalculated_transfer_mbytes))
+    print("   Iperf's Transfer,{0}").format(iperfs_transfer_mbytes)
+@
+
+So the re-added transfer in still missing data. The most likely reason is that the last data-transfer isn't added to the last interval but added to the final tally instead. Each thread adds one buffer's worth of data to the final tally so in this case it should be 1 Megabyte short like we see. We can double-check.
+
+<<name='last_transfer', wrap=False>>=
+if in_documentation:
+    missing = b_converter[b_names.mebibytes][b_names.bytes]
+    recalculated_transfer += missing
+    recalculated_transfer_mbytes = recalculated_transfer * mbytes
+    
+@
+
+.. csv-table:: Re-added Data Transfered
+   :header: Source, Transfer(Mbytes)
+
+<<name='re_added_transfer', echo=False, wrap=False, results='sphinx'>>=
+if in_documentation:
+    print("   Re-Calculated,{0}".format(recalculated_transfer_mbytes))
+    print("   Iperf's Transfer,{0}").format(iperfs_transfer_mbytes)
+@
+
+Now we can re-try the bandwidth, remembering that it took 10.2 seconds to finish.
+
+<<name='transfer_to_bandwidth', wrap=False>>=
+if in_documentation:
+    m_bits = converter[UnitNames.bits][UnitNames.mbits]
+    recalculated_bandwidth = recalculated_transfer * b_converter[b_names.bytes][b_names.bits]
+    recalculated_bandwidth = recalculated_bandwidth
+    recalculated_bandwidth_mbits = (recalculated_bandwidth/10.2) * m_bits
+    iperfs_bandwidth = sum_parser.last_line_bandwidth * m_bits
+@
+
+.. csv-table:: Bandwidths
+   :header: Source, Bandwidth (Mbits)
+
+<<name='bandwidth_table', echo=False, wrap=False, results='sphinx'>>=
+if in_documentation:
+    print('   Re-Calculated,{0:.2f}'.format(recalculated_bandwidth_mbits))
+    print('   Iperf,{0:.2f}'.format(iperfs_bandwidth))
+@
+
+So it still doesn't capture the full bandwidth... We can get the actual time with a little algebra.
+
+.. '
+
+.. math::
+
+   bandwidth &=  \frac{bits}{seconds}\\
+   seconds &= \frac{bits}{bandwidth}\\
+
+<<name='recalculated_time', wrap=False>>=
+if in_documentation:
+    transfer = sum_parser.last_line_transfer * b_converter[b_names.bytes][b_names.bits]
+    seconds = transfer/float(sum_parser.last_line_bandwidth)
+    print(seconds)
+@
+
+Once more with feeling.
+
+<<name='last_recalculation', wrap=False>>=
+if in_documentation:
+    recalculated_bandwidth_mbits = (recalculated_bandwidth/seconds) * m_bits
+@
+
+.. csv-table:: Final Bandwidths
+   :header: Source, Bandwidth (Mbits)
+
+<<name='bandwidth_table', echo=False, wrap=False, results='sphinx'>>=
+if in_documentation:
+    print('   Re-Calculated,{0:.2f}'.format(recalculated_bandwidth_mbits))
+    print('   Iperf,{0:.2f}'.format(iperfs_bandwidth))
+@
+
+So there you have it.

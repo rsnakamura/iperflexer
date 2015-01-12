@@ -58,7 +58,7 @@ class BinaryUnitNames(object):
     zebibits = "ze" + bibits
     yobibits = "yo" + bibits
 
-    bytes = UnitNames.bytes
+    bytes = 'bytes'
     bibytes = 'bi' + bytes
     kibibytes = "ki" + bibytes
     mebibytes = "me" + bibytes
@@ -70,6 +70,7 @@ class BinaryUnitNames(object):
     yobibytes = "yo" + bibytes
 
     # iperf base 2
+    iperf_bytes = UnitNames.bytes
     iperf_kibibytes = UnitNames.kbytes
     iperf_mebibytes = UnitNames.mbytes
     iperf_gibibytes = UnitNames.gbytes
@@ -285,7 +286,7 @@ to_bits = [BinaryUnitNames.bits,
            BinaryUnitNames.zebibits,
            BinaryUnitNames.yobibits]
 
-to_bytes = [BinaryUnitNames.bytes,
+to_bytes = [BinaryUnitNames.iperf_bytes,
             BinaryUnitNames.iperf_kibibytes,
             BinaryUnitNames.iperf_mebibytes,
             BinaryUnitNames.iperf_gibibytes,

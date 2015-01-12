@@ -60,7 +60,7 @@ class UnitNames(object):
     yottabytes = ybytes
 @
 
-Binary Unit Namse
+Binary Unit Names
 ~~~~~~~~~~~~~~~~~
 
 <<name='binary_unit_names', wrap=False>>=
@@ -79,7 +79,7 @@ class BinaryUnitNames(object):
     zebibits = "ze" + bibits
     yobibits = "yo" + bibits
 
-    bytes = UnitNames.bytes
+    bytes = 'bytes'
     bibytes = 'bi' + bytes
     kibibytes = "ki" + bibytes
     mebibytes = "me" + bibytes
@@ -91,6 +91,7 @@ class BinaryUnitNames(object):
     yobibytes = "yo" + bibytes
 
     # iperf base 2
+    iperf_bytes = UnitNames.bytes
     iperf_kibibytes = UnitNames.kbytes
     iperf_mebibytes = UnitNames.mbytes
     iperf_gibibytes = UnitNames.gbytes
@@ -391,7 +392,7 @@ class BinaryUnitconverter(BaseConverter):
 The IperfbinaryConverter
 ------------------------
 
-After creating the binary converter I realized that iperf doesn't use the bibyte naming convention. Rather than clobber the BinaryConverter I'm adding this one so the keys match iperf's output.
+After creating the binary converter I realized that iperf doesn't use the bibyte naming convention. 
 
 .. '
 
@@ -413,7 +414,7 @@ to_bits = [BinaryUnitNames.bits,
            BinaryUnitNames.zebibits,
            BinaryUnitNames.yobibits]
 
-to_bytes = [BinaryUnitNames.bytes,
+to_bytes = [BinaryUnitNames.iperf_bytes,
             BinaryUnitNames.iperf_kibibytes,
             BinaryUnitNames.iperf_mebibytes,
             BinaryUnitNames.iperf_gibibytes,

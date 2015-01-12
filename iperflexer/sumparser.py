@@ -75,6 +75,7 @@ class SumParser(IperfParser):
         super(SumParser, self).__init__(*args, **kwargs)
         self.log_format = "({0}) {1} {2}/sec"
         self.last_line_bandwidth = None
+        self.last_line_transfer = None
         return
 
     @property
@@ -102,14 +103,14 @@ class SumParser(IperfParser):
         bandwidth = None
         if match is not None:
             bandwidth = self.bandwidth(match)
-            if self.valid(match):                        
-                self.intervals[float(match[ParserKeys.start])] = bandwidth
-                self.logger.info(self.log_format.format(match[ParserKeys.start],
-                                                        bandwidth,
-                                                        self.units))
+            if self.valid(match):
+                start = float(match[ParserKeys.start])
+                self.intervals[start] = bandwidth
+                self.transfer_intervals[start] = self.transfer(match)
             else:
                 # Assume it's the last line summary
                 self.last_line_bandwidth = bandwidth
+                self.last_line_transfer = self.transfer(match)
                 return
         return bandwidth
 
@@ -145,9 +146,10 @@ in_documentation = __name__ == '__builtin__'
 
 
 if in_documentation:
-    data_folder = 'features/steps/samples/'
+    data_folder = 'tests/steps/samples/'
     data_path = os.path.join(data_folder, 'client_data.iperf')
-    parser = SumParser()
+    parser = SumParser(threads=2)
+
     for line in open(data_path):
         bandwidth = parser(line)
         if bandwidth is not None:
@@ -167,6 +169,7 @@ if in_documentation:
 
 if in_documentation:
     parser.reset()
+    parser.threads = 4
 
     for line in open(data_path):
         parser(line)
@@ -181,17 +184,22 @@ if in_documentation:
 
 if in_documentation:
     #set up the unitconverter
-    from unitconverter import UnitConverter
+    from unitconverter import UnitConverter 
+    from unitconverter import UnitNames
+    from unitconverter import BinaryUnitNames as b_names
+    from unitconverter import  BinaryUnitconverter 
     converter = UnitConverter()
+    b_converter = BinaryUnitconverter()
     data_path = os.path.join(data_folder, 'client_p4_bits.iperf')
 
     # rename the sum-parser used earlier to make it clearer
     sum_parser = parser
     
     #setup the parsers to use bits
-    voodoo = IperfParser(units='bits')
+    voodoo = IperfParser(units=UnitNames.bits, threads=4)
     sum_parser.reset()
-    sum_parser.units = 'bits'
+    sum_parser.units = UnitNames.bits
+    sum_parser.threads = 4
 
     # load them up with the raw lines
     for line in open(data_path):
@@ -201,7 +209,7 @@ if in_documentation:
 
 if in_documentation:
     # convert the sums to Mbits and take the average
-    total_bandwidth = sum(sum_parser.bandwidths) * converter['bits']['Mbits']
+    total_bandwidth = sum(sum_parser.bandwidths) * converter[UnitNames.bits][UnitNames.mbits]
     calculated_average = total_bandwidth/len(sum_parser.intervals)
 
     # same for the re-added threads
@@ -216,3 +224,70 @@ if in_documentation:
     print("   Iperf, {0}".format(iperf_mean))    
     print('   Sum-Lines, {0}'.format(calculated_average))
     print("   Threads, {0}".format(v_average))          
+
+
+if in_documentation:
+    voodoo = IperfParser(units=UnitNames.bits, threads=2)
+    sum_parser = SumParser(threads=2, units=UnitNames.bits)
+
+    filename = os.path.join(data_folder, 'tartarus_p2_bits_halfM.iperf')
+    with open(filename) as reader:
+        for line in reader:
+            voodoo(line)
+            sum_parser(line)
+    print(line)
+
+
+if in_documentation:
+    mbytes = b_converter[b_names.bytes][b_names.mebibytes]
+    
+    recalculated_transfer = sum(voodoo.transfers)
+    recalculated_transfer_mbytes = recalculated_transfer * mbytes
+    
+    iperfs_transfer = sum_parser.last_line_transfer
+    iperfs_transfer_mbytes = iperfs_transfer * mbytes
+
+
+if in_documentation:
+    print("   Re-Calculated,{0}".format(recalculated_transfer_mbytes))
+    print("   Iperf's Transfer,{0}").format(iperfs_transfer_mbytes)
+
+
+if in_documentation:
+    missing = b_converter[b_names.mebibytes][b_names.bytes]
+    recalculated_transfer += missing
+    recalculated_transfer_mbytes = recalculated_transfer * mbytes
+    
+
+
+if in_documentation:
+    print("   Re-Calculated,{0}".format(recalculated_transfer_mbytes))
+    print("   Iperf's Transfer,{0}").format(iperfs_transfer_mbytes)
+
+
+if in_documentation:
+    m_bits = converter[UnitNames.bits][UnitNames.mbits]
+    recalculated_bandwidth = recalculated_transfer * b_converter[b_names.bytes][b_names.bits]
+    recalculated_bandwidth = recalculated_bandwidth
+    recalculated_bandwidth_mbits = (recalculated_bandwidth/10.2) * m_bits
+    iperfs_bandwidth = sum_parser.last_line_bandwidth * m_bits
+
+
+if in_documentation:
+    print('   Re-Calculated,{0:.2f}'.format(recalculated_bandwidth_mbits))
+    print('   Iperf,{0:.2f}'.format(iperfs_bandwidth))
+
+
+if in_documentation:
+    transfer = sum_parser.last_line_transfer * b_converter[b_names.bytes][b_names.bits]
+    seconds = transfer/float(sum_parser.last_line_bandwidth)
+    print(seconds)
+
+
+if in_documentation:
+    recalculated_bandwidth_mbits = (recalculated_bandwidth/seconds) * m_bits
+
+
+if in_documentation:
+    print('   Re-Calculated,{0:.2f}'.format(recalculated_bandwidth_mbits))
+    print('   Iperf,{0:.2f}'.format(iperfs_bandwidth))

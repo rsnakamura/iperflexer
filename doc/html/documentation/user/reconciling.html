@@ -1,0 +1,217 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Reconciling the Intervals and the Final &mdash; IperfLexer 0.1.2.dev documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1.2.dev',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="IperfLexer 0.1.2.dev documentation" href="../../index.html" />
+    <link rel="up" title="User Documentation" href="index.html" />
+    <link rel="next" title="The Argument Parser" href="../../argumentparser.html" />
+    <link rel="prev" title="User Documentation" href="index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../../argumentparser.html" title="The Argument Parser"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="User Documentation"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">IperfLexer</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">User Documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="reconciling-the-intervals-and-the-final">
+<h1>Reconciling the Intervals and the Final<a class="headerlink" href="#reconciling-the-intervals-and-the-final" title="Permalink to this headline">¶</a></h1>
+<p>The main reason for extracting the interval sums is so that you can perform time-series analysis. If you try and re-calculate the final bandwidths with these intervals, however, you will find that the values don&#8217;t match. This is because iperf is both rounding the times and reserving the last transfer from the intervals (but adding it to the final sums). This is an exploration of how much of a difference it can make.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># this package</span>
+<span class="kn">from</span> <span class="nn">iperflexer.iperfparser</span> <span class="kn">import</span> <span class="n">IperfParser</span>
+<span class="kn">from</span> <span class="nn">iperflexer.sumparser</span> <span class="kn">import</span> <span class="n">SumParser</span>
+<span class="kn">from</span> <span class="nn">iperflexer.unitconverter</span> <span class="kn">import</span> <span class="n">UnitConverter</span>
+<span class="kn">from</span> <span class="nn">iperflexer.unitconverter</span> <span class="kn">import</span> <span class="n">UnitNames</span> <span class="k">as</span> <span class="n">d_names</span>
+<span class="kn">from</span> <span class="nn">iperflexer.unitconverter</span> <span class="kn">import</span> <span class="n">BinaryUnitNames</span> <span class="k">as</span> <span class="n">b_names</span>
+<span class="kn">from</span> <span class="nn">iperflexer.unitconverter</span> <span class="kn">import</span> <span class="n">BinaryUnitconverter</span>
+
+<span class="n">d_converter</span> <span class="o">=</span> <span class="n">UnitConverter</span><span class="p">()</span>
+<span class="n">b_converter</span> <span class="o">=</span> <span class="n">BinaryUnitconverter</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="section" id="the-data">
+<h2>The Data<a class="headerlink" href="#the-data" title="Permalink to this headline">¶</a></h2>
+<p>The iperf session was run over wifi with four threads, a buffer size of 128 Kilobytes and reporting at one second intervals. We&#8217;ll use the <a class="reference download internal" href="../../_downloads/server_p4_128K.csv"><tt class="xref download docutils literal"><span class="pre">server</span> <span class="pre">output</span></tt></a> as the baseline and the <a class="reference download internal" href="../../_downloads/client_p4_128K.csv"><tt class="xref download docutils literal"><span class="pre">client</span> <span class="pre">output</span></tt></a> to reconcile the final sums and the interval sums.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">server_voodoo</span> <span class="o">=</span> <span class="n">IperfParser</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="s">&#39;bits&#39;</span><span class="p">,</span> <span class="n">threads</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">server_sums</span> <span class="o">=</span> <span class="n">SumParser</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="s">&#39;bits&#39;</span><span class="p">,</span> <span class="n">threads</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">client_voodoo</span> <span class="o">=</span> <span class="n">IperfParser</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="s">&#39;bits&#39;</span><span class="p">,</span> <span class="n">threads</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">client_sums</span> <span class="o">=</span> <span class="n">SumParser</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="s">&#39;bits&#39;</span><span class="p">,</span> <span class="n">threads</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;server_p4_128K.csv&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">reader</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
+        <span class="n">server_voodoo</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+        <span class="n">server_sums</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;client_p4_128K.csv&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">reader</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
+        <span class="n">client_voodoo</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+        <span class="n">client_sums</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now we can compare the values for each different method.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">mbits</span> <span class="o">=</span> <span class="n">d_converter</span><span class="p">[</span><span class="n">d_names</span><span class="o">.</span><span class="n">bits</span><span class="p">][</span><span class="n">d_names</span><span class="o">.</span><span class="n">mbits</span><span class="p">]</span>
+<span class="n">server_final</span> <span class="o">=</span> <span class="n">server_sums</span><span class="o">.</span><span class="n">last_line_bandwidth</span>
+<span class="n">server_final_mbits</span> <span class="o">=</span> <span class="n">server_sums</span><span class="o">.</span><span class="n">last_line_bandwidth</span><span class="o">*</span><span class="n">mbits</span>
+<span class="n">recalc</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">server_voodoo</span><span class="o">.</span><span class="n">bandwidths</span><span class="p">)</span><span class="o">/</span><span class="nb">float</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">server_voodoo</span><span class="o">.</span><span class="n">intervals</span><span class="p">))</span> <span class="o">*</span> <span class="n">mbits</span>
+<span class="n">client_final</span> <span class="o">=</span> <span class="n">client_sums</span><span class="o">.</span><span class="n">last_line_bandwidth</span> <span class="o">*</span> <span class="n">mbits</span>
+<span class="n">client_recalc</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">client_voodoo</span><span class="o">.</span><span class="n">bandwidths</span><span class="p">)</span><span class="o">/</span><span class="nb">float</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">client_voodoo</span><span class="o">.</span><span class="n">intervals</span><span class="p">))</span>
+<span class="n">client_recalc_mbits</span> <span class="o">=</span> <span class="n">client_recalc</span> <span class="o">*</span> <span class="n">mbits</span>
+</pre></div>
+</div>
+<table border="1" class="docutils">
+<caption>Comparisons</caption>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Source</th>
+<th class="head">Value</th>
+<th class="head">Difference from Server Final</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Server Final</td>
+<td>10.002708</td>
+<td>0</td>
+</tr>
+<tr class="row-odd"><td>Server Recalculated</td>
+<td>10.0002203279</td>
+<td>0.00248767213115</td>
+</tr>
+<tr class="row-even"><td>Client Final</td>
+<td>10.08557</td>
+<td>-0.082862</td>
+</tr>
+<tr class="row-odd"><td>Client Recalculated</td>
+<td>10.1362346667</td>
+<td>-0.133526666667</td>
+</tr>
+</tbody>
+</table>
+<p>The link was obviously very bad. Let&#8217; see how much of a difference the case with the largest difference from the server&#8217;s true bandwidth (re-calculated client data) was.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">proportion</span> <span class="o">=</span> <span class="p">(</span><span class="n">client_recalc</span> <span class="o">-</span> <span class="n">server_final</span><span class="p">)</span><span class="o">/</span><span class="nb">float</span><span class="p">(</span><span class="n">server_final</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">proportion</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="mf">0.0133490517435</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Reconciling the Intervals and the Final</a><ul>
+<li><a class="reference internal" href="#the-data">The Data</a></li>
+</ul>
+</li>
+</ul>
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">User Documentation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../argumentparser.html">The Argument Parser</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../baseclass.html">The BaseClass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../coroutine.html">Coroutines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../finder.html">The Finder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../iperfexpressions.html">The Iperf Expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../iperfparser.html">The IperfParser</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main.html">The Main Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html">The Iperf Lexer (Read Me)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sumparser.html">The SumParser</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../unitconverter.html">The Unit Converter</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../appendices/index.html">Appendices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../infrastructure/index.html">The Infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/index.html">User Guide</a></li>
+</ul>
+
+
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2013, cloistered monkey.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.2.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.6.1</a>
+      
+      |
+      <a href="../../_sources/documentation/user/reconciling.txt"
+          rel="nofollow">Page source</a></li>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -9,7 +9,7 @@ from baseclass import BaseClass
 
 from iperfexpressions import HumanExpression, ParserKeys
 from iperfexpressions import CsvExpression
-from unitconverter import UnitConverter
+from unitconverter import UnitConverter, IperfbinaryConverter, BinaryUnitNames
 from coroutine import coroutine
 
 
@@ -18,7 +18,7 @@ class IperfParser(BaseClass):
     The Iperf Parser extracts bandwidth and other information from the output
     """
     def __init__(self, expected_interval=1, interval_tolerance=0.1, units="Mbits",
-                 threads=4,
+                 threads=1, 
                  maximum=MAXIMUM_BANDWITH):
         """
         IperfParser Constructor
@@ -42,15 +42,64 @@ class IperfParser(BaseClass):
         self._human_regex = None
         self._csv_regex = None
         self._combined_regex = None
-        self._conversion = None
-        self._intervals = None
+
+        self.intervals = defaultdict(lambda:0)
+        self.transfer_intervals = defaultdict(lambda:0)
         self._threads = None
         self.format = None
         self._bandwidths = None
+        self._transfers = None        
         self.thread_count = 0
         self.current_thread = None
+        self.conversion = UnitConverter()
+        self.binary_converter = IperfbinaryConverter()
+        self._transfer_units = None
+        self._caster = None
         return
 
+    @property
+    def caster(self):
+        """
+        A default dict to cast everything but bits and Bytes to floats
+
+        :return: dict that returns int function for 'bits' and 'Bytes' as keys
+        """
+        if self._caster is None:
+            self._caster = defaultdict(lambda: float)
+            self._caster[BinaryUnitNames.bits] = int
+            self._caster[BinaryUnitNames.iperf_bytes] = int
+        return self._caster         
+
+    @property
+    def transfer_units(self):
+        """
+        a hack to handle the fact that only the bandwidth units are being specified
+        """
+        if self._transfer_units is None:
+            prefix = self.units[0]
+            suffix = BinaryUnitNames.iperf_bytes
+            if prefix == 'b':
+                self._transfer_units = suffix
+            else:
+                self._transfer_units = "{0}{1}".format(prefix,
+                                                suffix )
+        return self._transfer_units
+
+    def traverse(self, intervals):
+        """
+        traverses the intervals, infilling missing intervals
+
+        :param:
+          - `intervals`: default dict of interval:value
+        :yield: next value for the interval
+        """
+        # this was created because I was going to infill zeros
+        # but studyiing the iperf reporting made me decide it
+        # is a bad idea
+        for actual in sorted(intervals):
+            yield intervals[actual]
+        return
+    
     @property
     def bandwidths(self):
         """
@@ -58,9 +107,16 @@ class IperfParser(BaseClass):
         
         :yield: self.interval's values in the sorted order of the intervals
         """
-        intervals = sorted(self.intervals.keys())
-        for interval in intervals:
-            yield self.intervals[interval]
+        return self.traverse(self.intervals)
+
+    @property
+    def transfers(self):
+        """
+        generator of transfer values
+
+        :yield: converted transfer interval values
+        """
+        return self.traverse(self.transfer_intervals)
 
     @property
     def regex(self):
@@ -73,25 +129,6 @@ class IperfParser(BaseClass):
             self._regex = {ParserKeys.human:HumanExpression().regex,
                            ParserKeys.csv:CsvExpression().regex}
         return self._regex
-
-    @property
-    def intervals(self):
-        """
-        :rtype: dict with default values of 0
-        :return: interval: bandwidth  
-        """
-        if self._intervals is None:
-            self._intervals = defaultdict(lambda:0)
-        return self._intervals
-
-    @property
-    def conversion(self):
-        """
-        :return: UnitConveter nested dictionary
-        """
-        if self._conversion is None:
-            self._conversion = UnitConverter()
-        return self._conversion
 
     def valid(self, match):
         """
@@ -113,16 +150,37 @@ class IperfParser(BaseClass):
         :rtype: float
         :return: the bandwidth in the self.units
         """
-        bandwidth = float(match[ParserKeys.bandwidth])
         try:
             units = match[ParserKeys.units]
         except KeyError:
             # assume a csv-format
             units = 'bits'
+        bandwidth = self.caster[units](match[ParserKeys.bandwidth])
         b = self.conversion[units][self.units] * bandwidth
         if b > self.maximum:
             return 0.0
         return b
+
+    def transfer(self, match):
+        """
+        :param:
+
+         - `match`: A parsed match group dictionary
+
+        :rtype: float
+        :return: the transfer in the self.units
+        """
+        try:
+            units = match[ParserKeys.transfer_units]
+        except KeyError:
+            # assume a csv-format
+            units = 'bits'
+
+        transfer = self.caster[units](match[ParserKeys.transfer])            
+        transfer = self.binary_converter[units][self.transfer_units] * transfer
+        if transfer > self.maximum:
+            return 0
+        return transfer
 
     def __call__(self, line):
         """
@@ -135,8 +193,10 @@ class IperfParser(BaseClass):
         match = self.search(line)
         bandwidth = None
         if match is not None and self.valid(match):
+            interval_start = float(match[ParserKeys.start])
             self.thread_count = (self.thread_count + 1) % self.threads
-            self.intervals[float(match[ParserKeys.start])] += self.bandwidth(match)
+            self.intervals[interval_start] += self.bandwidth(match)
+            self.transfer_intervals[interval_start] += self.transfer(match)
             if self.thread_count == 0:
                 self.current_thread = float(match[ParserKeys.start])
                 bandwidth = self.intervals[self.current_thread]

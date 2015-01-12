@@ -1,0 +1,301 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Iperf Binary Unit Converter &mdash; IperfLexer 0.1.2.dev documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1.2.dev',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="IperfLexer 0.1.2.dev documentation" href="../../index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">IperfLexer</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="iperf-binary-unit-converter">
+<h1>Iperf Binary Unit Converter<a class="headerlink" href="#iperf-binary-unit-converter" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="scenario-user-converts-binary-units">
+<h2>Scenario: User converts binary units<a class="headerlink" href="#scenario-user-converts-binary-units" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="example-bytes-to-bits">
+<h3>Example: bytes to bits<a class="headerlink" href="#example-bytes-to-bits" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@given</span><span class="p">(</span><span class="s">&#39;an IperfbinaryConverter&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">iperfbinaryconverter</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">converter</span> <span class="o">=</span> <span class="n">IperfbinaryConverter</span><span class="p">()</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@when</span><span class="p">(</span><span class="s">&quot;the user converts from bytes to bits and back using iperf-units&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">bytes_to_bits</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">expected</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">*</span> <span class="mi">8</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">outcome</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">*</span> <span class="n">context</span><span class="o">.</span><span class="n">converter</span><span class="p">[</span><span class="n">BinaryUnitNames</span><span class="o">.</span><span class="n">bytes</span><span class="p">][</span><span class="n">BinaryUnitNames</span><span class="o">.</span><span class="n">bits</span><span class="p">]</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">reverse_outcome</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">outcome</span> <span class="o">*</span> <span class="n">context</span><span class="o">.</span><span class="n">converter</span><span class="p">[</span><span class="n">BinaryUnitNames</span><span class="o">.</span><span class="n">bits</span><span class="p">][</span><span class="n">BinaryUnitNames</span><span class="o">.</span><span class="n">bytes</span><span class="p">]</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<p>Then the outcome is the correct conversion</p>
+</div>
+<div class="section" id="example-kibibytes-to-bits">
+<h3>Example: kibibytes to bits<a class="headerlink" href="#example-kibibytes-to-bits" title="Permalink to this headline">¶</a></h3>
+<p>Given a IperfbinaryConverter</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@when</span><span class="p">(</span><span class="s">&#39;the user converts from kibibytes to bits and back using iperf-units&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">step_implementation</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">expected</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">*</span> <span class="mi">8</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">outcome</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">*</span> <span class="n">context</span><span class="o">.</span><span class="n">converter</span><span class="p">[</span><span class="n">BinaryUnitNames</span><span class="o">.</span><span class="n">iperf_kibibytes</span><span class="p">][</span><span class="n">BinaryUnitNames</span><span class="o">.</span><span class="n">bits</span><span class="p">]</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">reverse_outcome</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">outcome</span> <span class="o">*</span> <span class="n">context</span><span class="o">.</span><span class="n">converter</span><span class="p">[</span><span class="n">BinaryUnitNames</span><span class="o">.</span><span class="n">bits</span><span class="p">][</span><span class="n">BinaryUnitNames</span><span class="o">.</span><span class="n">iperf_kibibytes</span><span class="p">]</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<p>Then the outcome is the correct conversion</p>
+</div>
+<div class="section" id="example-bits-to-bits">
+<h3>Example: bits to bits<a class="headerlink" href="#example-bits-to-bits" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Given a IperfbinaryConverter</li>
+<li>When the user converts from bits to bits and back using</li>
+<li>Then the outcome is the correct conversion</li>
+</ol>
+</div></blockquote>
+</div>
+<div class="section" id="example-bits-to-mebibits">
+<h3>Example: bits to mebibits<a class="headerlink" href="#example-bits-to-mebibits" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Given a IperfbinaryConverter</li>
+<li>When the user converts from bits to mebibits and back using</li>
+<li>Then the outcome is the correct conversion</li>
+</ol>
+</div></blockquote>
+</div>
+<div class="section" id="example-bits-to-gibibits">
+<h3>Example: bits to gibibits<a class="headerlink" href="#example-bits-to-gibibits" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Given an IperfbinaryConverter</li>
+<li>When the user converts from bits to gibibits and back</li>
+<li>Then the outcome is the correct conversion</li>
+</ol>
+</div></blockquote>
+</div>
+<div class="section" id="example-bits-to-mebibytes">
+<h3>Example: bits to mebibytes<a class="headerlink" href="#example-bits-to-mebibytes" title="Permalink to this headline">¶</a></h3>
+<p>Given a IperfbinaryConverter</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@when</span><span class="p">(</span><span class="s">&#39;the user converts from bits to mebibytes and back using iperf-units&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">step_implementation</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">100000</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">expected</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">/</span> <span class="p">(</span><span class="mi">8</span> <span class="o">*</span> <span class="mf">2.</span><span class="o">**</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">outcome</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">*</span> <span class="n">context</span><span class="o">.</span><span class="n">converter</span><span class="p">[</span><span class="n">BinaryUnitNames</span><span class="o">.</span><span class="n">bits</span><span class="p">][</span><span class="n">BinaryUnitNames</span><span class="o">.</span><span class="n">iperf_mebibytes</span><span class="p">]</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">reverse_outcome</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">outcome</span> <span class="o">*</span> <span class="n">context</span><span class="o">.</span><span class="n">converter</span><span class="p">[</span><span class="n">BinaryUnitNames</span><span class="o">.</span><span class="n">iperf_mebibytes</span><span class="p">][</span><span class="n">BinaryUnitNames</span><span class="o">.</span><span class="n">bits</span><span class="p">]</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<p>Then the outcome is the correct conversion</p>
+</div>
+<div class="section" id="example-bits-to-gibibytes">
+<h3>Example: bits to gibibytes<a class="headerlink" href="#example-bits-to-gibibytes" title="Permalink to this headline">¶</a></h3>
+<p>Given a IperfbinaryConverter</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@when</span><span class="p">(</span><span class="s">&#39;the user converts from bits to gibibytes and back using iperf-units&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">step_implementation</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">100000</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">expected</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">/</span> <span class="p">(</span><span class="mi">8</span> <span class="o">*</span> <span class="mf">2.</span><span class="o">**</span><span class="mi">30</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">outcome</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">*</span> <span class="n">context</span><span class="o">.</span><span class="n">converter</span><span class="p">[</span><span class="n">BinaryUnitNames</span><span class="o">.</span><span class="n">bits</span><span class="p">][</span><span class="n">BinaryUnitNames</span><span class="o">.</span><span class="n">iperf_gibibytes</span><span class="p">]</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">reverse_outcome</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">outcome</span> <span class="o">*</span> <span class="n">context</span><span class="o">.</span><span class="n">converter</span><span class="p">[</span><span class="n">BinaryUnitNames</span><span class="o">.</span><span class="n">iperf_gibibytes</span><span class="p">][</span><span class="n">BinaryUnitNames</span><span class="o">.</span><span class="n">bits</span><span class="p">]</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<p>Then the outcome is the correct conversion</p>
+</div>
+<div class="section" id="example-bits-to-tebibytes">
+<h3>Example: bits to tebibytes<a class="headerlink" href="#example-bits-to-tebibytes" title="Permalink to this headline">¶</a></h3>
+<p>Given a IperfbinaryConverter</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@when</span><span class="p">(</span><span class="s">&#39;the user converts from bits to tebibytes and back using iperf-units&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">step_implementation</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">100000</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">expected</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">/</span> <span class="p">(</span><span class="mi">8</span> <span class="o">*</span> <span class="mf">2.</span><span class="o">**</span><span class="mi">40</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">outcome</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">*</span> <span class="n">context</span><span class="o">.</span><span class="n">converter</span><span class="p">[</span><span class="n">BinaryUnitNames</span><span class="o">.</span><span class="n">bits</span><span class="p">][</span><span class="n">BinaryUnitNames</span><span class="o">.</span><span class="n">iperf_tebibytes</span><span class="p">]</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">reverse_outcome</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">outcome</span> <span class="o">*</span> <span class="n">context</span><span class="o">.</span><span class="n">converter</span><span class="p">[</span><span class="n">BinaryUnitNames</span><span class="o">.</span><span class="n">iperf_tebibytes</span><span class="p">][</span><span class="n">BinaryUnitNames</span><span class="o">.</span><span class="n">bits</span><span class="p">]</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<p>Then the outcome is the correct conversion</p>
+</div>
+<div class="section" id="example-bits-to-pebibytes">
+<h3>Example: bits to pebibytes<a class="headerlink" href="#example-bits-to-pebibytes" title="Permalink to this headline">¶</a></h3>
+<p>Given a IperfbinaryConverter</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@when</span><span class="p">(</span><span class="s">&#39;the user converts from bits to pebibytes and back using iperf-units&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">step_implementation</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">100000</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">expected</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">/</span> <span class="p">(</span><span class="mi">8</span> <span class="o">*</span> <span class="mf">2.</span><span class="o">**</span><span class="mi">50</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">outcome</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">*</span> <span class="n">context</span><span class="o">.</span><span class="n">converter</span><span class="p">[</span><span class="n">BinaryUnitNames</span><span class="o">.</span><span class="n">bits</span><span class="p">][</span><span class="n">BinaryUnitNames</span><span class="o">.</span><span class="n">iperf_pebibytes</span><span class="p">]</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">reverse_outcome</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">outcome</span> <span class="o">*</span> <span class="n">context</span><span class="o">.</span><span class="n">converter</span><span class="p">[</span><span class="n">BinaryUnitNames</span><span class="o">.</span><span class="n">iperf_pebibytes</span><span class="p">][</span><span class="n">BinaryUnitNames</span><span class="o">.</span><span class="n">bits</span><span class="p">]</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<p>Then the outcome is the correct conversion</p>
+</div>
+<div class="section" id="example-bits-to-exbibytes">
+<h3>Example: bits to exbibytes<a class="headerlink" href="#example-bits-to-exbibytes" title="Permalink to this headline">¶</a></h3>
+<p>Given a IperfbinaryConverter</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@when</span><span class="p">(</span><span class="s">&#39;the user converts from bits to exbibytes and back using iperf-units&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">step_implementation</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">100000</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">expected</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">/</span> <span class="p">(</span><span class="mi">8</span> <span class="o">*</span> <span class="mf">2.</span><span class="o">**</span><span class="mi">60</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">outcome</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">*</span> <span class="n">context</span><span class="o">.</span><span class="n">converter</span><span class="p">[</span><span class="n">BinaryUnitNames</span><span class="o">.</span><span class="n">bits</span><span class="p">][</span><span class="n">BinaryUnitNames</span><span class="o">.</span><span class="n">iperf_exbibytes</span><span class="p">]</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">reverse_outcome</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">outcome</span> <span class="o">*</span> <span class="n">context</span><span class="o">.</span><span class="n">converter</span><span class="p">[</span><span class="n">BinaryUnitNames</span><span class="o">.</span><span class="n">iperf_exbibytes</span><span class="p">][</span><span class="n">BinaryUnitNames</span><span class="o">.</span><span class="n">bits</span><span class="p">]</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<p>Then the outcome is the correct conversion</p>
+</div>
+<div class="section" id="example-bits-to-zebibytes">
+<h3>Example: bits to zebibytes<a class="headerlink" href="#example-bits-to-zebibytes" title="Permalink to this headline">¶</a></h3>
+<p>Given a IperfbinaryConverter</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@when</span><span class="p">(</span><span class="s">&#39;the user converts from bits to zebibytes and back using iperf-units&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">step_implementation</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">100000</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">expected</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">/</span> <span class="p">(</span><span class="mi">8</span> <span class="o">*</span> <span class="mf">2.</span><span class="o">**</span><span class="mi">70</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">outcome</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">*</span> <span class="n">context</span><span class="o">.</span><span class="n">converter</span><span class="p">[</span><span class="n">BinaryUnitNames</span><span class="o">.</span><span class="n">bits</span><span class="p">][</span><span class="n">BinaryUnitNames</span><span class="o">.</span><span class="n">iperf_zebibytes</span><span class="p">]</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">reverse_outcome</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">outcome</span> <span class="o">*</span> <span class="n">context</span><span class="o">.</span><span class="n">converter</span><span class="p">[</span><span class="n">BinaryUnitNames</span><span class="o">.</span><span class="n">iperf_zebibytes</span><span class="p">][</span><span class="n">BinaryUnitNames</span><span class="o">.</span><span class="n">bits</span><span class="p">]</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<p>Then the outcome is the correct conversion</p>
+</div>
+<div class="section" id="example-bits-to-yobibytes">
+<h3>Example: bits to yobibytes<a class="headerlink" href="#example-bits-to-yobibytes" title="Permalink to this headline">¶</a></h3>
+<p>Given a IperfbinaryConverter</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@when</span><span class="p">(</span><span class="s">&#39;the user converts from bits to yobibytes and back using iperf-units&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">step_implementation</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">100000</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">expected</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">/</span> <span class="p">(</span><span class="mi">8</span> <span class="o">*</span> <span class="mf">2.</span><span class="o">**</span><span class="mi">80</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">outcome</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">source</span> <span class="o">*</span> <span class="n">context</span><span class="o">.</span><span class="n">converter</span><span class="p">[</span><span class="n">BinaryUnitNames</span><span class="o">.</span><span class="n">bits</span><span class="p">][</span><span class="n">BinaryUnitNames</span><span class="o">.</span><span class="n">iperf_yobibytes</span><span class="p">]</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">reverse_outcome</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">outcome</span> <span class="o">*</span> <span class="n">context</span><span class="o">.</span><span class="n">converter</span><span class="p">[</span><span class="n">BinaryUnitNames</span><span class="o">.</span><span class="n">iperf_yobibytes</span><span class="p">][</span><span class="n">BinaryUnitNames</span><span class="o">.</span><span class="n">bits</span><span class="p">]</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<p>Then the outcome is the correct conversion</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Iperf Binary Unit Converter</a><ul>
+<li><a class="reference internal" href="#scenario-user-converts-binary-units">Scenario: User converts binary units</a><ul>
+<li><a class="reference internal" href="#example-bytes-to-bits">Example: bytes to bits</a></li>
+<li><a class="reference internal" href="#example-kibibytes-to-bits">Example: kibibytes to bits</a></li>
+<li><a class="reference internal" href="#example-bits-to-bits">Example: bits to bits</a></li>
+<li><a class="reference internal" href="#example-bits-to-mebibits">Example: bits to mebibits</a></li>
+<li><a class="reference internal" href="#example-bits-to-gibibits">Example: bits to gibibits</a></li>
+<li><a class="reference internal" href="#example-bits-to-mebibytes">Example: bits to mebibytes</a></li>
+<li><a class="reference internal" href="#example-bits-to-gibibytes">Example: bits to gibibytes</a></li>
+<li><a class="reference internal" href="#example-bits-to-tebibytes">Example: bits to tebibytes</a></li>
+<li><a class="reference internal" href="#example-bits-to-pebibytes">Example: bits to pebibytes</a></li>
+<li><a class="reference internal" href="#example-bits-to-exbibytes">Example: bits to exbibytes</a></li>
+<li><a class="reference internal" href="#example-bits-to-zebibytes">Example: bits to zebibytes</a></li>
+<li><a class="reference internal" href="#example-bits-to-yobibytes">Example: bits to yobibytes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>Navigation</h3>
+<ul class="simple">
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../argumentparser.html">The Argument Parser</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../baseclass.html">The BaseClass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../coroutine.html">Coroutines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../finder.html">The Finder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../iperfexpressions.html">The Iperf Expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../iperfparser.html">The IperfParser</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main.html">The Main Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html">The Iperf Lexer (Read Me)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sumparser.html">The SumParser</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../unitconverter.html">The Unit Converter</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../appendices/index.html">Appendices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../infrastructure/index.html">The Infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/index.html">User Guide</a></li>
+</ul>
+
+
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2013, cloistered monkey.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.2.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.6.1</a>
+      
+      |
+      <a href="../../_sources/tests/steps/iperfbinaryconverter.txt"
+          rel="nofollow">Page source</a></li>
+    </div>
+
+    
+
+    
+  </body>
+</html>
