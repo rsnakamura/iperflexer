@@ -1,0 +1,14 @@
+Written Documentation
+=====================
+
+This extra sub-directory is created because of a bug in `sphinx-pypi-upload <https://bitbucket.org/jezdez/sphinx-pypi-upload/issue/2/upload-fails-when-directory-has-no-files>`_ which will crash if there are directories without index files.
+
+<<name='imports', echo=False>>=
+# this package
+from iperflexer.infrastructure.index_builder import create_toctree
+@
+
+<<name='toctree', echo=False, results='sphinx'>>=
+create_toctree()
+@
+

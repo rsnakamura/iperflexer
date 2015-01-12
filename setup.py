@@ -4,10 +4,6 @@ import os
 try:
     from setuptools import setup, find_packages
 except ImportError as error:
-    #print(error)
-    #print('setuptools package required')
-    #import sys
-    #sys.exit()
     from distribute_setup import use_setuptools
     use_setuptools()
 
@@ -58,7 +54,6 @@ setup(name='iperflexer',
 	  [console_scripts]
       parseiperf=iperflexer.main:main
 	  """
-
       )
 
 #      install_requires = ['pudb', 'mock'],

@@ -62,10 +62,6 @@
 <div class="highlight-python"><div class="highlight"><pre>pip install iperflexer
 </pre></div>
 </div>
-<p>It requires <tt class="docutils literal"><span class="pre">numpy</span></tt> to run. If not already installed you can use a package manager or pip.</p>
-<div class="highlight-python"><div class="highlight"><pre>pip install numpy
-</pre></div>
-</div>
 <p>It is meant to be used with files with data-reporting intervals shorter than the total run-time (e.g. 1 second intervals). Once installed it creates a command-line command named <tt class="docutils literal"><span class="pre">parseiperf</span></tt>.</p>
 <div class="section" id="running-it">
 <h2>Running It<a class="headerlink" href="#running-it" title="Permalink to this headline">¶</a></h2>
@@ -146,10 +142,10 @@ optional arguments:
 </div>
 <div class="section" id="threads">
 <h3>Threads<a class="headerlink" href="#threads" title="Permalink to this headline">¶</a></h3>
-<p>Since the <tt class="docutils literal"><span class="pre">voodoo-parser</span></tt> re-adds the threads it needs to know how many of them there are, so if you use it, pass in the <tt class="docutils literal"><span class="pre">--threads</span></tt> option to change it from the default of 4 if you need to. I could have made it infer-them, but I wanted to be able to work with data where the connection was bad and the threads sometimes died and this seemed to be the safest way to do it. It doesn&#8217;t really matter if all the threads finish their reporting, it&#8217;s mostly for the bad connections. In practice only differentiating files with one thread from ones with more than one seems to really be necessary (e.g. a file with 5 threads will still work with <tt class="docutils literal"><span class="pre">-p7</span></tt> but not <tt class="docutils literal"><span class="pre">-p1</span></tt>).</p>
+<p>Since the <tt class="docutils literal"><span class="pre">voodoo-parser</span></tt> re-adds the threads it needs to know how many of them there are, so if you use it, pass in the <tt class="docutils literal"><span class="pre">--threads</span></tt> option to change it from the default of 1 if you need to. I could have made it infer-them, but I wanted to be able to work with data where the connection was bad and the threads sometimes died and this seemed to be the safest way to do it. It doesn&#8217;t really matter if all the threads finish their reporting, it&#8217;s mostly for the bad connections. In practice only differentiating files with one thread from ones with more than one seems to really be necessary (e.g. a file with 5 threads will still work with <tt class="docutils literal"><span class="pre">-p7</span></tt> but not <tt class="docutils literal"><span class="pre">-p1</span></tt>).</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">The default assumes that the files have more than one thread. The actual thread count doesn&#8217;t have to match the setting, it just has to be more than one. If the input is for an iperf session with only one thread you need to pass in <tt class="docutils literal"><span class="pre">-p</span> <span class="pre">1</span></tt> or you will get an incorrect answer. Conversely, if it has more than one thread and you pass in <tt class="docutils literal"><span class="pre">-p1</span></tt> it will also fail.</p>
+<p class="last">The default assumes that the files have one thread. The actual thread count doesn&#8217;t have to match the setting, it just has to be more than one if there is more than one  thread. If the input is for an iperf session with only one thread you need to pass in <tt class="docutils literal"><span class="pre">-p</span> <span class="pre">1</span></tt> or you will get an incorrect answer. Conversely, if it has more than one thread and you pass in <tt class="docutils literal"><span class="pre">-p1</span></tt> it will also fail.</p>
 </div>
 </div>
 <div class="section" id="maximum">
@@ -243,7 +239,8 @@ pip install sphinxcontrib-plantuml
 </li>
 </ul>
 <h3>Navigation</h3>
-<ul class="simple">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="documentation/user/index.html">User Documentation</a></li>
 </ul>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="argumentparser.html">The Argument Parser</a></li>
