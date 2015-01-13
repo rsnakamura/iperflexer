@@ -36,10 +36,10 @@ class sdist_hg(sdist):
         tip = repo.changelog.tip()
         return repo.changelog.rev(tip)
 
-    
+#      cmdclass = {'sdist':sdist_hg},    
 setup(name='iperflexer',
-      version="1!0.1.3",
-      cmdclass = {'sdist':sdist_hg},
+      version="0.1.3",
+
       description="A program to parse iperf files",
       long_description=long_description,
       author="russell",

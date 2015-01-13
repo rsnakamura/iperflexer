@@ -67,7 +67,7 @@ Pipe Function
             raise ArgumentError("Unknown Units: {0}".format(args.units))
             return
     
-        if args.voodoo and not args.lastlinebandwidth:
+        if args.voodoo and not (args.lastlinebandwidth or args.lastlinetransfer):
             parser = IperfParser(units=units,
                                  maximum=args.maximum,
                                  threads=args.threads)
@@ -82,6 +82,8 @@ Pipe Function
         if args.lastlinebandwidth:
             # this will only work with the SumParser
             outfile.write(ADD_NEWLINE.format(parser.last_line_bandwidth))
+        elif args.lastlinetransfer:
+            outfile.write(ADD_NEWLINE.format(parser.last_line_transfer))
         else:
             for bandwidth in parser.bandwidths:
                 outfile.write(ADD_NEWLINE.format(bandwidth))

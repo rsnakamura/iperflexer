@@ -79,5 +79,8 @@ class Arguments(object):
         self.parser.add_argument('-l', '--lastlinebandwidth',
                                 help="Get Iperf's final bandwidth value (default=%(default)s)",
                                  default=False, action="store_true")
+        self.parser.add_argument('-d', '--lastlinetransfer',
+                                help="Get Iperf's final reported data transfer (default=%(default)s)",
+                                 default=False, action="store_true")
         return self.parser.parse_args()
 # end class Arguments

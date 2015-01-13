@@ -42,7 +42,7 @@ This is a dump of the ``parseiperf --help`` output.
 
     usage: parseiperf [-h] [-g GLOB] [-u UNITS] [-i INTERVAL]
                       [--tolerance TOLERANCE] [-s] [-v] [--pudb] [--pdb] [-t]
-                      [-p THREADS] [-m MAXIMUM] [-l]
+                      [-p THREADS] [-m MAXIMUM] [-l] [-d]
     
     optional arguments:
       -h, --help            show this help message and exit
@@ -71,6 +71,9 @@ This is a dump of the ``parseiperf --help`` output.
                             Maximum allowed bandwidth (default=1000000)
       -l, --lastlinebandwidth
                             Get Iperf's final bandwidth value (default=False)
+      -d, --lastlinetransfer
+                            Get Iperf's final reported data transfer
+                            (default=False)
     
     
 
