@@ -1,6 +1,8 @@
 syntax:glob
 
 *.pyc
+doc/*
+MANIFEST
 build/*
 dist/
 sl4a_setup/

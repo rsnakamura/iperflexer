@@ -38,7 +38,7 @@ class sdist_hg(sdist):
 
     
 setup(name='iperflexer',
-      version="1!0.1.2",
+      version="1!0.1.3",
       cmdclass = {'sdist':sdist_hg},
       description="A program to parse iperf files",
       long_description=long_description,
@@ -47,7 +47,7 @@ setup(name='iperflexer',
       url = 'https://bitbucket.org/cloisteredmonkey-admin/iperflexer',
       author_email="necromuralist@gmail.com",
       license = "MIT",
-      packages = find_packages(),
+      packages = find_packages(exclude=['tests*']),
       include_package_data = True,
       package_data = {"":["*.rst", "*.ini"]},
       entry_points = """
@@ -55,7 +55,7 @@ setup(name='iperflexer',
       parseiperf=iperflexer.main:main
 	  """
       )
-
+#      
 #      install_requires = ['pudb', 'mock'],
 # an example last line would be cpm= cpm.main: main
 
