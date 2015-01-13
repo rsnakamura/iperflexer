@@ -14,9 +14,7 @@ CSV_SINGLE_OVERFLOW = "20120720091543,192.168.20.62,0,192.168.20.50,5001,-1,8.0-
 
 class TestSumParser(TestCase):
     def setUp(self):
-        self.logger = MagicMock()
-        self.parser = sumparser.SumParser(maximum=1000)
-        self.parser._logger = self.logger
+        self.parser = sumparser.SumParser(maximum=1000, threads=4)
         return
 
     def test_bandwidth(self):
@@ -30,40 +28,7 @@ class TestSumParser(TestCase):
         self.assertRegexpMatches(CSV, self.parser.regex[ParserKeys.csv].pattern)
         return
 
-    def test_add(self):
-        logger = MagicMock()
 
-        parser = sumparser.SumParser()
-        parser._logger = logger
-        parser(HUMAN)
-        logger.info.assert_called_with(parser.log_format.format(0.0, 957.0, "Mbits"))
-        parser.reset()
-
-        parser(CSV)
-        logger.info.assert_called_with(parser.log_format.format(0.0, 6.291456, "Mbits"))
-
-
-        return
-
-    def test_add_single(self):
-        logger = MagicMock()
-
-        parser = sumparser.SumParser(threads=1)
-        parser._logger = logger
-        parser(CSV_SINGLE)
-        logger.info.assert_called_with(parser.log_format.format(8.0, 934.412288, "Mbits"))
-        return
-
-
-    def test_maximum(self):        
-        self.parser(HUMAN_OVERFLOW)
-        self.logger.info.assert_called_with(self.parser.log_format.format(0.0, 0.0, "Mbits"))
-        return
-
-    def test_maximum_csv(self):
-        self.parser(CSV_SINGLE_OVERFLOW)
-        self.logger.info.assert_called_with(self.parser.log_format.format(8.0,0.0, "Mbits"))
-        return
     
 if __name__ == "__main__":
     import pudb
