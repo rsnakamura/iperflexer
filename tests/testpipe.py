@@ -43,7 +43,7 @@ class TestPipe(TestCase):
         pipe = self.parser.pipe(target)
         for line in FRAGMENT:
             pipe.send(line)
-        expected = 26.21
+        expected = 26.2
         name, args, kwargs =  target.send.mock_calls[0]
         actual =  float(args[0])
         self.assertAlmostEqual(expected, actual)

@@ -202,8 +202,12 @@ class IperfParser(BaseClass):
             # assume a csv-format
             units = 'bits'
         try:
+            # if the value is big enough vs the units it will be an int
+            # e.g. 113 MBytes is an int but 11.1 MBytes reports a float
+            # so favor an int
             bandwidth = int(match[ParserKeys.bandwidth])
         except ValueError:
+            # ints will raise an error if passed something with a decimal point
             bandwidth  = float(match[ParserKeys.bandwidth])
         b = self.conversion[units][self.units] * bandwidth
         if b > self.maximum:
