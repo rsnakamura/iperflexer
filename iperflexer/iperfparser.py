@@ -54,21 +54,7 @@ class IperfParser(BaseClass):
         self.conversion = UnitConverter()
         self.binary_converter = IperfbinaryConverter()
         self._transfer_units = None
-        self._caster = None
         return
-
-    @property
-    def caster(self):
-        """
-        A default dict to cast everything but bits and Bytes to floats
-
-        :return: dict that returns int function for 'bits' and 'Bytes' as keys
-        """
-        if self._caster is None:
-            self._caster = defaultdict(lambda: float)
-            self._caster[BinaryUnitNames.bits] = int
-            self._caster[BinaryUnitNames.iperf_bytes] = int
-        return self._caster         
 
     @property
     def transfer_units(self):
@@ -155,7 +141,10 @@ class IperfParser(BaseClass):
         except KeyError:
             # assume a csv-format
             units = 'bits'
-        bandwidth = self.caster[units](match[ParserKeys.bandwidth])
+        try:
+            bandwidth = int(match[ParserKeys.bandwidth])
+        except ValueError:
+            bandwidth  = float(match[ParserKeys.bandwidth])
         b = self.conversion[units][self.units] * bandwidth
         if b > self.maximum:
             return 0.0
@@ -176,7 +165,10 @@ class IperfParser(BaseClass):
             # assume a csv-format
             units = 'bits'
 
-        transfer = self.caster[units](match[ParserKeys.transfer])            
+        try:
+            transfer = int(match[ParserKeys.transfer])
+        except ValueError:
+            transfer = float(match[ParserKeys.transfer])
         transfer = self.binary_converter[units][self.transfer_units] * transfer
         if transfer > self.maximum:
             return 0
@@ -293,15 +285,3 @@ class IperfParser(BaseClass):
         base, ext = os.path.splitext(basename)
         return "{0}.csv".format(base)
 # end class IperfParser
-
-
-if __name__ == '__main__':
-    parser = IperfParser(expected_interval=10, threads=1)
-
-    import numpy
-    with open('features/steps/samples/test0.iperf') as f:
-        for line in f:
-            output = parser(line)
-            if output is not None:
-                print output
-    print numpy.median(parser.intervals.values())    

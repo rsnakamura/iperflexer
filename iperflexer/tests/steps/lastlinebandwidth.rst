@@ -67,7 +67,7 @@ Example: Human Readable
 
     @given("a data set of human-readable iperf output")
     def human_readable_input(context):
-        context.parser = SumParser()
+        context.parser = SumParser(threads=5, units='Mbits')    
         context.expected = random.randrange(800, 1000)
         human_data = data.format(expected = context.expected)
         for line in human_data.splitlines():

@@ -8,7 +8,7 @@ Scenario Outline: User converts iperf binary units
   When the user converts from <source> to <target> and back using iperf-units
   Then the outcome is the correct conversion
 
-  Examples: bytes to bits
+  Examples: Iperf bytes to bits
   | source    | target    |
   | kibibytes | bits      |
   | bits      | mebibytes |
@@ -18,6 +18,7 @@ Scenario Outline: User converts iperf binary units
   | bits      | exbibytes |
   | bits      | zebibytes |
   | bits      | yobibytes |
+  | bytes     | bits      |
 
 
 Scenario Outline: User converts normal binary units
@@ -26,13 +27,12 @@ Scenario Outline: User converts normal binary units
   Then the outcome is the correct conversion
 
   Examples: bits to bits
-  | source    | target    |
-  | bytes     | bits      |
-  | bits      | bits      |
-  | bits      | mebibits  |
-  | bits      | gibibits  |
-  | bits      | pebibits  |
-  | bits      | exbibits  |
-  | bits      | zebibits  |
-  | bits      | yobibits  |
+  | source | target   |
+  | bits   | bits     |
+  | bits   | mebibits |
+  | bits   | gibibits |
+  | bits   | pebibits |
+  | bits   | exbibits |
+  | bits   | zebibits |
+  | bits   | yobibits |
 

@@ -18,6 +18,7 @@ DELTA = 0.0001
 @given('a BinaryUnitconverter')
 def binaryunitconverter(context):
     context.converter = BinaryUnitconverter()
+    print(context.converter.keys())
     return
 
 

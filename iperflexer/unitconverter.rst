@@ -63,7 +63,7 @@ These are base-10 units. The intention is to use them to convert the iperf (good
 
 
 
-Binary Unit Namse
+Binary Unit Names
 ~~~~~~~~~~~~~~~~~
 
 ::

@@ -9,23 +9,23 @@ Scenario Outline: User converts decimal units
   Then the outcome is the correct conversion
 
   Examples: bytes to bits
-  | source    | target     |
-  | bytes     | bits       |
-  | kilobytes | bits       |
-  | bits      | bits       |
-  | bits      | megabits   |
-  | bits      | gigabits   |
-  | bits      | megabytes  |
-  | bits      | gigabytes  |
-  | bits      | terabytes  |
-  | bits      | petabits   |
-  | bits      | petabytes  |
-  | bits      | exabits    |
-  | bits      | exabytes   |
-  | bits      | zettabits  |
-  | bits      | zettabytes |
-  | bits      | yottabits  |
-  | bits      | yottabytes |
+  | source      | target     |
+  | iperf-bytes | bits       |
+  | kilobytes   | bits       |
+  | bits        | bits       |
+  | bits        | megabits   |
+  | bits        | gigabits   |
+  | bits        | megabytes  |
+  | bits        | gigabytes  |
+  | bits        | terabytes  |
+  | bits        | petabits   |
+  | bits        | petabytes  |
+  | bits        | exabits    |
+  | bits        | exabytes   |
+  | bits        | zettabits  |
+  | bits        | zettabytes |
+  | bits        | yottabits  |
+  | bits        | yottabytes |
 
 
   

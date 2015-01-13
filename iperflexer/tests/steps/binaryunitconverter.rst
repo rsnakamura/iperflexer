@@ -17,6 +17,7 @@ Example: bytes to bits
     @given('a BinaryUnitconverter')
     def binaryunitconverter(context):
         context.converter = BinaryUnitconverter()
+        print(context.converter.keys())
         return
     
 

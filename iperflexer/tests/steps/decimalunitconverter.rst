@@ -27,6 +27,16 @@ Example: bytes to bits
         return
     
 
+::
+
+    @when('the user converts from iperf-bytes to bits and back')
+    def step_implementation(context):
+        context.source = random.randrange(1, 100)
+        context.expected = context.source * 8
+        context.outcome = context.source * context.converter[UnitNames.bytes][UnitNames.bits]
+        context.reverse_outcome = context.outcome * context.converter[UnitNames.bits][UnitNames.bytes]
+        return
+    
 
 
 

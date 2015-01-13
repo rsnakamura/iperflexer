@@ -6,7 +6,7 @@ from __future__ import print_function
 import subprocess
 @
 
-This is a program to extract bandwidths from `iperf <http://sourceforge.net/projects/iperf/>`_ output. To install it you can use pip.
+This is a program to extract bandwidths and data transfers from `iperf <http://sourceforge.net/projects/iperf/>`_ output. To install it you can use pip.
 
 ::
 
@@ -21,7 +21,7 @@ The original idea behind it was to use it as part of a pipeline so you can pipe 
 
   iperf -c 192.168.10.5 -i 1 -P 4 | parseiperf
 
-Which will then send the total bandwith for each interval to standard-output (it does this so that it can then be piped to another command such as one that calculates statistics). You can also ``cat`` an existing file to it::
+Which will then send the total bandwith for each interval to standard-output (it does this so that it can then be piped to another command). You can also ``cat`` an existing file to it::
 
   cat test.iperf | parseiperf
 
@@ -41,16 +41,18 @@ print(subprocess.check_output('parseiperf -h'.split()))
 Glob
 ~~~~
 
-Although I said above that you pipe input to the ``parseiperf`` command you can also use a file-glob to pass in file-names to it. It descends into all sub-directories to look for matches so you need to make sure the glob is restrictive enough to not match unexpected files and you also need to surround it with quotation marks (so that the shell's interface doesn't expand the glob before passing it to the command). The output for all the files will be concatenated and output to standard output.
+Although I said above that you pipe input to the ``parseiperf`` command you can also use a file-glob to pass in file-names to it. It descends into all sub-directories to look for matches so you need to make sure the glob is restrictive enough to not match unexpected files and you also need to surround it with quotation marks (so that the shell's interface doesn't expand the glob before passing it to the command). The output for all the files will be concatenated and output to standard output. 
 
 ::
 
    parseiperf -g "*.iperf"
 
+Although my example uses a glob you could just pass in a filename.
+
 Units
 ~~~~~
 
-The ``--units`` tells the `iperflexer` what units the bandwidths should use. One of the primary reasons for this code was to allow the iperf raw-data to be output in bits per second and then converted later to the more human-readable Megabits per second. The names for the units is meant to match the iperf headers (so megabits-per-second is `Mbits`).
+The ``--units`` tells the `iperflexer` what units the bandwidths should use. One of the reasons for this code was to allow the iperf raw-data to be output in bits per second and then converted later to the more human-readable Megabits or Gigabits per second. The names for the units is meant to match the iperf headers (so to get megabits-per-second use `Mbits`).
 
 Saves
 ~~~~~
@@ -70,15 +72,12 @@ The ``--pudb`` and ``--pdb`` options will start the chosen debugger before runni
 Tee
 ~~~
 
-The ``--tee`` option tells the command to send the un-parsed iperf lines to standard error. This way if you use it in the originally intended way (piping to another command) you can still see what happened or you can pipe it to another command (such as another instance of the ``parseiperf`` command).
+The ``--tee`` option tells the command to send the un-parsed iperf lines to standard error. This way if you use it in the originally intended way (piping to another command) you can still see what happened or you can pipe it to another command (including another instance of the ``parseiperf`` command).
 
 Threads
 ~~~~~~~
 
-Since the ``voodoo-parser`` re-adds the threads it needs to know how many of them there are, so if you use it, pass in the ``--threads`` option to change it from the default of 1 if you need to. I could have made it infer-them, but I wanted to be able to work with data where the connection was bad and the threads sometimes died and this seemed to be the safest way to do it. It doesn't really matter if all the threads finish their reporting, it's mostly for the bad connections. In practice only differentiating files with one thread from ones with more than one seems to really be necessary (e.g. a file with 5 threads will still work with ``-p7`` but not ``-p1``).
-
-.. warning:: The default assumes that the files have one thread. The actual thread count doesn't have to match the setting, it just has to be more than one if there is more than one  thread. If the input is for an iperf session with only one thread you need to pass in ``-p 1`` or you will get an incorrect answer. Conversely, if it has more than one thread and you pass in ``-p1`` it will also fail.
-
+By default, it is assumed that only one thread is being used. If more than one thread was used the number of threads has to be specified by passing in the ``--threads`` option. I might change it to make it infer them but I originally chose to do it this way because it seemed safest in the event of incomplete data output.
 
 Maximum
 ~~~~~~~
@@ -97,7 +96,7 @@ If set, this will grab the last sum-line whose interval is bigger than the inter
 Interval
 ~~~~~~~~
 
-The expected reporting interval (e.g. every second is ``-i 1``). If the interval found on a line exceeds the expected interval, then it is assumed to be a summation line and not used by the bandwidths, but is used by the SumParser.last_line_bandwidth. 
+The expected reporting interval (e.g. every second is ``-i 1``). If the interval found on a line exceeds the expected interval, then it is assumed to be a total summation line and not used by the interval valuse, but is used by the SumParser.last_line_bandwidth and last_line_transfer. 
 
 Tolerance
 ~~~~~~~~~
@@ -123,7 +122,6 @@ Matplotlib itself requires numpy and they can take a long time to build. If you'
 
    sudo apt-get install python-matplotlib
 
-
 Since it's a sphinx repository you'll of course need sphinx::
 
    pip install sphinx
@@ -132,7 +130,7 @@ I'm using the `alabaster <https://github.com/bitprophet/alabaster>`_ sphinx them
 
    pip install alabaster   
 
-At the moment I'm using ``sphinxcontrib-plantuml`` for the UML diagrams. This prevents it from working or Read the Docs so I might remove them eventually, but for now if you want them you'll need both plantuml and the sphinx extension::
+At the moment I'm using ``sphinxcontrib-plantuml`` for the UML diagrams. If you want them you'll need both plantuml and the sphinx extension::
 
    apt-get install plantuml
    apt-get install graphviz
@@ -145,3 +143,9 @@ I think that's everything. If it is, then when you're next to the `Makefile` you
 And it will output the html files to ``build/html``. 
 
 .. note:: I `rsync` the html files to a folder where my apache server can see it so if you build it before I remember to get rid of that in the Makefile you will likely see an error but that shouldn't affect the built documentation (although if just by coincidence you have the exact same file structure as me it might clobber something (sorry)). 
+
+Running the Tests
+-----------------
+
+I was originally using python's ``unittest`` module but I've switched over to using ``behave`` and ``pyhamcrest`` so the tests at the top of the package need ``nosetests`` and the tests in the `iperflexer/tests` folder need `behave <https://pypi.python.org/pypi/behave>`_ and `PyHamcrest <https://pypi.python.org/pypi/PyHamcrest>`.
+

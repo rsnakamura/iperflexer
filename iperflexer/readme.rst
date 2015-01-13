@@ -2,7 +2,7 @@ The Iperf Lexer (Read Me)
 =========================
 
 
-This is a program to extract bandwidths from `iperf <http://sourceforge.net/projects/iperf/>`_ output. To install it you can use pip.
+This is a program to extract bandwidths and data transfers from `iperf <http://sourceforge.net/projects/iperf/>`_ output. To install it you can use pip.
 
 ::
 

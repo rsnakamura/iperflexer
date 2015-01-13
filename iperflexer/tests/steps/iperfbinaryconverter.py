@@ -20,8 +20,8 @@ def iperfbinaryconverter(context):
 def bytes_to_bits(context):
     context.source = random.randrange(100)
     context.expected = context.source * 8
-    context.outcome = context.source * context.converter[BinaryUnitNames.bytes][BinaryUnitNames.bits]
-    context.reverse_outcome = context.outcome * context.converter[BinaryUnitNames.bits][BinaryUnitNames.bytes]
+    context.outcome = context.source * context.converter[BinaryUnitNames.iperf_bytes][BinaryUnitNames.bits]
+    context.reverse_outcome = context.outcome * context.converter[BinaryUnitNames.bits][BinaryUnitNames.iperf_bytes]
     return
 
 
