@@ -21,7 +21,7 @@ The original idea behind it was to use it as part of a pipeline so you can pipe 
 
   iperf -c 192.168.10.5 -i 1 -P 4 | parseiperf
 
-Which will then send the total bandwith for each interval to standard-output (it does this so that it can then be piped to another command). You can also ``cat`` an existing file to it::
+Which will then send the total bandwidth for each interval to standard-output (it does this so that it can then be piped to another command). You can also ``cat`` an existing file to it::
 
   cat test.iperf | parseiperf
 
@@ -47,7 +47,7 @@ Although I said above that you pipe input to the ``parseiperf`` command you can 
 
    parseiperf -g "*.iperf"
 
-Although my example uses a glob you could just pass in a filename.
+Although my example uses a glob you could just pass in a file name.
 
 Units
 ~~~~~
@@ -62,7 +62,7 @@ As noted above, the default behavior is to send output to standard output, conca
 VooDoo
 ~~~~~~
 
-The ``--voodoo`` flag will tell ``iperflexer`` to re-add the individual threads (otherwise it uses the summed-values that iperf provides).
+The ``--voodoo`` flag will tell ``iperflexer`` to re-add the individual threads (otherwise it uses the summed-values that iperf provides). In retrospect this should have been the default, but I didn't have a complete enough understanding of how iperf's reporting worked when I created the command-line interface.
 
 Debugging
 ~~~~~~~~~
@@ -93,10 +93,17 @@ If set, this will grab the last sum-line whose interval is bigger than the inter
 
 .. '   
 
+Last Line Transfer
+~~~~~~~~~~~~~~~~~~
+
+As you might suspect, this tries to grab the last reported data-transfer (the transfer for the entire interval). It is currently mutually-exclusive to the last line bandwidth. This should be changed eventually. An example to gather the server-side information (assuming the names are meaningful)::
+
+   parseiperf -g "server*iperf" -l > server_transfer_summaries.csv
+
 Interval
 ~~~~~~~~
 
-The expected reporting interval (e.g. every second is ``-i 1``). If the interval found on a line exceeds the expected interval, then it is assumed to be a total summation line and not used by the interval valuse, but is used by the SumParser.last_line_bandwidth and last_line_transfer. 
+The expected reporting interval (e.g. every second is ``-i 1``). If the interval found on a line exceeds the expected interval, then it is assumed to be a total summation line and not used by the interval values, but is used by the SumParser.last_line_bandwidth and last_line_transfer. 
 
 Tolerance
 ~~~~~~~~~
@@ -140,7 +147,7 @@ I think that's everything. If it is, then when you're next to the `Makefile` you
 
    make html
 
-And it will output the html files to ``build/html``. 
+And it will output the html files to ``doc/html``. 
 
 .. note:: I `rsync` the html files to a folder where my apache server can see it so if you build it before I remember to get rid of that in the Makefile you will likely see an error but that shouldn't affect the built documentation (although if just by coincidence you have the exact same file structure as me it might clobber something (sorry)). 
 
