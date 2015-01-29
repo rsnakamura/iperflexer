@@ -37,8 +37,7 @@ These are the documents created from the source files.
 .. toctree::
    :maxdepth: 1
 
-   Appendices <appendices/index.rst>
    The Infrastructure <infrastructure/index.rst>
-   User Guide <user/index.rst>
+   The Iperf Lexer Tests <tests/index.rst>
 
 

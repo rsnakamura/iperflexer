@@ -291,3 +291,13 @@ if in_documentation:
 if in_documentation:
     print('   Re-Calculated,{0:.2f}'.format(recalculated_bandwidth_mbits))
     print('   Iperf,{0:.2f}'.format(iperfs_bandwidth))
+
+
+if __name__ == '__main__':
+    print('in main')
+    parser = SumParser(units='bits', threads=4)
+    import pudb; pudb.set_trace()
+    with open('tests/steps/samples/client_p4_128K.csv') as lines:
+        for line in lines:            
+            parser(line)
+    print(parser.transfer_intervals)

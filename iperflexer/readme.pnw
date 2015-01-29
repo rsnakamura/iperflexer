@@ -12,7 +12,7 @@ This is a program to extract bandwidths and data transfers from `iperf <http://s
 
    pip install iperflexer
 
-It is meant to be used with files with data-reporting intervals shorter than the total run-time (e.g. 1 second intervals). Once installed it creates a command-line command named ``parseiperf``.
+It is meant to be used with files with data-reporting intervals shorter than the total run-time (e.g. 1 second intervals). Once installed it creates a command-line command named ``parseiperf`` and can also be used as a library (see the `SumParser <https://pythonhosted.org//iperflexer/sumparser.html#using-the-sumparser>`_ class documentation for an example of using it this way).
 
 Running It
 ----------
@@ -62,7 +62,7 @@ As noted above, the default behavior is to send output to standard output, conca
 VooDoo
 ~~~~~~
 
-The ``--voodoo`` flag will tell ``iperflexer`` to re-add the individual threads (otherwise it uses the summed-values that iperf provides). In retrospect this should have been the default, but I didn't have a complete enough understanding of how iperf's reporting worked when I created the command-line interface.
+The ``--voodoo`` flag will tell ``iperflexer`` to re-add the individual threads (otherwise it uses the summed-values that iperf provides). In retrospect this should have been the default, but I didn't have a complete enough understanding of how iperf's reporting worked when I created the command-line interface. If you are doing a time-series analysis, the ``--voodoo`` interval sums will catch reporting intervals that are missing their summation lines and so should be considered better for that case. The intervals aren't quiet right for re-calculating the total values though, so you should use the ``--lastlinebandwidth`` and ``--lastlinetransfers`` if you are trying to find the values for the entire session.
 
 Debugging
 ~~~~~~~~~

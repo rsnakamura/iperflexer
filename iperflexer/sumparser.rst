@@ -64,6 +64,8 @@ Checking The Call Output
 
 The ``__call__`` is the main way to use it. There are two ways to get the interval sums from the SumParser (and the IperfParser). One is to poll the returned value from the ``__call__`` to see if a value was returned. I'll start by working with :download:`client-side <tests/steps/client_data.iperf>` input that has two threads and one-second reporting intervals.
 
+.. '
+
 ::
 
     if in_documentation:
@@ -378,3 +380,4 @@ Once more with feeling.
 
 
 So there you have it.
+

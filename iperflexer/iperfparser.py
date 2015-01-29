@@ -80,7 +80,7 @@ class IperfParser(BaseClass):
         :yield: next value for the interval
         """
         # this was created because I was going to infill zeros
-        # but studyiing the iperf reporting made me decide it
+        # but studying the iperf reporting made me decide it
         # is a bad idea
         for actual in sorted(intervals):
             yield intervals[actual]
@@ -167,7 +167,7 @@ class IperfParser(BaseClass):
             units = match[ParserKeys.transfer_units]
         except KeyError:
             # assume a csv-format
-            units = 'bits'
+            units = BinaryUnitNames.iperf_bytes
 
         try:
             transfer = int(match[ParserKeys.transfer])
