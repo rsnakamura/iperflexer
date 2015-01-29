@@ -463,14 +463,3 @@ if in_documentation:
 @
 
 So there you have it.
-
-<<name='debug', echo=False>>=
-if __name__ == '__main__':
-    print('in main')
-    parser = SumParser(units='bits', threads=4)
-    import pudb; pudb.set_trace()
-    with open('tests/steps/samples/client_p4_128K.csv') as lines:
-        for line in lines:            
-            parser(line)
-    print(parser.transfer_intervals)
-@

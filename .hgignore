@@ -1,15 +1,14 @@
 syntax:glob
 
 *.pyc
-doc/*
+
 MANIFEST
-build/*
+build/
 dist/
 sl4a_setup/
-*.egg-info/*
-.bzr*
+*.egg-info/
 *~
 *.log
 .tox
 .egg
-cache/*
+cache/
