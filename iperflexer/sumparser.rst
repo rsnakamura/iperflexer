@@ -51,8 +51,17 @@ The SumParser
    :toctree: api
 
    SumParser
+   SumParser.bandwidths
+   SumParser.transfers
+   SumParser.regex
+   SumParser.intervals
+   SumParser.conversion
+   SumParser.valid
+   SumParser.bandwidth
    SumParser.__call__
+   SumParser.search
    SumParser.pipe
+   SumParser.reset
 
 
 
@@ -140,7 +149,7 @@ The Last Line Bandwidth
 
 When the `SumParser` matches a line that has an interval larger than what it is set to accept then it will set its ``last_line_bandwidth`` attribute to it, so once the whole iperf output has been consumed that attribute will have the final bandwidth value that iperf calculated for the entire session, assuming that the output is complete and this was the last line. If the line is missing it should be None.
 
-Based on some empirical checking and some threads on the iperf discussion boards it looks like this is the most accurate value if there is a discrepancy between it and the added interval sums.
+From what I can tell it looks like this is the most accurate value not the added interval sums.
 
 A Comparison to the Sums
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -297,7 +306,7 @@ Looking at the last line output you can see that it actually ran for a reported 
    Iperf's Transfer,114.0
 
 
-So the re-added transfer in still missing data. The most likely reason is that the last data-transfer isn't added to the last interval but added to the final tally instead. Each thread adds one buffer's worth of data to the final tally so in this case it should be 1 Megabyte short like we see. We can double-check.
+So the re-added transfer is still missing data. The most likely reason is that the last data-transfer isn't added to the last interval but added to the final tally instead. Each thread adds one buffer's worth of data to the final tally so in this case it should be 1 Megabyte short like we see. We can double-check.
 
 ::
 

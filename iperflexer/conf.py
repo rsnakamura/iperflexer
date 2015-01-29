@@ -11,7 +11,8 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 
-import alabaster
+#import alabaster
+import sphinx_bootstrap_theme
 #repository = 'rtfd'
 repository = None
 
@@ -36,8 +37,7 @@ extensions = ['sphinx.ext.autosummary',
               'sphinx.ext.viewcode',
               'sphinx.ext.ifconfig',
               'sphinx.ext.graphviz',
-              'sphinxcontrib.plantuml',
-              'alabaster']
+              'sphinxcontrib.plantuml']
 
 # change plantuml to use svg
 plantuml_output_format = 'svg'
@@ -111,20 +111,19 @@ on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
 if on_rtd:
     html_theme = 'default'
 else:
-    html_theme = 'alabaster'
+    html_theme = 'bootstrap'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
 #html_theme_options = {}
-#html_theme_options = {
-#    'logo':'tuning_fork.jpg',
-#    'logo_name': 'true'
-#}
+html_theme_options = {
+    'bootswatch_theme': "readable",
+}
 
 
 # Add any paths that contain custom themes here, relative to this directory.
-html_theme_path = [alabaster.get_path()]
+html_theme_path = sphinx_bootstrap_theme.get_html_theme_path()
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
@@ -157,9 +156,9 @@ html_static_path = ['_static']
 
 # Custom sidebar templates, maps document names to template names.
 #html_sidebars = {}
-html_sidebars = {
-    '**': ['localtoc.html', 'navigation.html', 'searchbox.html']
-}
+#html_sidebars = {
+#    '**': ['localtoc.html', 'navigation.html', 'searchbox.html']
+#}
 
 # Additional templates that should be rendered to pages, maps page names to
 # template names.

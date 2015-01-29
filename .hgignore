@@ -12,3 +12,4 @@ sl4a_setup/
 .tox
 .egg
 cache/
+api/
