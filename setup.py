@@ -38,7 +38,7 @@ class sdist_hg(sdist):
 
 #      cmdclass = {'sdist':sdist_hg},    
 setup(name='iperflexer',
-      version="0.1.3",
+      version="0.1.4",
 
       description="A program to parse iperf files",
       long_description=long_description,
