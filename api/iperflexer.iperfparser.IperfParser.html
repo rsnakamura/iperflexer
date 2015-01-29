@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>iperflexer.iperfparser.IperfParser &mdash; IperfLexer 0.1.2.dev documentation</title>
+    
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootswatch-3.2.0/readable/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1.2.dev',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="IperfLexer 0.1.2.dev documentation" href="../index.html" />
+    <link rel="up" title="The IperfParser" href="../iperfparser.html" />
+    <link rel="next" title="iperflexer.iperfparser.IperfParser.bandwidths" href="iperflexer.iperfparser.IperfParser.bandwidths.html" />
+    <link rel="prev" title="iperflexer.iperfparser.IperfParser.reset" href="iperflexer.iperfparser.IperfParser.reset.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">
+          IperfLexer</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.1.2.dev</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/user/index.html">User Documentation</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../argumentparser.html">The Argument Parser</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../baseclass.html">The BaseClass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../coroutine.html">Coroutines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../finder.html">The Finder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../iperfexpressions.html">The Iperf Expressions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../iperfparser.html">The IperfParser</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../main.html">The Main Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../readme.html">The Iperf Lexer (Read Me)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sumparser.html">The SumParser</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../unitconverter.html">The Unit Converter</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../infrastructure/index.html">The Infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">The Iperf Lexer Tests</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">iperflexer.iperfparser.IperfParser</a></li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="iperflexer.iperfparser.IperfParser.reset.html" title="Previous Chapter: iperflexer.iperfparser.IperfParser.reset"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; iperflexer.iperf...</span>
+    </a>
+  </li>
+  <li>
+    <a href="iperflexer.iperfparser.IperfParser.bandwidths.html" title="Next Chapter: iperflexer.iperfparser.IperfParser.bandwidths"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">iperflexer.iperf... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../_sources/api/iperflexer.iperfparser.IperfParser.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <div class="section" id="iperflexer-iperfparser-iperfparser">
+<h1>iperflexer.iperfparser.IperfParser<a class="headerlink" href="#iperflexer-iperfparser-iperfparser" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="iperflexer.iperfparser.IperfParser">
+<em class="property">class </em><tt class="descclassname">iperflexer.iperfparser.</tt><tt class="descname">IperfParser</tt><big>(</big><em>expected_interval=1</em>, <em>interval_tolerance=0.1</em>, <em>units='Mbits'</em>, <em>threads=1</em>, <em>maximum=1000000000</em><big>)</big><a class="reference internal" href="../_modules/iperflexer/iperfparser.html#IperfParser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iperflexer.iperfparser.IperfParser" title="Permalink to this definition">¶</a></dt>
+<dd><p>The Iperf Parser extracts bandwidth and other information from the output</p>
+<p>IperfParser Constructor</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body"><ul class="first last simple">
+<li><cite>expected_interval</cite>: the seconds between sample reports</li>
+<li><cite>interval_tolerance</cite>: upper bound of difference between actual and expected</li>
+<li><cite>units</cite>: desired output units (must match iperf output case - e.g. MBytes)</li>
+<li><cite>threads</cite>: (number of threads) needed for coroutine and pipe</li>
+<li><cite>maximum</cite>: the max value (after conversion) allowed (if exceeded converts to 0)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="iperflexer.iperfparser.IperfParser.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>expected_interval=1</em>, <em>interval_tolerance=0.1</em>, <em>units='Mbits'</em>, <em>threads=1</em>, <em>maximum=1000000000</em><big>)</big><a class="reference internal" href="../_modules/iperflexer/iperfparser.html#IperfParser.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iperflexer.iperfparser.IperfParser.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>IperfParser Constructor</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body"><ul class="first last simple">
+<li><cite>expected_interval</cite>: the seconds between sample reports</li>
+<li><cite>interval_tolerance</cite>: upper bound of difference between actual and expected</li>
+<li><cite>units</cite>: desired output units (must match iperf output case - e.g. MBytes)</li>
+<li><cite>threads</cite>: (number of threads) needed for coroutine and pipe</li>
+<li><cite>maximum</cite>: the max value (after conversion) allowed (if exceeded converts to 0)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#iperflexer.iperfparser.IperfParser.__init__" title="iperflexer.iperfparser.IperfParser.__init__"><tt class="xref py py-obj docutils literal"><span class="pre">__init__</span></tt></a>([expected_interval,&nbsp;...])</td>
+<td>IperfParser Constructor</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="iperflexer.iperfparser.IperfParser.bandwidth.html#iperflexer.iperfparser.IperfParser.bandwidth" title="iperflexer.iperfparser.IperfParser.bandwidth"><tt class="xref py py-obj docutils literal"><span class="pre">bandwidth</span></tt></a>(match)</td>
+<td><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">param:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#iperflexer.iperfparser.IperfParser.filename" title="iperflexer.iperfparser.IperfParser.filename"><tt class="xref py py-obj docutils literal"><span class="pre">filename</span></tt></a>(basename)</td>
+<td>Changes the extension of the basename to .csv</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="iperflexer.iperfparser.IperfParser.pipe.html#iperflexer.iperfparser.IperfParser.pipe" title="iperflexer.iperfparser.IperfParser.pipe"><tt class="xref py py-obj docutils literal"><span class="pre">pipe</span></tt></a>(*args,&nbsp;**kwargs)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="iperflexer.iperfparser.IperfParser.reset.html#iperflexer.iperfparser.IperfParser.reset" title="iperflexer.iperfparser.IperfParser.reset"><tt class="xref py py-obj docutils literal"><span class="pre">reset</span></tt></a>()</td>
+<td>Resets the attributes set during parsing</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="iperflexer.iperfparser.IperfParser.search.html#iperflexer.iperfparser.IperfParser.search" title="iperflexer.iperfparser.IperfParser.search"><tt class="xref py py-obj docutils literal"><span class="pre">search</span></tt></a>(line)</td>
+<td><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">param:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="iperflexer.iperfparser.IperfParser.valid.html#iperflexer.iperfparser.IperfParser.valid" title="iperflexer.iperfparser.IperfParser.valid"><tt class="xref py py-obj docutils literal"><span class="pre">valid</span></tt></a>(match)</td>
+<td><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">param:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="iperflexer.iperfparser.IperfParser.bandwidths.html#iperflexer.iperfparser.IperfParser.bandwidths" title="iperflexer.iperfparser.IperfParser.bandwidths"><tt class="xref py py-obj docutils literal"><span class="pre">bandwidths</span></tt></a></td>
+<td>Traverses self.interval&#8217;s keys in sorted order and generates their bandwidths.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">IperfParser.conversion</span></tt></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">IperfParser.intervals</span></tt></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#iperflexer.iperfparser.IperfParser.logger" title="iperflexer.iperfparser.IperfParser.logger"><tt class="xref py py-obj docutils literal"><span class="pre">logger</span></tt></a></td>
+<td><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">return:</th><td class="field-body">A logging object.</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="iperflexer.iperfparser.IperfParser.regex.html#iperflexer.iperfparser.IperfParser.regex" title="iperflexer.iperfparser.IperfParser.regex"><tt class="xref py py-obj docutils literal"><span class="pre">regex</span></tt></a></td>
+<td>A dictionary holding the regular expressions for the 2 formats</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="iperflexer.iperfparser.IperfParser.bandwidth">
+<tt class="descname">bandwidth</tt><big>(</big><em>match</em><big>)</big><a class="reference internal" href="../_modules/iperflexer/iperfparser.html#IperfParser.bandwidth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iperflexer.iperfparser.IperfParser.bandwidth" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body"><ul class="first simple">
+<li><cite>match</cite>: A parsed match group dictionary</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">float</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">the bandwidth in the self.units</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="iperflexer.iperfparser.IperfParser.filename">
+<tt class="descname">filename</tt><big>(</big><em>basename</em><big>)</big><a class="reference internal" href="../_modules/iperflexer/iperfparser.html#IperfParser.filename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iperflexer.iperfparser.IperfParser.filename" title="Permalink to this definition">¶</a></dt>
+<dd><p>Changes the extension of the basename to .csv</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body"><ul class="first simple">
+<li><cite>basename</cite>: a the raw-iperf filename (without path)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">the filename with the extension changed to .csv</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="iperflexer.iperfparser.IperfParser.reset">
+<tt class="descname">reset</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/iperflexer/iperfparser.html#IperfParser.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iperflexer.iperfparser.IperfParser.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resets the attributes set during parsing</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iperflexer.iperfparser.IperfParser.search">
+<tt class="descname">search</tt><big>(</big><em>line</em><big>)</big><a class="reference internal" href="../_modules/iperflexer/iperfparser.html#IperfParser.search"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iperflexer.iperfparser.IperfParser.search" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body"><ul class="first simple">
+<li><cite>line</cite>: a string of iperf output</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">match dict or None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="iperflexer.iperfparser.IperfParser.transfer">
+<tt class="descname">transfer</tt><big>(</big><em>match</em><big>)</big><a class="reference internal" href="../_modules/iperflexer/iperfparser.html#IperfParser.transfer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iperflexer.iperfparser.IperfParser.transfer" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body"><ul class="first simple">
+<li><cite>match</cite>: A parsed match group dictionary</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">float</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">the transfer in the self.units</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="iperflexer.iperfparser.IperfParser.traverse">
+<tt class="descname">traverse</tt><big>(</big><em>intervals</em><big>)</big><a class="reference internal" href="../_modules/iperflexer/iperfparser.html#IperfParser.traverse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iperflexer.iperfparser.IperfParser.traverse" title="Permalink to this definition">¶</a></dt>
+<dd><p>traverses the intervals, infilling missing intervals</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body"><ul class="first simple">
+<li><cite>intervals</cite>: default dict of interval:value</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Yield:</th><td class="field-body"><p class="first last">next value for the interval</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="iperflexer.iperfparser.IperfParser.valid">
+<tt class="descname">valid</tt><big>(</big><em>match</em><big>)</big><a class="reference internal" href="../_modules/iperflexer/iperfparser.html#IperfParser.valid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iperflexer.iperfparser.IperfParser.valid" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body"><ul class="first simple">
+<li><cite>match</cite>: a groupdict containing parsed iperf fields</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">True if the end-start interval is valid (within tolerance)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="iperflexer.iperfparser.IperfParser.bandwidths">
+<tt class="descname">bandwidths</tt><a class="reference internal" href="../_modules/iperflexer/iperfparser.html#IperfParser.bandwidths"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iperflexer.iperfparser.IperfParser.bandwidths" title="Permalink to this definition">¶</a></dt>
+<dd><p>Traverses self.interval&#8217;s keys in sorted order and generates their bandwidths.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Yield:</th><td class="field-body">self.interval&#8217;s values in the sorted order of the intervals</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="iperflexer.iperfparser.IperfParser.logger">
+<tt class="descname">logger</tt><a class="headerlink" href="#iperflexer.iperfparser.IperfParser.logger" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A logging object.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="iperflexer.iperfparser.IperfParser.regex">
+<tt class="descname">regex</tt><a class="reference internal" href="../_modules/iperflexer/iperfparser.html#IperfParser.regex"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iperflexer.iperfparser.IperfParser.regex" title="Permalink to this definition">¶</a></dt>
+<dd><p>A dictionary holding the regular expressions for the 2 formats</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">format:regex dictionary</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="iperflexer.iperfparser.IperfParser.transfer_units">
+<tt class="descname">transfer_units</tt><a class="reference internal" href="../_modules/iperflexer/iperfparser.html#IperfParser.transfer_units"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iperflexer.iperfparser.IperfParser.transfer_units" title="Permalink to this definition">¶</a></dt>
+<dd><p>a hack to handle the fact that only the bandwidth units are being specified</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="iperflexer.iperfparser.IperfParser.transfers">
+<tt class="descname">transfers</tt><a class="reference internal" href="../_modules/iperflexer/iperfparser.html#IperfParser.transfers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iperflexer.iperfparser.IperfParser.transfers" title="Permalink to this definition">¶</a></dt>
+<dd><p>generator of transfer values</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Yield:</th><td class="field-body">converted transfer interval values</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2013, cloistered monkey.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

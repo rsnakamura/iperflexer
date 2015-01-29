@@ -1,0 +1,6 @@
+iperflexer.sumparser.SumParser.valid
+====================================
+
+.. currentmodule:: iperflexer.sumparser
+
+.. automethod:: SumParser.valid

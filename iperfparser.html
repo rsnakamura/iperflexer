@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>The IperfParser &mdash; IperfLexer 0.1.2.dev documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootswatch-3.2.0/readable/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.2.dev',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="IperfLexer 0.1.2.dev documentation" href="index.html" />
+    <link rel="next" title="iperflexer.iperfparser.IperfParser" href="api/iperflexer.iperfparser.IperfParser.html" />
+    <link rel="prev" title="iperflexer.iperfexpressions.CsvExpression" href="api/iperflexer.iperfexpressions.CsvExpression.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          IperfLexer</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.1.2.dev</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="documentation/user/index.html">User Documentation</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="argumentparser.html">The Argument Parser</a></li>
+<li class="toctree-l1"><a class="reference internal" href="baseclass.html">The BaseClass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coroutine.html">Coroutines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="finder.html">The Finder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iperfexpressions.html">The Iperf Expressions</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">The IperfParser</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main.html">The Main Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="readme.html">The Iperf Lexer (Read Me)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sumparser.html">The SumParser</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unitconverter.html">The Unit Converter</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="infrastructure/index.html">The Infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests/index.html">The Iperf Lexer Tests</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">The IperfParser</a><ul>
+<li><a class="reference internal" href="#properties">Properties</a><ul>
+<li><a class="reference internal" href="#bandwidths">bandwidths</a></li>
+<li><a class="reference internal" href="#regex">regex</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="api/iperflexer.iperfexpressions.CsvExpression.html" title="Previous Chapter: iperflexer.iperfexpressions.CsvExpression"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; iperflexer.iperf...</span>
+    </a>
+  </li>
+  <li>
+    <a href="api/iperflexer.iperfparser.IperfParser.html" title="Next Chapter: iperflexer.iperfparser.IperfParser"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">iperflexer.iperf... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/iperfparser.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <div class="section" id="module-iperflexer.iperfparser">
+<span id="the-iperfparser"></span><h1>The IperfParser<a class="headerlink" href="#module-iperflexer.iperfparser" title="Permalink to this headline">¶</a></h1>
+<p>This is the class that performs the work of extracting the data-column.</p>
+<p>The <cite>IperfParser</cite> extracts a column from the iperf-output. Currently it only extracts bandwidths or data-transfers. Either it needs to be made more flexible (or a better idea might be to create a family of column extractors). The <cite>IperfParser</cite> is differentiated from the <cite>SumParser</cite> in that it re-adds adds the parallel threads and in-fills zeros for missing time-intervals.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">The <tt class="docutils literal"><span class="pre">intervals</span></tt> and <tt class="docutils literal"><span class="pre">transfer_intervals</span></tt> are defaultdict objects. This was done so that if an expected interval is missing then a 0 will be returned. As a side, effect, though, if you ask for an interval that didn&#8217;t exist, you will always get 0, even if it is outside of the range of the data.</p>
+</div>
+<p class="plantuml">
+<object data="_images/plantuml-d956fbdbc306a684bab981374c8bc0d96f4b2c87.svg" type="image/svg+xml" style="width:275px;height:206px;">
+<img src="_images/plantuml-d956fbdbc306a684bab981374c8bc0d96f4b2c87.png" alt="IperfParser -|&gt; BaseClass
+IperfParser : bandwidths
+IperfParser : regex
+IperfParser : intervals
+IperfParser : conversion
+IperfParser : filename(basename)
+IperfParser : reset()
+IperfParser : pipe(target)
+IperfParser : search(line)
+IperfParser : __call__(line)
+IperfParser : bandwidth(match)
+IperfParser : valid(match)" />
+
+</object></p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="api/iperflexer.iperfparser.IperfParser.html#iperflexer.iperfparser.IperfParser" title="iperflexer.iperfparser.IperfParser"><tt class="xref py py-obj docutils literal"><span class="pre">IperfParser</span></tt></a>([expected_interval,&nbsp;...])</td>
+<td>The Iperf Parser extracts bandwidth and other information from the output</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/iperflexer.iperfparser.IperfParser.bandwidths.html#iperflexer.iperfparser.IperfParser.bandwidths" title="iperflexer.iperfparser.IperfParser.bandwidths"><tt class="xref py py-obj docutils literal"><span class="pre">IperfParser.bandwidths</span></tt></a></td>
+<td>Traverses self.interval&#8217;s keys in sorted order and generates their bandwidths.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/iperflexer.iperfparser.IperfParser.transfers.html#iperflexer.iperfparser.IperfParser.transfers" title="iperflexer.iperfparser.IperfParser.transfers"><tt class="xref py py-obj docutils literal"><span class="pre">IperfParser.transfers</span></tt></a></td>
+<td>generator of transfer values</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/iperflexer.iperfparser.IperfParser.regex.html#iperflexer.iperfparser.IperfParser.regex" title="iperflexer.iperfparser.IperfParser.regex"><tt class="xref py py-obj docutils literal"><span class="pre">IperfParser.regex</span></tt></a></td>
+<td>A dictionary holding the regular expressions for the 2 formats</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">IperfParser.intervals</span></tt></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">IperfParser.conversion</span></tt></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/iperflexer.iperfparser.IperfParser.valid.html#iperflexer.iperfparser.IperfParser.valid" title="iperflexer.iperfparser.IperfParser.valid"><tt class="xref py py-obj docutils literal"><span class="pre">IperfParser.valid</span></tt></a>(match)</td>
+<td><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">param:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/iperflexer.iperfparser.IperfParser.bandwidth.html#iperflexer.iperfparser.IperfParser.bandwidth" title="iperflexer.iperfparser.IperfParser.bandwidth"><tt class="xref py py-obj docutils literal"><span class="pre">IperfParser.bandwidth</span></tt></a>(match)</td>
+<td><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">param:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/iperflexer.iperfparser.IperfParser.__call__.html#iperflexer.iperfparser.IperfParser.__call__" title="iperflexer.iperfparser.IperfParser.__call__"><tt class="xref py py-obj docutils literal"><span class="pre">IperfParser.__call__</span></tt></a>(line)</td>
+<td><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">param:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/iperflexer.iperfparser.IperfParser.search.html#iperflexer.iperfparser.IperfParser.search" title="iperflexer.iperfparser.IperfParser.search"><tt class="xref py py-obj docutils literal"><span class="pre">IperfParser.search</span></tt></a>(line)</td>
+<td><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">param:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/iperflexer.iperfparser.IperfParser.pipe.html#iperflexer.iperfparser.IperfParser.pipe" title="iperflexer.iperfparser.IperfParser.pipe"><tt class="xref py py-obj docutils literal"><span class="pre">IperfParser.pipe</span></tt></a>(*args,&nbsp;**kwargs)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/iperflexer.iperfparser.IperfParser.reset.html#iperflexer.iperfparser.IperfParser.reset" title="iperflexer.iperfparser.IperfParser.reset"><tt class="xref py py-obj docutils literal"><span class="pre">IperfParser.reset</span></tt></a>()</td>
+<td>Resets the attributes set during parsing</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="properties">
+<h2>Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="bandwidths">
+<h3>bandwidths<a class="headerlink" href="#bandwidths" title="Permalink to this headline">¶</a></h3>
+<p>This is a generator of values from <cite>IperfParser.intervals</cite> in the sorted order of the keys (intervals). It is based on the premise that <cite>IperfParser.intervals</cite> is a dictionary whose keys are the start of the iperf sample intervals. e.g if the samples are reported at 1-second intervals then the keys are traversed <img class="math" src="_images/math/386ef80f8029ddbff3e22430e07ee3b181b53731.png" alt="0.0, 1.0,\ldots"/>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The name of the property suggests that the dictionary values are <cite>bandwidths</cite> but if this class is generalized to extract other columns then this will no longer be true and should be changed.</p>
+</div>
+</div>
+<div class="section" id="regex">
+<h3>regex<a class="headerlink" href="#regex" title="Permalink to this headline">¶</a></h3>
+<p>This is a dictionary holding the regular expressions for the csv-format and the human-readable format. The keys should be accessed through <tt class="docutils literal"><span class="pre">iperfexpressions.ParserKeys</span></tt> (e.g. <tt class="docutils literal"><span class="pre">self.regex[ParserKeys.human]</span></tt> to get the regular expression for the human-readable iperf output).</p>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2013, cloistered monkey.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

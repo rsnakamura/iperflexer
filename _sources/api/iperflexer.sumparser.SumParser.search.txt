@@ -1,0 +1,6 @@
+iperflexer.sumparser.SumParser.search
+=====================================
+
+.. currentmodule:: iperflexer.sumparser
+
+.. automethod:: SumParser.search

@@ -1,0 +1,6 @@
+iperflexer.sumparser.SumParser.transfers
+========================================
+
+.. currentmodule:: iperflexer.sumparser
+
+.. autoattribute:: SumParser.transfers

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Casters &mdash; IperfLexer 0.1.2.dev documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootswatch-3.2.0/readable/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1.2.dev',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="IperfLexer 0.1.2.dev documentation" href="../../index.html" />
+    <link rel="up" title="The Iperf Lexer Test Implementations" href="index.html" />
+    <link rel="next" title="Decimal Unit Converter" href="decimalunitconverter.html" />
+    <link rel="prev" title="Binary Unit Converter" href="binaryunitconverter.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../index.html">
+          IperfLexer</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.1.2.dev</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/user/index.html">User Documentation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../argumentparser.html">The Argument Parser</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../baseclass.html">The BaseClass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../coroutine.html">Coroutines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../finder.html">The Finder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../iperfexpressions.html">The Iperf Expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../iperfparser.html">The IperfParser</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main.html">The Main Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html">The Iperf Lexer (Read Me)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sumparser.html">The SumParser</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../unitconverter.html">The Unit Converter</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../infrastructure/index.html">The Infrastructure</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">The Iperf Lexer Tests</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Casters</a><ul>
+<li><a class="reference internal" href="#scenario-the-iperfparser-is-passed-a-line-with-an-integer-bandwidth">Scenario: The IperfParser is passed a line with an integer bandwidth</a><ul>
+<li><a class="reference internal" href="#example-float-bandwidth">Example: Float Bandwidth</a></li>
+<li><a class="reference internal" href="#example-integer-transfer">Example: Integer Transfer</a></li>
+<li><a class="reference internal" href="#example-float-transfer">Example: Float Transfer</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="binaryunitconverter.html" title="Previous Chapter: Binary Unit Converter"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Binary Unit Conv...</span>
+    </a>
+  </li>
+  <li>
+    <a href="decimalunitconverter.html" title="Next Chapter: Decimal Unit Converter"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Decimal Unit Con... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../../_sources/tests/steps/casterfeature.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <div class="section" id="casters">
+<h1>Casters<a class="headerlink" href="#casters" title="Permalink to this headline">¶</a></h1>
+<p>This is an attempt to fix the casting of the extracted values from strings to ints or floats. While the easiest thing to do would be to cast everything to a float I decided that it seemed like a bad idea to force values that are ints to be floats. Then I found out that when Iperf in-fills 0&#8217;s for missing intervals it sets them to 0.0, even if they are reporting bits and bytes, so the behavior has to handle this (python will raise an error if you try to cast something with a decimal point to an integer).</p>
+<div class="highlight-gherkin"><div class="highlight"><pre><span class="k">Feature:</span><span class="nf"> Flexible casting of values from strings to ints or floats</span>
+<span class="nf"> </span><span class="k">Scenario Outline:</span><span class="nf"> The IperfParser is passed a line</span>
+<span class="k">   Given </span><span class="nf">an IperfParser set to bits and a thread of </span><span class="s">1</span><span class="nf"></span>
+<span class="nf">   </span><span class="k">When </span><span class="nf">the IperfParser is called with a line with </span><span class="nv">&lt;numtype&gt;</span><span class="nf"> </span><span class="nv">&lt;datatype&gt;</span><span class="nf"></span>
+<span class="nf">   </span><span class="k">Then </span><span class="nf">the returned </span><span class="nv">&lt;datatype&gt;</span><span class="nf"> is of type </span><span class="nv">&lt;numtype&gt;</span><span class="nf"></span>
+
+<span class="nf"> </span><span class="k">Examples:</span><span class="nf"> number types</span><span class="k"></span>
+<span class="k"> |</span><span class="nv"> numtype</span><span class="k"> |</span><span class="nv"> datatype</span><span class="k">  |</span><span class="nf"></span>
+<span class="k"> |</span><span class="s"> integer</span><span class="k"> |</span><span class="s"> bandwidth</span><span class="k"> |</span><span class="nf"></span>
+<span class="k"> |</span><span class="s"> float</span><span class="k">   |</span><span class="s"> bandwidth</span><span class="k"> |</span><span class="nf"></span>
+<span class="k"> |</span><span class="s"> integer</span><span class="k"> |</span><span class="s"> transfer</span><span class="k">  |</span><span class="nf"></span>
+<span class="k"> |</span><span class="s"> float</span><span class="k">   |</span><span class="s"> transfer</span><span class="k">  |</span>
+<span class="k">   </span>
+<span class="k">   </span>
+</pre></div>
+</div>
+<div class="section" id="scenario-the-iperfparser-is-passed-a-line-with-an-integer-bandwidth">
+<h2>Scenario: The IperfParser is passed a line with an integer bandwidth<a class="headerlink" href="#scenario-the-iperfparser-is-passed-a-line-with-an-integer-bandwidth" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@given</span><span class="p">(</span><span class="s">&quot;an IperfParser set to bits and a thread of 1&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">iperf_parser_bits</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">converter</span> <span class="o">=</span> <span class="n">UnitConverter</span><span class="p">()</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">b_converter</span> <span class="o">=</span> <span class="n">BinaryUnitconverter</span><span class="p">()</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">parser</span> <span class="o">=</span> <span class="n">IperfParser</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="s">&#39;bits&#39;</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">human_expression</span> <span class="o">=</span> <span class="n">HumanExpression</span><span class="p">()</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@when</span><span class="p">(</span><span class="s">&quot;the IperfParser is called with a line with integer bandwidth&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">integer_bandwidth</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="s">&quot;[  3]  0.0- 1.0 sec  3014656 Bytes  24117248 bits/sec&quot;</span>
+    <span class="n">match</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">human_expression</span><span class="o">.</span><span class="n">regex</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">line</span><span class="p">)</span><span class="o">.</span><span class="n">groupdict</span><span class="p">()</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">actual</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">bandwidth</span><span class="p">(</span><span class="n">match</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">expected</span> <span class="o">=</span> <span class="mi">24117248</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@then</span><span class="p">(</span><span class="s">&quot;the returned bandwidth is of type integer&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">assert_integer</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">actual</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">expected</span><span class="p">)))</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">actual</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">instance_of</span><span class="p">(</span><span class="nb">int</span><span class="p">)))</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<div class="section" id="example-float-bandwidth">
+<h3>Example: Float Bandwidth<a class="headerlink" href="#example-float-bandwidth" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@when</span><span class="p">(</span><span class="s">&quot;the IperfParser is called with a line with float bandwidth&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">float_bandwidth</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="s">&quot;[  4]  4.0- 5.0 sec   768 KBytes  6.29 Mbits/sec&quot;</span>
+    <span class="n">match</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">human_expression</span><span class="o">.</span><span class="n">regex</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">line</span><span class="p">)</span><span class="o">.</span><span class="n">groupdict</span><span class="p">()</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">actual</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">bandwidth</span><span class="p">(</span><span class="n">match</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">expected</span> <span class="o">=</span> <span class="mf">6.29</span> <span class="o">*</span> <span class="n">context</span><span class="o">.</span><span class="n">converter</span><span class="p">[</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">mbits</span><span class="p">][</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">bits</span><span class="p">]</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@then</span><span class="p">(</span><span class="s">&quot;the returned bandwidth is of type float&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">assert_integer</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">actual</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">expected</span><span class="p">)))</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">actual</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">instance_of</span><span class="p">(</span><span class="nb">float</span><span class="p">)))</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="example-integer-transfer">
+<h3>Example: Integer Transfer<a class="headerlink" href="#example-integer-transfer" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@when</span><span class="p">(</span><span class="s">&quot;the IperfParser is called with a line with integer transfer&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">integer_transfer</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="s">&quot;[  4]  4.0- 5.0 sec   768 KBytes  6.29 Mbits/sec&quot;</span>
+    <span class="n">match</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">human_expression</span><span class="o">.</span><span class="n">regex</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">line</span><span class="p">)</span><span class="o">.</span><span class="n">groupdict</span><span class="p">()</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">actual</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">transfer</span><span class="p">(</span><span class="n">match</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">expected</span> <span class="o">=</span> <span class="mi">768</span> <span class="o">*</span> \
+      <span class="n">context</span><span class="o">.</span><span class="n">b_converter</span><span class="p">[</span><span class="n">BinaryUnitNames</span><span class="o">.</span><span class="n">kibibytes</span><span class="p">][</span><span class="n">BinaryUnitNames</span><span class="o">.</span><span class="n">bytes</span><span class="p">]</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@then</span><span class="p">(</span><span class="s">&quot;the returned transfer is of type integer&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">assert_integer_transfer</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">actual</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">expected</span><span class="p">)))</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">actual</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">instance_of</span><span class="p">(</span><span class="nb">int</span><span class="p">)))</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="example-float-transfer">
+<h3>Example: Float Transfer<a class="headerlink" href="#example-float-transfer" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@when</span><span class="p">(</span><span class="s">&quot;the IperfParser is called with a line with float transfer&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">integer_transfer</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="s">&quot;[  3]  0.0-10.7 sec  3.50 MBytes  2.73 Mbits/sec&quot;</span>
+    <span class="n">match</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">human_expression</span><span class="o">.</span><span class="n">regex</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">line</span><span class="p">)</span><span class="o">.</span><span class="n">groupdict</span><span class="p">()</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">actual</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">transfer</span><span class="p">(</span><span class="n">match</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">expected</span> <span class="o">=</span> <span class="mf">3.50</span> <span class="o">*</span> \
+      <span class="n">context</span><span class="o">.</span><span class="n">b_converter</span><span class="p">[</span><span class="n">BinaryUnitNames</span><span class="o">.</span><span class="n">mebibytes</span><span class="p">][</span><span class="n">BinaryUnitNames</span><span class="o">.</span><span class="n">bytes</span><span class="p">]</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@then</span><span class="p">(</span><span class="s">&quot;the returned transfer is of type float&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">assert_integer_transfer</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">actual</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">expected</span><span class="p">)))</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">actual</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">instance_of</span><span class="p">(</span><span class="nb">float</span><span class="p">)))</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2013, cloistered monkey.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

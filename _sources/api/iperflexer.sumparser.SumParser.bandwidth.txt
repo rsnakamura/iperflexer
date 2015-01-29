@@ -1,0 +1,6 @@
+iperflexer.sumparser.SumParser.bandwidth
+========================================
+
+.. currentmodule:: iperflexer.sumparser
+
+.. automethod:: SumParser.bandwidth

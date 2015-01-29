@@ -1,0 +1,6 @@
+iperflexer.sumparser.SumParser.reset
+====================================
+
+.. currentmodule:: iperflexer.sumparser
+
+.. automethod:: SumParser.reset

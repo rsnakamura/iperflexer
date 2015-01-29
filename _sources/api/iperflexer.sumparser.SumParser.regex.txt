@@ -1,0 +1,6 @@
+iperflexer.sumparser.SumParser.regex
+====================================
+
+.. currentmodule:: iperflexer.sumparser
+
+.. autoattribute:: SumParser.regex
