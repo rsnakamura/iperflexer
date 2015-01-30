@@ -164,6 +164,45 @@
       
   <div class="section" id="iperf-binary-unit-converter">
 <h1>Iperf Binary Unit Converter<a class="headerlink" href="#iperf-binary-unit-converter" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-gherkin"><div class="highlight"><pre><span class="k">Feature:</span><span class="nf"> An IperfbinaryConverter</span>
+<span class="nf">  In order to convert the Data Transfers</span>
+<span class="nf">  A converter is needed</span>
+<span class="nf">  That handles binary data conversion with iperf&#39;s unit names</span>
+
+<span class="k">Scenario Outline:</span><span class="nf"> User converts iperf binary units</span>
+<span class="k">  Given </span><span class="nf">an IperfbinaryConverter</span>
+<span class="nf">  </span><span class="k">When </span><span class="nf">the user converts from </span><span class="nv">&lt;source&gt;</span><span class="nf"> to </span><span class="nv">&lt;target&gt;</span><span class="nf"> and back using iperf-units</span>
+<span class="nf">  </span><span class="k">Then </span><span class="nf">the outcome is the correct conversion</span>
+
+<span class="nf">  </span><span class="k">Examples:</span><span class="nf"> Iperf bytes to bits</span><span class="k"></span>
+<span class="k">  |</span><span class="nv"> source</span><span class="k">    |</span><span class="nv"> target</span><span class="k">    |</span><span class="nf"></span>
+<span class="k">  |</span><span class="s"> kibibytes</span><span class="k"> |</span><span class="s"> bits</span><span class="k">      |</span><span class="nf"></span>
+<span class="k">  |</span><span class="s"> bits</span><span class="k">      |</span><span class="s"> mebibytes</span><span class="k"> |</span><span class="nf"></span>
+<span class="k">  |</span><span class="s"> bits</span><span class="k">      |</span><span class="s"> gibibytes</span><span class="k"> |</span><span class="nf"></span>
+<span class="k">  |</span><span class="s"> bits</span><span class="k">      |</span><span class="s"> tebibytes</span><span class="k"> |</span><span class="nf"></span>
+<span class="k">  |</span><span class="s"> bits</span><span class="k">      |</span><span class="s"> pebibytes</span><span class="k"> |</span><span class="nf"></span>
+<span class="k">  |</span><span class="s"> bits</span><span class="k">      |</span><span class="s"> exbibytes</span><span class="k"> |</span><span class="nf"></span>
+<span class="k">  |</span><span class="s"> bits</span><span class="k">      |</span><span class="s"> zebibytes</span><span class="k"> |</span><span class="nf"></span>
+<span class="k">  |</span><span class="s"> bits</span><span class="k">      |</span><span class="s"> yobibytes</span><span class="k"> |</span><span class="nf"></span>
+<span class="k">  |</span><span class="s"> bytes</span><span class="k">     |</span><span class="s"> bits</span><span class="k">      |</span>
+
+
+<span class="k">Scenario Outline:</span><span class="nf"> User converts normal binary units</span>
+<span class="k">  Given </span><span class="nf">an IperfbinaryConverter</span>
+<span class="nf">  </span><span class="k">When </span><span class="nf">the user converts from </span><span class="nv">&lt;source&gt;</span><span class="nf"> to </span><span class="nv">&lt;target&gt;</span><span class="nf"> and back</span>
+<span class="nf">  </span><span class="k">Then </span><span class="nf">the outcome is the correct conversion</span>
+
+<span class="nf">  </span><span class="k">Examples:</span><span class="nf"> bits to bits</span><span class="k"></span>
+<span class="k">  |</span><span class="nv"> source</span><span class="k"> |</span><span class="nv"> target</span><span class="k">   |</span><span class="nf"></span>
+<span class="k">  |</span><span class="s"> bits</span><span class="k">   |</span><span class="s"> bits</span><span class="k">     |</span><span class="nf"></span>
+<span class="k">  |</span><span class="s"> bits</span><span class="k">   |</span><span class="s"> mebibits</span><span class="k"> |</span><span class="nf"></span>
+<span class="k">  |</span><span class="s"> bits</span><span class="k">   |</span><span class="s"> gibibits</span><span class="k"> |</span><span class="nf"></span>
+<span class="k">  |</span><span class="s"> bits</span><span class="k">   |</span><span class="s"> pebibits</span><span class="k"> |</span><span class="nf"></span>
+<span class="k">  |</span><span class="s"> bits</span><span class="k">   |</span><span class="s"> exbibits</span><span class="k"> |</span><span class="nf"></span>
+<span class="k">  |</span><span class="s"> bits</span><span class="k">   |</span><span class="s"> zebibits</span><span class="k"> |</span><span class="nf"></span>
+<span class="k">  |</span><span class="s"> bits</span><span class="k">   |</span><span class="s"> yobibits</span><span class="k"> |</span>
+</pre></div>
+</div>
 <div class="section" id="scenario-user-converts-binary-units">
 <h2>Scenario: User converts binary units<a class="headerlink" href="#scenario-user-converts-binary-units" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="example-bytes-to-bits">

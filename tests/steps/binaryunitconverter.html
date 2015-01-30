@@ -169,6 +169,39 @@
       
   <div class="section" id="binary-unit-converter">
 <h1>Binary Unit Converter<a class="headerlink" href="#binary-unit-converter" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-gherkin"><div class="highlight"><pre><span class="k">Feature:</span><span class="nf"> A BinaryUnitConverter</span>
+<span class="nf">  In order to convert the Data Transfers</span>
+<span class="nf">  A converter is needed</span>
+<span class="nf">  That handles binary data prefixes</span>
+
+<span class="k">Scenario Outline:</span><span class="nf"> User converts binary units</span>
+<span class="k">  Given </span><span class="nf">a BinaryUnitConverter</span>
+<span class="nf">  </span><span class="k">When </span><span class="nf">the user converts from </span><span class="nv">&lt;source&gt;</span><span class="nf"> to </span><span class="nv">&lt;target&gt;</span><span class="nf"> and back</span>
+<span class="nf">  </span><span class="k">Then </span><span class="nf">the outcome is the correct conversion</span>
+
+<span class="nf">  </span><span class="k">Examples:</span><span class="nf"> bytes to bits</span><span class="k"></span>
+<span class="k">  |</span><span class="nv"> source</span><span class="k">    |</span><span class="nv"> target</span><span class="k">    |</span><span class="nf"></span>
+<span class="k">  |</span><span class="s"> bytes</span><span class="k">     |</span><span class="s"> bits</span><span class="k">      |</span><span class="nf"></span>
+<span class="k">  |</span><span class="s"> kibibytes</span><span class="k"> |</span><span class="s"> bits</span><span class="k">      |</span><span class="nf"></span>
+<span class="k">  |</span><span class="s"> bits</span><span class="k">      |</span><span class="s"> bits</span><span class="k">      |</span><span class="nf"></span>
+<span class="k">  |</span><span class="s"> bits</span><span class="k">      |</span><span class="s"> mebibits</span><span class="k">  |</span><span class="nf"></span>
+<span class="k">  |</span><span class="s"> bits</span><span class="k">      |</span><span class="s"> gibibits</span><span class="k">  |</span><span class="nf"></span>
+<span class="k">  |</span><span class="s"> bits</span><span class="k">      |</span><span class="s"> mebibytes</span><span class="k"> |</span><span class="nf"></span>
+<span class="k">  |</span><span class="s"> bits</span><span class="k">      |</span><span class="s"> gibibytes</span><span class="k"> |</span><span class="nf"></span>
+<span class="k">  |</span><span class="s"> bits</span><span class="k">      |</span><span class="s"> tebibytes</span><span class="k"> |</span><span class="nf"></span>
+<span class="k">  |</span><span class="s"> bits</span><span class="k">      |</span><span class="s"> pebibits</span><span class="k">  |</span><span class="nf"></span>
+<span class="k">  |</span><span class="s"> bits</span><span class="k">      |</span><span class="s"> pebibytes</span><span class="k"> |</span><span class="nf"></span>
+<span class="k">  |</span><span class="s"> bits</span><span class="k">      |</span><span class="s"> exbibits</span><span class="k">  |</span><span class="nf"></span>
+<span class="k">  |</span><span class="s"> bits</span><span class="k">      |</span><span class="s"> exbibytes</span><span class="k"> |</span><span class="nf"></span>
+<span class="k">  |</span><span class="s"> bits</span><span class="k">      |</span><span class="s"> zebibits</span><span class="k">  |</span><span class="nf"></span>
+<span class="k">  |</span><span class="s"> bits</span><span class="k">      |</span><span class="s"> zebibytes</span><span class="k"> |</span><span class="nf"></span>
+<span class="k">  |</span><span class="s"> bits</span><span class="k">      |</span><span class="s"> yobibits</span><span class="k">  |</span><span class="nf"></span>
+<span class="k">  |</span><span class="s"> bits</span><span class="k">      |</span><span class="s"> yobibytes</span><span class="k"> |</span>
+
+
+<span class="k">  </span>
+</pre></div>
+</div>
 <div class="section" id="scenario-user-converts-binary-units">
 <h2>Scenario: User converts binary units<a class="headerlink" href="#scenario-user-converts-binary-units" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="example-bytes-to-bits">

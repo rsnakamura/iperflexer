@@ -1,7 +1,7 @@
 Decimal Unit Converter
 =====================
 
-.. literalinclude:: ../decimalunitconverter.feature
+.. literalinclude:: ../features/decimalunitconverter.feature
    :language: gherkin
 
 ::

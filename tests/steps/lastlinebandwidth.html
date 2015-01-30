@@ -154,6 +154,18 @@
       
   <div class="section" id="last-line-bandwidth">
 <h1>Last Line Bandwidth<a class="headerlink" href="#last-line-bandwidth" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-gherkin"><div class="highlight"><pre><span class="k">Feature:</span><span class="nf"> Last Line Bandwidth</span>
+<span class="nf"> </span><span class="k">Scenario Outline:</span><span class="nf"> Last Line Bandwidth</span>
+<span class="k">   Given </span><span class="nf">a data set of </span><span class="nv">&lt;data format&gt;</span><span class="nf"> iperf output</span>
+<span class="nf">   </span><span class="k">When </span><span class="nf">the user gets the last-line bandwidth</span>
+<span class="nf">   </span><span class="k">Then </span><span class="nf">the last-line bandwidth is the iperf summary</span>
+
+<span class="nf"> </span><span class="k">Examples:</span><span class="nf"> last-line bandwidth</span><span class="k"></span>
+<span class="k"> |</span><span class="nv"> data format</span><span class="k">    |</span><span class="nf"></span>
+<span class="k"> |</span><span class="s"> human-readable</span><span class="k"> |</span><span class="nf"></span>
+<span class="k"> |</span><span class="s"> csv-formatted</span><span class="k">  |</span>
+</pre></div>
+</div>
 <div class="section" id="scenario-user-gives-human-readable-iperf-data-and-pulls-summary-bandwidth">
 <h2>Scenario: User gives human-readable iperf data and pulls summary bandwidth<a class="headerlink" href="#scenario-user-gives-human-readable-iperf-data-and-pulls-summary-bandwidth" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">data</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>

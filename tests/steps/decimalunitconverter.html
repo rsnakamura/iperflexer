@@ -169,6 +169,39 @@
       
   <div class="section" id="decimal-unit-converter">
 <h1>Decimal Unit Converter<a class="headerlink" href="#decimal-unit-converter" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-gherkin"><div class="highlight"><pre><span class="k">Feature:</span><span class="nf"> A DecimalUnitConverter</span>
+<span class="nf">  In order to convert the Network Transfers</span>
+<span class="nf">  A converter is needed</span>
+<span class="nf">  That handles decimal data prefixes</span>
+
+<span class="k">Scenario Outline:</span><span class="nf"> User converts decimal units</span>
+<span class="k">  Given </span><span class="nf">a DecimalUnitConverter</span>
+<span class="nf">  </span><span class="k">When </span><span class="nf">the user converts from </span><span class="nv">&lt;source&gt;</span><span class="nf"> to </span><span class="nv">&lt;target&gt;</span><span class="nf"> and back</span>
+<span class="nf">  </span><span class="k">Then </span><span class="nf">the outcome is the correct conversion</span>
+
+<span class="nf">  </span><span class="k">Examples:</span><span class="nf"> bytes to bits</span><span class="k"></span>
+<span class="k">  |</span><span class="nv"> source</span><span class="k">      |</span><span class="nv"> target</span><span class="k">     |</span><span class="nf"></span>
+<span class="k">  |</span><span class="s"> iperf-bytes</span><span class="k"> |</span><span class="s"> bits</span><span class="k">       |</span><span class="nf"></span>
+<span class="k">  |</span><span class="s"> kilobytes</span><span class="k">   |</span><span class="s"> bits</span><span class="k">       |</span><span class="nf"></span>
+<span class="k">  |</span><span class="s"> bits</span><span class="k">        |</span><span class="s"> bits</span><span class="k">       |</span><span class="nf"></span>
+<span class="k">  |</span><span class="s"> bits</span><span class="k">        |</span><span class="s"> megabits</span><span class="k">   |</span><span class="nf"></span>
+<span class="k">  |</span><span class="s"> bits</span><span class="k">        |</span><span class="s"> gigabits</span><span class="k">   |</span><span class="nf"></span>
+<span class="k">  |</span><span class="s"> bits</span><span class="k">        |</span><span class="s"> megabytes</span><span class="k">  |</span><span class="nf"></span>
+<span class="k">  |</span><span class="s"> bits</span><span class="k">        |</span><span class="s"> gigabytes</span><span class="k">  |</span><span class="nf"></span>
+<span class="k">  |</span><span class="s"> bits</span><span class="k">        |</span><span class="s"> terabytes</span><span class="k">  |</span><span class="nf"></span>
+<span class="k">  |</span><span class="s"> bits</span><span class="k">        |</span><span class="s"> petabits</span><span class="k">   |</span><span class="nf"></span>
+<span class="k">  |</span><span class="s"> bits</span><span class="k">        |</span><span class="s"> petabytes</span><span class="k">  |</span><span class="nf"></span>
+<span class="k">  |</span><span class="s"> bits</span><span class="k">        |</span><span class="s"> exabits</span><span class="k">    |</span><span class="nf"></span>
+<span class="k">  |</span><span class="s"> bits</span><span class="k">        |</span><span class="s"> exabytes</span><span class="k">   |</span><span class="nf"></span>
+<span class="k">  |</span><span class="s"> bits</span><span class="k">        |</span><span class="s"> zettabits</span><span class="k">  |</span><span class="nf"></span>
+<span class="k">  |</span><span class="s"> bits</span><span class="k">        |</span><span class="s"> zettabytes</span><span class="k"> |</span><span class="nf"></span>
+<span class="k">  |</span><span class="s"> bits</span><span class="k">        |</span><span class="s"> yottabits</span><span class="k">  |</span><span class="nf"></span>
+<span class="k">  |</span><span class="s"> bits</span><span class="k">        |</span><span class="s"> yottabytes</span><span class="k"> |</span>
+
+
+<span class="k">  </span>
+</pre></div>
+</div>
 <div class="highlight-python"><div class="highlight"><pre><span class="c"># so I don&#39;t forget</span>
 <span class="n">BYTE</span> <span class="o">=</span> <span class="mi">8</span>
 <span class="n">BASE</span> <span class="o">=</span> <span class="mf">10.</span>
