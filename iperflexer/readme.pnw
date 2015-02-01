@@ -98,7 +98,7 @@ Last Line Transfer
 
 As you might suspect, this tries to grab the last reported data-transfer (the transfer for the entire interval). It is currently mutually-exclusive to the last line bandwidth. This should be changed eventually. An example to gather the server-side information (assuming the names are meaningful)::
 
-   parseiperf -g "server*iperf" -l > server_transfer_summaries.csv
+   parseiperf -g "server*iperf" -d > server_transfer_summaries.csv
 
 Interval
 ~~~~~~~~

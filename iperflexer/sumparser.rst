@@ -51,17 +51,19 @@ The SumParser
    :toctree: api
 
    SumParser
+   SumParser.__call__
+   SumParser.pipe
+   SumParser.transfer_units
+   SumParser.traverse
    SumParser.bandwidths
    SumParser.transfers
    SumParser.regex
-   SumParser.intervals
-   SumParser.conversion
    SumParser.valid
    SumParser.bandwidth
-   SumParser.__call__
+   SumParser.transfer
    SumParser.search
-   SumParser.pipe
    SumParser.reset
+   SumParser.filename
 
 
 
