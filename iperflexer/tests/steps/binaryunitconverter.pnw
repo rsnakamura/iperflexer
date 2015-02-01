@@ -1,7 +1,7 @@
 Binary Unit Converter
 =====================
 
-.. literalinclude:: ../binaryunitconverter.feature
+.. literalinclude:: ../features/binaryunitconverter.feature
    :language: gherkin
 
 <<name='imports', echo=False>>=

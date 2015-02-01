@@ -1,7 +1,7 @@
 Iperf Binary Unit Converter
 ===========================
 
-.. literalinclude:: ../iperfbinaryconverter.feature
+.. literalinclude:: ../features/iperfbinaryconverter.feature
    :language: gherkin
 
 <<name='imports', echo=False>>=

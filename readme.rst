@@ -180,12 +180,12 @@ I think that's everything. If it is, then when you're next to the `Makefile` you
 
    make html
 
-And it will output the html files to ``doc/html``. 
+And it will output the html files to ``build/html``. 
 
 .. note:: I `rsync` the html files to a folder where my apache server can see it so if you build it before I remember to get rid of that in the Makefile you will likely see an error but that shouldn't affect the built documentation (although if just by coincidence you have the exact same file structure as me it might clobber something (sorry)). 
 
 Running the Tests
 -----------------
 
-I was originally using python's ``unittest`` module but I've switched over to using ``behave`` and ``pyhamcrest`` so the tests at the top of the package need ``nosetests`` and the tests in the `iperflexer/tests` folder need `behave <https://pypi.python.org/pypi/behave>`_ and `PyHamcrest <https://pypi.python.org/pypi/PyHamcrest>`.
+I was originally using python's ``unittest`` module but I've switched over to using ``behave`` and ``pyhamcrest`` so the tests at the top of the package need ``nosetests`` and the tests in the `iperflexer/tests` folder need `behave <https://pypi.python.org/pypi/behave>`_ and `PyHamcrest <https://pypi.python.org/pypi/PyHamcrest>`_.
 

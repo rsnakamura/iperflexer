@@ -47,6 +47,7 @@ class BinaryUnitNames(object):
     """
     namespace for binary-unit names
     """
+    __slots__ = ()
     bits = UnitNames.bits
     bibits = 'bi' + bits
     kibibits = "ki" + bibits

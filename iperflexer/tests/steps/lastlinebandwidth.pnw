@@ -1,7 +1,7 @@
 Last Line Bandwidth
 ===================
 
-.. literalinclude:: ../lastlinebandwidth.feature
+.. literalinclude:: ../features/lastlinebandwidth.feature
    :language: gherkin
 
 <<name='imports', echo=False>>=

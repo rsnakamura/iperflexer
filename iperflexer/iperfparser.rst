@@ -32,16 +32,16 @@ The `IperfParser` extracts a column from the iperf-output. Currently it only ext
 
    IperfParser
    IperfParser.bandwidths
-   IperfParser.transfers
-   IperfParser.regex
-   IperfParser.intervals
+   IperfParser.transfers 
+   IperfParser.regex     
+   IperfParser.intervals 
    IperfParser.conversion
-   IperfParser.valid
-   IperfParser.bandwidth
-   IperfParser.__call__
-   IperfParser.search
-   IperfParser.pipe   
-   IperfParser.reset
+   IperfParser.valid     
+   IperfParser.bandwidth 
+   IperfParser.__call__  
+   IperfParser.search    
+   IperfParser.pipe      
+   IperfParser.reset     
 
 
 Properties
