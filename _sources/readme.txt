@@ -146,7 +146,7 @@ The amount that the calculated reporting interval is for a line can differ from 
 Building the Documentation
 --------------------------
 
-I try to keep an updated build of the documentation on the web at `bitbucket <http://rallion.bitbucket.org/commands/iperf_lexer/index.html>`_ and `pypi <https://pythonhosted.org/iperflexer/>`_ but these instructions should help if you want to build them yourself.
+I try to keep an updated build of the documentation on the web at `GitHub <https://rsnakamura.github.io/iperflexer/>`_ and `pypi <https://pythonhosted.org/iperflexer/>`_ but these instructions should help if you want to build them yourself.
 
 The code was written in a literate programming style using `Pweave <http://mpastell.com/pweave/>`_ so next to each python file you will also find a restructured-text file used for the documentation -- the python package is also the `sphinx <http://sphinx-doc.org/>`_ source for the documentation. If you want to edit or re-generate a file you need pweave::
 
