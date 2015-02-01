@@ -1,0 +1,6 @@
+iperflexer.sumparser.SumParser.transfer_units
+=============================================
+
+.. currentmodule:: iperflexer.sumparser
+
+.. autoattribute:: SumParser.transfer_units

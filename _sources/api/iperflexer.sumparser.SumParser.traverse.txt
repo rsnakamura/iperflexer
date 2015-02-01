@@ -1,0 +1,6 @@
+iperflexer.sumparser.SumParser.traverse
+=======================================
+
+.. currentmodule:: iperflexer.sumparser
+
+.. automethod:: SumParser.traverse

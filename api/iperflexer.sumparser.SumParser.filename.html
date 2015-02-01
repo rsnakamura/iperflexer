@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>iperflexer.iperfparser.IperfParser.pipe &mdash; IperfLexer 0.1.4 documentation</title>
+    <title>iperflexer.sumparser.SumParser.filename &mdash; IperfLexer 0.1.4 documentation</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -29,9 +29,9 @@
     <script type="text/javascript" src="../_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="IperfLexer 0.1.4 documentation" href="../index.html" />
-    <link rel="up" title="The IperfParser" href="../iperfparser.html" />
-    <link rel="next" title="iperflexer.iperfparser.IperfParser.reset" href="iperflexer.iperfparser.IperfParser.reset.html" />
-    <link rel="prev" title="iperflexer.iperfparser.IperfParser.search" href="iperflexer.iperfparser.IperfParser.search.html" />
+    <link rel="up" title="The SumParser" href="../sumparser.html" />
+    <link rel="next" title="The Unit Converter" href="../unitconverter.html" />
+    <link rel="prev" title="iperflexer.sumparser.SumParser.reset" href="iperflexer.sumparser.SumParser.reset.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
@@ -75,10 +75,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../coroutine.html">Coroutines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../finder.html">The Finder</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../iperfexpressions.html">The Iperf Expressions</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../iperfparser.html">The IperfParser</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../iperfparser.html">The IperfParser</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../main.html">The Main Module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../readme.html">The Iperf Lexer (Read Me)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sumparser.html">The SumParser</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../sumparser.html">The SumParser</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../unitconverter.html">The Unit Converter</a></li>
 </ul>
 <ul>
@@ -97,7 +97,7 @@
   <ul class="dropdown-menu localtoc"
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
-<li><a class="reference internal" href="#">iperflexer.iperfparser.IperfParser.pipe</a></li>
+<li><a class="reference internal" href="#">iperflexer.sumparser.SumParser.filename</a></li>
 </ul>
 </ul>
 </li>
@@ -107,11 +107,11 @@
               
                 
   <li>
-    <a href="iperflexer.iperfparser.IperfParser.search.html" title="Previous Chapter: iperflexer.iperfparser.IperfParser.search"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; iperflexer.iperf...</span>
+    <a href="iperflexer.sumparser.SumParser.reset.html" title="Previous Chapter: iperflexer.sumparser.SumParser.reset"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; iperflexer.sumpa...</span>
     </a>
   </li>
   <li>
-    <a href="iperflexer.iperfparser.IperfParser.reset.html" title="Next Chapter: iperflexer.iperfparser.IperfParser.reset"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">iperflexer.iperf... &raquo;</span>
+    <a href="../unitconverter.html" title="Next Chapter: The Unit Converter"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">The Unit Convert... &raquo;</span>
     </a>
   </li>
               
@@ -121,7 +121,7 @@
             
               <li class="hidden-sm">
 <div id="sourcelink">
-  <a href="../_sources/api/iperflexer.iperfparser.IperfParser.pipe.txt"
+  <a href="../_sources/api/iperflexer.sumparser.SumParser.filename.txt"
      rel="nofollow">Source</a>
 </div></li>
             
@@ -145,12 +145,27 @@
   <div class="row">
     <div class="col-md-12">
       
-  <div class="section" id="iperflexer-iperfparser-iperfparser-pipe">
-<h1>iperflexer.iperfparser.IperfParser.pipe<a class="headerlink" href="#iperflexer-iperfparser-iperfparser-pipe" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="iperflexer-sumparser-sumparser-filename">
+<h1>iperflexer.sumparser.SumParser.filename<a class="headerlink" href="#iperflexer-sumparser-sumparser-filename" title="Permalink to this headline">¶</a></h1>
 <dl class="method">
-<dt id="iperflexer.iperfparser.IperfParser.pipe">
-<tt class="descclassname">IperfParser.</tt><tt class="descname">pipe</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/iperflexer/iperfparser.html#IperfParser.pipe"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iperflexer.iperfparser.IperfParser.pipe" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt id="iperflexer.sumparser.SumParser.filename">
+<tt class="descclassname">SumParser.</tt><tt class="descname">filename</tt><big>(</big><em>basename</em><big>)</big><a class="headerlink" href="#iperflexer.sumparser.SumParser.filename" title="Permalink to this definition">¶</a></dt>
+<dd><p>Changes the extension of the basename to .csv</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body"><ul class="first simple">
+<li><cite>basename</cite>: a the raw-iperf filename (without path)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">the filename with the extension changed to .csv</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 </div>
 

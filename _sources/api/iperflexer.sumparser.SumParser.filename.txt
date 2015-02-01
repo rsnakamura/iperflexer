@@ -1,0 +1,6 @@
+iperflexer.sumparser.SumParser.filename
+=======================================
+
+.. currentmodule:: iperflexer.sumparser
+
+.. automethod:: SumParser.filename
