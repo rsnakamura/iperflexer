@@ -9,7 +9,7 @@
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/bootswatch-3.2.0/readable/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootswatch-3.3.4/spacelab/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
@@ -26,11 +26,10 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="../_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="IperfLexer 0.1.4 documentation" href="../index.html" />
     <link rel="up" title="The Infrastructure" href="index.html" />
-    <link rel="next" title="iperflexer.infrastructure.index_builder.grab_headline" href="api/iperflexer.infrastructure.index_builder.grab_headline.html" />
     <link rel="prev" title="The Infrastructure" href="index.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
@@ -38,7 +37,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 
   </head>
-  <body>
+  <body role="document">
 
   <div id="navbar" class="navbar navbar-default navbar-fixed-top">
     <div class="container">
@@ -113,11 +112,7 @@
               
                 
   <li>
-    <a href="index.html" title="Previous Chapter: The Infrastructure"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; The Infrastructu...</span>
-    </a>
-  </li>
-  <li>
-    <a href="api/iperflexer.infrastructure.index_builder.grab_headline.html" title="Next Chapter: iperflexer.infrastructure.index_builder.grab_headline"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">iperflexer.infra... &raquo;</span>
+    <a href="index.html" title="Previous Chapter: The Infrastructure"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; The Infrastru...</span>
     </a>
   </li>
               
@@ -149,7 +144,7 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12 content">
       
   <div class="section" id="module-iperflexer.infrastructure.index_builder">
 <span id="index-builder"></span><h1>Index Builder<a class="headerlink" href="#module-iperflexer.infrastructure.index_builder" title="Permalink to this headline">¶</a></h1>
@@ -171,7 +166,7 @@
 <div class="section" id="the-headline-grabber">
 <h2>The Headline Grabber<a class="headerlink" href="#the-headline-grabber" title="Permalink to this headline">¶</a></h2>
 <p>Since the convention for creating tables of contents is to use the form:</p>
-<div class="highlight-python"><div class="highlight"><pre>pretty name &lt;filename&gt;
+<div class="highlight-python"><div class="highlight"><pre><span></span>pretty name &lt;filename&gt;
 </pre></div>
 </div>
 <p>The first non-empty line of the included files will be used as the <cite>pretty name</cite>.</p>
@@ -181,17 +176,18 @@
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="api/iperflexer.infrastructure.index_builder.grab_headline.html#iperflexer.infrastructure.index_builder.grab_headline" title="iperflexer.infrastructure.index_builder.grab_headline"><tt class="xref py py-obj docutils literal"><span class="pre">grab_headline</span></tt></a>(filename)</td>
-<td>A convenience function to grab the first non-empty line</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">grab_headline</span></code></td>
+<td></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="the-toctree-creator">
 <h2>The Toctree Creator<a class="headerlink" href="#the-toctree-creator" title="Permalink to this headline">¶</a></h2>
-<p>This function will generate a toctree by applying the <a class="reference internal" href="#index-builder-introduction"><em>assumptions</em></a> mentioned above. To be safe it will add an empty line above and below the output. For this to work the weaving code will need to turn off echoing (and wrappnig) and using &#8216;sphinx&#8217; for the results:</p>
-<div class="highlight-python"><div class="highlight"><pre>&lt;&lt;name=&#39;example&#39;, echo=False, wrap=False, results=&#39;sphinx&#39;&gt;&gt;=
+<p>This function will generate a toctree by applying the <a class="reference internal" href="#index-builder-introduction"><span>assumptions</span></a> mentioned above. To be safe it will add an empty line above and below the output. For this to work the weaving code will need to turn off echoing (and wrappnig) and using &#8216;sphinx&#8217; for the results:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>&lt;&lt;name=&#39;example&#39;, echo=False, wrap=False, results=&#39;sphinx&#39;&gt;&gt;=
 create_toctree(maxdepth=1)
+@
 </pre></div>
 </div>
 <table border="1" class="longtable docutils">
@@ -200,8 +196,8 @@ create_toctree(maxdepth=1)
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="api/iperflexer.infrastructure.index_builder.create_toctree.html#iperflexer.infrastructure.index_builder.create_toctree" title="iperflexer.infrastructure.index_builder.create_toctree"><tt class="xref py py-obj docutils literal"><span class="pre">create_toctree</span></tt></a>([maxdepth,&nbsp;subfolders,&nbsp;...])</td>
-<td>Sends a toctree to standard out</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">create_toctree</span></code></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -215,8 +211,8 @@ create_toctree(maxdepth=1)
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="api/iperflexer.infrastructure.index_builder.subfolder_toctree.html#iperflexer.infrastructure.index_builder.subfolder_toctree" title="iperflexer.infrastructure.index_builder.subfolder_toctree"><tt class="xref py py-obj docutils literal"><span class="pre">subfolder_toctree</span></tt></a>([maxdepth,&nbsp;subfolders,&nbsp;...])</td>
-<td>Creates the toctree for sub-folder indices</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">subfolder_toctree</span></code></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -236,7 +232,7 @@ create_toctree(maxdepth=1)
     </p>
     <p>
         &copy; Copyright 2013, cloistered monkey.<br/>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.<br/>
     </p>
   </div>
 </footer>

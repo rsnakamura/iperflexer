@@ -9,7 +9,7 @@
     
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootswatch-3.2.0/readable/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootswatch-3.3.4/spacelab/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
@@ -26,18 +26,16 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="IperfLexer 0.1.4 documentation" href="index.html" />
-    <link rel="next" title="iperflexer.coroutine.coroutine" href="api/iperflexer.coroutine.coroutine.html" />
-    <link rel="prev" title="iperflexer.baseclass.BaseClass" href="api/iperflexer.baseclass.BaseClass.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
 <meta name="apple-mobile-web-app-capable" content="yes">
 
   </head>
-  <body>
+  <body role="document">
 
   <div id="navbar" class="navbar navbar-default navbar-fixed-top">
     <div class="container">
@@ -113,14 +111,6 @@
             
               
                 
-  <li>
-    <a href="api/iperflexer.baseclass.BaseClass.html" title="Previous Chapter: iperflexer.baseclass.BaseClass"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; iperflexer.basec...</span>
-    </a>
-  </li>
-  <li>
-    <a href="api/iperflexer.coroutine.coroutine.html" title="Next Chapter: iperflexer.coroutine.coroutine"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">iperflexer.corou... &raquo;</span>
-    </a>
-  </li>
               
             
             
@@ -150,7 +140,7 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12 content">
       
   <div class="section" id="coroutines">
 <h1>Coroutines<a class="headerlink" href="#coroutines" title="Permalink to this headline">¶</a></h1>
@@ -164,30 +154,30 @@
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="api/iperflexer.coroutine.coroutine.html#iperflexer.coroutine.coroutine" title="iperflexer.coroutine.coroutine"><tt class="xref py py-obj docutils literal"><span class="pre">coroutine</span></tt></a>(func)</td>
-<td>A decorator to start coroutines</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">coroutine</span></code></td>
+<td></td>
 </tr>
 </tbody>
 </table>
 <p>Example Use:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="nd">@coroutine</span>
-<span class="k">def</span> <span class="nf">printer</span><span class="p">(</span><span class="n">target</span><span class="p">):</span>
-    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-        <span class="n">output</span> <span class="o">=</span> <span class="p">(</span><span class="k">yield</span><span class="p">)</span>
-        <span class="k">print</span> <span class="n">output</span>
-        <span class="n">target</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span>@coroutine
+def printer(target):
+    while True:
+        output = (yield)
+        print output
+        target.send(output)
 
-<span class="nd">@coroutine</span>
-<span class="k">def</span> <span class="nf">sink</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
-    <span class="n">out_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span>
-    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-        <span class="n">output</span> <span class="o">=</span> <span class="p">(</span><span class="k">yield</span><span class="p">)</span>
-        <span class="n">out_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+@coroutine
+def sink(filename):
+    out_file = open(filename, &#39;w&#39;)
+    while True:
+        output = (yield)
+        out_file.write(output)
 
-<span class="n">s</span> <span class="o">=</span> <span class="n">sink</span><span class="p">(</span><span class="s">&quot;test.txt&quot;</span><span class="p">)</span>
-<span class="n">p</span> <span class="o">=</span> <span class="n">printer</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">output</span><span class="p">:</span>
-    <span class="n">p</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+s = sink(&quot;test.txt&quot;)
+p = printer(s)
+for line in output:
+    p.send(line)
 </pre></div>
 </div>
 </div>
@@ -203,8 +193,8 @@ B -&gt; t3
 }" />
 </p>
 <p>Example Use:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">s1</span> <span class="o">=</span> <span class="n">sink</span><span class="p">(</span><span class="s">&#39;out_1.txt&#39;</span><span class="p">)</span>
-<span class="n">s2</span> <span class="o">=</span> <span class="n">processor</span><span class="p">(</span><span class="s">&#39;out_2.csv&#39;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">s1</span> <span class="o">=</span> <span class="n">sink</span><span class="p">(</span><span class="s1">&#39;out_1.txt&#39;</span><span class="p">)</span>
+<span class="n">s2</span> <span class="o">=</span> <span class="n">processor</span><span class="p">(</span><span class="s1">&#39;out_2.csv&#39;</span><span class="p">)</span>
 <span class="n">b</span> <span class="o">=</span> <span class="n">broadcast</span><span class="p">((</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">))</span>
 <span class="n">p</span> <span class="o">=</span> <span class="n">printer</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">source</span><span class="p">:</span>
@@ -220,7 +210,7 @@ B -&gt; t3
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="api/iperflexer.coroutine.broadcast.html#iperflexer.coroutine.broadcast" title="iperflexer.coroutine.broadcast"><tt class="xref py py-obj docutils literal"><span class="pre">broadcast</span></tt></a>(*args,&nbsp;**kwargs)</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">broadcast</span></code></td>
 <td></td>
 </tr>
 </tbody>
@@ -235,7 +225,7 @@ B -&gt; t3
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="api/iperflexer.coroutine.comma_join.html#iperflexer.coroutine.comma_join" title="iperflexer.coroutine.comma_join"><tt class="xref py py-obj docutils literal"><span class="pre">comma_join</span></tt></a>(*args,&nbsp;**kwargs)</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">comma_join</span></code></td>
 <td></td>
 </tr>
 </tbody>
@@ -261,7 +251,7 @@ comma_join -&gt; target
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="api/iperflexer.coroutine.output.html#iperflexer.coroutine.output" title="iperflexer.coroutine.output"><tt class="xref py py-obj docutils literal"><span class="pre">output</span></tt></a>(*args,&nbsp;**kwargs)</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">output</span></code></td>
 <td></td>
 </tr>
 </tbody>
@@ -283,7 +273,7 @@ pipeline -&gt; output
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="api/iperflexer.coroutine.comma_append.html#iperflexer.coroutine.comma_append" title="iperflexer.coroutine.comma_append"><tt class="xref py py-obj docutils literal"><span class="pre">comma_append</span></tt></a>(*args,&nbsp;**kwargs)</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">comma_append</span></code></td>
 <td></td>
 </tr>
 </tbody>
@@ -291,7 +281,7 @@ pipeline -&gt; output
 </div>
 <div class="section" id="file-output-coroutine">
 <h2>File Output Coroutine<a class="headerlink" href="#file-output-coroutine" title="Permalink to this headline">¶</a></h2>
-<p>The <cite>file_output</cite> acts much like the <tt class="docutils literal"><span class="pre">output</span></tt> co-routine but assumes that the target is a disk-file and will create it if passed a string instead of an open file.</p>
+<p>The <cite>file_output</cite> acts much like the <code class="docutils literal"><span class="pre">output</span></code> co-routine but assumes that the target is a disk-file and will create it if passed a string instead of an open file.</p>
 </div>
 </div>
 
@@ -308,7 +298,7 @@ pipeline -&gt; output
     </p>
     <p>
         &copy; Copyright 2013, cloistered monkey.<br/>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.<br/>
     </p>
   </div>
 </footer>

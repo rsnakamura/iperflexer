@@ -9,7 +9,7 @@
     
     <link rel="stylesheet" href="../../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/bootswatch-3.2.0/readable/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootswatch-3.3.4/spacelab/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
@@ -26,7 +26,7 @@
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="../../_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="IperfLexer 0.1.4 documentation" href="../../index.html" />
     <link rel="up" title="The Iperf Lexer Test Implementations" href="index.html" />
@@ -38,7 +38,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 
   </head>
-  <body>
+  <body role="document">
 
   <div id="navbar" class="navbar navbar-default navbar-fixed-top">
     <div class="container">
@@ -114,7 +114,7 @@
               
                 
   <li>
-    <a href="iperfbinaryconverter.html" title="Previous Chapter: Iperf Binary Unit Converter"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Iperf Binary Uni...</span>
+    <a href="iperfbinaryconverter.html" title="Previous Chapter: Iperf Binary Unit Converter"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Iperf Binary ...</span>
     </a>
   </li>
   <li>
@@ -150,11 +150,11 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12 content">
       
   <div class="section" id="last-line-bandwidth">
 <h1>Last Line Bandwidth<a class="headerlink" href="#last-line-bandwidth" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-gherkin"><div class="highlight"><pre><span class="k">Feature:</span><span class="nf"> Last Line Bandwidth</span>
+<div class="highlight-gherkin"><div class="highlight"><pre><span></span><span class="k">Feature:</span><span class="nf"> Last Line Bandwidth</span>
 <span class="nf"> </span><span class="k">Scenario Outline:</span><span class="nf"> Last Line Bandwidth</span>
 <span class="k">   Given </span><span class="nf">a data set of </span><span class="nv">&lt;data format&gt;</span><span class="nf"> iperf output</span>
 <span class="nf">   </span><span class="k">When </span><span class="nf">the user gets the last-line bandwidth</span>
@@ -168,58 +168,58 @@
 </div>
 <div class="section" id="scenario-user-gives-human-readable-iperf-data-and-pulls-summary-bandwidth">
 <h2>Scenario: User gives human-readable iperf data and pulls summary bandwidth<a class="headerlink" href="#scenario-user-gives-human-readable-iperf-data-and-pulls-summary-bandwidth" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">data</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
-<span class="s">------------------------------------------------------------</span>
-<span class="s">Client connecting to 192.168.103.20, TCP port 5001</span>
-<span class="s">TCP window size: 85.0 KByte (default)</span>
-<span class="s">------------------------------------------------------------</span>
-<span class="s">[  7] local 192.168.103.17 port 60791 connected with 192.168.103.20 port 5001</span>
-<span class="s">[  3] local 192.168.103.17 port 60787 connected with 192.168.103.20 port 5001</span>
-<span class="s">[  4] local 192.168.103.17 port 60788 connected with 192.168.103.20 port 5001</span>
-<span class="s">[  6] local 192.168.103.17 port 60790 connected with 192.168.103.20 port 5001</span>
-<span class="s">[  5] local 192.168.103.17 port 60789 connected with 192.168.103.20 port 5001</span>
-<span class="s">[ ID] Interval       Transfer     Bandwidth</span>
-<span class="s">[  3]  0.0- 1.0 sec  15.1 MBytes   127 Mbits/sec</span>
-<span class="s">[  4]  0.0- 1.0 sec  18.6 MBytes   156 Mbits/sec</span>
-<span class="s">[  6]  0.0- 1.0 sec  18.1 MBytes   152 Mbits/sec</span>
-<span class="s">[  5]  0.0- 1.0 sec  19.6 MBytes   165 Mbits/sec</span>
-<span class="s">[  7]  0.0- 1.0 sec  16.2 MBytes   136 Mbits/sec</span>
-<span class="s">[SUM]  0.0- 1.0 sec  87.8 MBytes   736 Mbits/sec</span>
-<span class="s">[  7]  1.0- 2.0 sec  17.5 MBytes   147 Mbits/sec</span>
-<span class="s">[  3]  1.0- 2.0 sec  18.9 MBytes   158 Mbits/sec</span>
-<span class="s">[  4]  1.0- 2.0 sec  15.4 MBytes   129 Mbits/sec</span>
-<span class="s">[  6]  1.0- 2.0 sec  17.8 MBytes   149 Mbits/sec</span>
-<span class="s">[  5]  1.0- 2.0 sec  17.0 MBytes   143 Mbits/sec</span>
-<span class="s">[SUM]  1.0- 2.0 sec  86.5 MBytes   726 Mbits/sec</span>
-<span class="s">[  3]  2.0- 3.0 sec  17.5 MBytes   147 Mbits/sec</span>
-<span class="s">[  4]  2.0- 3.0 sec  21.2 MBytes   178 Mbits/sec</span>
-<span class="s">[  6]  2.0- 3.0 sec  16.9 MBytes   142 Mbits/sec</span>
-<span class="s">[  5]  2.0- 3.0 sec  15.4 MBytes   129 Mbits/sec</span>
-<span class="s">[  7]  2.0- 3.0 sec  15.9 MBytes   133 Mbits/sec</span>
-<span class="s">[SUM]  2.0- 3.0 sec  86.9 MBytes   729 Mbits/sec</span>
-<span class="s">[  7]  3.0- 4.0 sec  16.8 MBytes   141 Mbits/sec</span>
-<span class="s">[  4]  3.0- 4.0 sec  17.8 MBytes   149 Mbits/sec</span>
-<span class="s">[  5]  3.0- 4.0 sec  21.5 MBytes   180 Mbits/sec</span>
-<span class="s">[  3]  3.0- 4.0 sec  15.2 MBytes   128 Mbits/sec</span>
-<span class="s">[  6]  3.0- 4.0 sec  15.6 MBytes   131 Mbits/sec</span>
-<span class="s">[SUM]  3.0- 4.0 sec  86.9 MBytes   729 Mbits/sec</span>
-<span class="s">[  3]  0.0- 5.0 sec  83.9 MBytes   141 Mbits/sec</span>
-<span class="s">[  7]  4.0- 5.0 sec  18.1 MBytes   152 Mbits/sec</span>
-<span class="s">[  7]  0.0- 5.0 sec  84.6 MBytes   142 Mbits/sec</span>
-<span class="s">[  4]  0.0- 5.0 sec  90.6 MBytes   152 Mbits/sec</span>
-<span class="s">[  6]  4.0- 5.0 sec  17.8 MBytes   149 Mbits/sec</span>
-<span class="s">[  6]  0.0- 5.0 sec  86.2 MBytes   144 Mbits/sec</span>
-<span class="s">[  5]  4.0- 5.0 sec  16.1 MBytes   135 Mbits/sec</span>
-<span class="s">[  5]  0.0- 5.0 sec  89.8 MBytes   150 Mbits/sec</span>
-<span class="s">[SUM]  0.0- 5.0 sec   435 MBytes   {expected} Mbits/sec</span>
-<span class="s">&quot;&quot;&quot;</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">------------------------------------------------------------</span>
+<span class="s2">Client connecting to 192.168.103.20, TCP port 5001</span>
+<span class="s2">TCP window size: 85.0 KByte (default)</span>
+<span class="s2">------------------------------------------------------------</span>
+<span class="s2">[  7] local 192.168.103.17 port 60791 connected with 192.168.103.20 port 5001</span>
+<span class="s2">[  3] local 192.168.103.17 port 60787 connected with 192.168.103.20 port 5001</span>
+<span class="s2">[  4] local 192.168.103.17 port 60788 connected with 192.168.103.20 port 5001</span>
+<span class="s2">[  6] local 192.168.103.17 port 60790 connected with 192.168.103.20 port 5001</span>
+<span class="s2">[  5] local 192.168.103.17 port 60789 connected with 192.168.103.20 port 5001</span>
+<span class="s2">[ ID] Interval       Transfer     Bandwidth</span>
+<span class="s2">[  3]  0.0- 1.0 sec  15.1 MBytes   127 Mbits/sec</span>
+<span class="s2">[  4]  0.0- 1.0 sec  18.6 MBytes   156 Mbits/sec</span>
+<span class="s2">[  6]  0.0- 1.0 sec  18.1 MBytes   152 Mbits/sec</span>
+<span class="s2">[  5]  0.0- 1.0 sec  19.6 MBytes   165 Mbits/sec</span>
+<span class="s2">[  7]  0.0- 1.0 sec  16.2 MBytes   136 Mbits/sec</span>
+<span class="s2">[SUM]  0.0- 1.0 sec  87.8 MBytes   736 Mbits/sec</span>
+<span class="s2">[  7]  1.0- 2.0 sec  17.5 MBytes   147 Mbits/sec</span>
+<span class="s2">[  3]  1.0- 2.0 sec  18.9 MBytes   158 Mbits/sec</span>
+<span class="s2">[  4]  1.0- 2.0 sec  15.4 MBytes   129 Mbits/sec</span>
+<span class="s2">[  6]  1.0- 2.0 sec  17.8 MBytes   149 Mbits/sec</span>
+<span class="s2">[  5]  1.0- 2.0 sec  17.0 MBytes   143 Mbits/sec</span>
+<span class="s2">[SUM]  1.0- 2.0 sec  86.5 MBytes   726 Mbits/sec</span>
+<span class="s2">[  3]  2.0- 3.0 sec  17.5 MBytes   147 Mbits/sec</span>
+<span class="s2">[  4]  2.0- 3.0 sec  21.2 MBytes   178 Mbits/sec</span>
+<span class="s2">[  6]  2.0- 3.0 sec  16.9 MBytes   142 Mbits/sec</span>
+<span class="s2">[  5]  2.0- 3.0 sec  15.4 MBytes   129 Mbits/sec</span>
+<span class="s2">[  7]  2.0- 3.0 sec  15.9 MBytes   133 Mbits/sec</span>
+<span class="s2">[SUM]  2.0- 3.0 sec  86.9 MBytes   729 Mbits/sec</span>
+<span class="s2">[  7]  3.0- 4.0 sec  16.8 MBytes   141 Mbits/sec</span>
+<span class="s2">[  4]  3.0- 4.0 sec  17.8 MBytes   149 Mbits/sec</span>
+<span class="s2">[  5]  3.0- 4.0 sec  21.5 MBytes   180 Mbits/sec</span>
+<span class="s2">[  3]  3.0- 4.0 sec  15.2 MBytes   128 Mbits/sec</span>
+<span class="s2">[  6]  3.0- 4.0 sec  15.6 MBytes   131 Mbits/sec</span>
+<span class="s2">[SUM]  3.0- 4.0 sec  86.9 MBytes   729 Mbits/sec</span>
+<span class="s2">[  3]  0.0- 5.0 sec  83.9 MBytes   141 Mbits/sec</span>
+<span class="s2">[  7]  4.0- 5.0 sec  18.1 MBytes   152 Mbits/sec</span>
+<span class="s2">[  7]  0.0- 5.0 sec  84.6 MBytes   142 Mbits/sec</span>
+<span class="s2">[  4]  0.0- 5.0 sec  90.6 MBytes   152 Mbits/sec</span>
+<span class="s2">[  6]  4.0- 5.0 sec  17.8 MBytes   149 Mbits/sec</span>
+<span class="s2">[  6]  0.0- 5.0 sec  86.2 MBytes   144 Mbits/sec</span>
+<span class="s2">[  5]  4.0- 5.0 sec  16.1 MBytes   135 Mbits/sec</span>
+<span class="s2">[  5]  0.0- 5.0 sec  89.8 MBytes   150 Mbits/sec</span>
+<span class="s2">[SUM]  0.0- 5.0 sec   435 MBytes   {expected} Mbits/sec</span>
+<span class="s2">&quot;&quot;&quot;</span>
 </pre></div>
 </div>
 <div class="section" id="example-human-readable">
 <h3>Example: Human Readable<a class="headerlink" href="#example-human-readable" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><div class="highlight"><pre><span class="nd">@given</span><span class="p">(</span><span class="s">&quot;a data set of human-readable iperf output&quot;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="nd">@given</span><span class="p">(</span><span class="s2">&quot;a data set of human-readable iperf output&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">human_readable_input</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
-    <span class="n">context</span><span class="o">.</span><span class="n">parser</span> <span class="o">=</span> <span class="n">SumParser</span><span class="p">(</span><span class="n">threads</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s">&#39;Mbits&#39;</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">parser</span> <span class="o">=</span> <span class="n">SumParser</span><span class="p">(</span><span class="n">threads</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s1">&#39;Mbits&#39;</span><span class="p">)</span>
     <span class="n">context</span><span class="o">.</span><span class="n">expected</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
     <span class="n">human_data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">expected</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">expected</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">human_data</span><span class="o">.</span><span class="n">splitlines</span><span class="p">():</span>
@@ -227,13 +227,13 @@
     <span class="k">return</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="nd">@when</span><span class="p">(</span><span class="s">&quot;the user gets the last-line bandwidth&quot;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="nd">@when</span><span class="p">(</span><span class="s2">&quot;the user gets the last-line bandwidth&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">last_line_bandwidth</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
     <span class="n">context</span><span class="o">.</span><span class="n">last_line_bandwidth</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">last_line_bandwidth</span>
     <span class="k">return</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="nd">@then</span><span class="p">(</span><span class="s">&quot;the last-line bandwidth is the iperf summary&quot;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="nd">@then</span><span class="p">(</span><span class="s2">&quot;the last-line bandwidth is the iperf summary&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">assert_iperf_summary</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
     <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">last_line_bandwidth</span><span class="p">,</span>
                 <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">expected</span><span class="p">)))</span>
@@ -243,68 +243,68 @@
 </div>
 <div class="section" id="example-csv-format">
 <h3>Example: CSV-Format<a class="headerlink" href="#example-csv-format" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">csv_data_sample</span> <span class="o">=</span> <span class="s">&#39;&#39;&#39;</span>
-<span class="s">20141222183631,192.168.10.11,55254,192.168.10.2,5001,3,0.0-1.0,3014656,24117248</span>
-<span class="s">20141222183631,192.168.10.11,55257,192.168.10.2,5001,6,0.0-1.0,3145728,25165824</span>
-<span class="s">20141222183631,192.168.10.11,55255,192.168.10.2,5001,4,0.0-1.0,3145728,25165824</span>
-<span class="s">20141222183631,192.168.10.11,55256,192.168.10.2,5001,5,0.0-1.0,3145728,25165824</span>
-<span class="s">20141222183631,192.168.10.11,0,192.168.10.2,5001,-1,0.0-1.0,12451840,99614720</span>
-<span class="s">20141222183632,192.168.10.11,55257,192.168.10.2,5001,6,1.0-2.0,2883584,23068672</span>
-<span class="s">20141222183632,192.168.10.11,55255,192.168.10.2,5001,4,1.0-2.0,2883584,23068672</span>
-<span class="s">20141222183632,192.168.10.11,55254,192.168.10.2,5001,3,1.0-2.0,3014656,24117248</span>
-<span class="s">20141222183632,192.168.10.11,55256,192.168.10.2,5001,5,1.0-2.0,2883584,23068672</span>
-<span class="s">20141222183632,192.168.10.11,0,192.168.10.2,5001,-1,1.0-2.0,11665408,93323264</span>
-<span class="s">20141222183633,192.168.10.11,55254,192.168.10.2,5001,3,2.0-3.0,2883584,23068672</span>
-<span class="s">20141222183633,192.168.10.11,55256,192.168.10.2,5001,5,2.0-3.0,2883584,23068672</span>
-<span class="s">20141222183633,192.168.10.11,55257,192.168.10.2,5001,6,2.0-3.0,3014656,24117248</span>
-<span class="s">20141222183633,192.168.10.11,55255,192.168.10.2,5001,4,2.0-3.0,3014656,24117248</span>
-<span class="s">20141222183633,192.168.10.11,0,192.168.10.2,5001,-1,2.0-3.0,11796480,94371840</span>
-<span class="s">20141222183634,192.168.10.11,55256,192.168.10.2,5001,5,3.0-4.0,2883584,23068672</span>
-<span class="s">20141222183634,192.168.10.11,55257,192.168.10.2,5001,6,3.0-4.0,2883584,23068672</span>
-<span class="s">20141222183634,192.168.10.11,55254,192.168.10.2,5001,3,3.0-4.0,3014656,24117248</span>
-<span class="s">20141222183634,192.168.10.11,55255,192.168.10.2,5001,4,3.0-4.0,2883584,23068672</span>
-<span class="s">20141222183634,192.168.10.11,0,192.168.10.2,5001,-1,3.0-4.0,11665408,93323264</span>
-<span class="s">20141222183635,192.168.10.11,55257,192.168.10.2,5001,6,4.0-5.0,2883584,23068672</span>
-<span class="s">20141222183635,192.168.10.11,55255,192.168.10.2,5001,4,4.0-5.0,2883584,23068672</span>
-<span class="s">20141222183635,192.168.10.11,55254,192.168.10.2,5001,3,4.0-5.0,2883584,23068672</span>
-<span class="s">20141222183635,192.168.10.11,55256,192.168.10.2,5001,5,4.0-5.0,3014656,24117248</span>
-<span class="s">20141222183635,192.168.10.11,0,192.168.10.2,5001,-1,4.0-5.0,11665408,93323264</span>
-<span class="s">20141222183636,192.168.10.11,55256,192.168.10.2,5001,5,5.0-6.0,2883584,23068672</span>
-<span class="s">20141222183636,192.168.10.11,55257,192.168.10.2,5001,6,5.0-6.0,3014656,24117248</span>
-<span class="s">20141222183636,192.168.10.11,55255,192.168.10.2,5001,4,5.0-6.0,3014656,24117248</span>
-<span class="s">20141222183636,192.168.10.11,55254,192.168.10.2,5001,3,5.0-6.0,3014656,24117248</span>
-<span class="s">20141222183636,192.168.10.11,0,192.168.10.2,5001,-1,5.0-6.0,11927552,95420416</span>
-<span class="s">20141222183637,192.168.10.11,55257,192.168.10.2,5001,6,6.0-7.0,2883584,23068672</span>
-<span class="s">20141222183637,192.168.10.11,55255,192.168.10.2,5001,4,6.0-7.0,2883584,23068672</span>
-<span class="s">20141222183637,192.168.10.11,55254,192.168.10.2,5001,3,6.0-7.0,2883584,23068672</span>
-<span class="s">20141222183637,192.168.10.11,55256,192.168.10.2,5001,5,6.0-7.0,3014656,24117248</span>
-<span class="s">20141222183637,192.168.10.11,0,192.168.10.2,5001,-1,6.0-7.0,11665408,93323264</span>
-<span class="s">20141222183638,192.168.10.11,55257,192.168.10.2,5001,6,7.0-8.0,2883584,23068672</span>
-<span class="s">20141222183638,192.168.10.11,55254,192.168.10.2,5001,3,7.0-8.0,2883584,23068672</span>
-<span class="s">20141222183638,192.168.10.11,55256,192.168.10.2,5001,5,7.0-8.0,2883584,23068672</span>
-<span class="s">20141222183638,192.168.10.11,55255,192.168.10.2,5001,4,7.0-8.0,3014656,24117248</span>
-<span class="s">20141222183638,192.168.10.11,0,192.168.10.2,5001,-1,7.0-8.0,11665408,93323264</span>
-<span class="s">20141222183639,192.168.10.11,55256,192.168.10.2,5001,5,8.0-9.0,2883584,23068672</span>
-<span class="s">20141222183639,192.168.10.11,55257,192.168.10.2,5001,6,8.0-9.0,3014656,24117248</span>
-<span class="s">20141222183639,192.168.10.11,55255,192.168.10.2,5001,4,8.0-9.0,2883584,23068672</span>
-<span class="s">20141222183639,192.168.10.11,55254,192.168.10.2,5001,3,8.0-9.0,3014656,24117248</span>
-<span class="s">20141222183639,192.168.10.11,0,192.168.10.2,5001,-1,8.0-9.0,11796480,94371840</span>
-<span class="s">20141222183640,192.168.10.11,55257,192.168.10.2,5001,6,9.0-10.0,2883584,23068672</span>
-<span class="s">20141222183640,192.168.10.11,55257,192.168.10.2,5001,6,0.0-10.1,29622272,23569322</span>
-<span class="s">20141222183640,192.168.10.11,55255,192.168.10.2,5001,4,9.0-10.0,2883584,23068672</span>
-<span class="s">20141222183640,192.168.10.11,55255,192.168.10.2,5001,4,0.0-10.1,29622272,23551349</span>
-<span class="s">20141222183640,192.168.10.11,55254,192.168.10.2,5001,3,9.0-10.0,2883584,23068672</span>
-<span class="s">20141222183640,192.168.10.11,55254,192.168.10.2,5001,3,0.0-10.1,29622272,23535348</span>
-<span class="s">20141222183640,192.168.10.11,55256,192.168.10.2,5001,5,9.0-10.0,3014656,24117248</span>
-<span class="s">20141222183640,192.168.10.11,0,192.168.10.2,5001,-1,9.0-10.0,11665408,93323264</span>
-<span class="s">20141222183640,192.168.10.11,55256,192.168.10.2,5001,5,0.0-10.1,29622272,23489978</span>
-<span class="s">20141222183640,192.168.10.11,0,192.168.10.2,5001,-1,0.0-10.1,118489088,{expected}</span>
-<span class="s">&#39;&#39;&#39;</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">csv_data_sample</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">20141222183631,192.168.10.11,55254,192.168.10.2,5001,3,0.0-1.0,3014656,24117248</span>
+<span class="s1">20141222183631,192.168.10.11,55257,192.168.10.2,5001,6,0.0-1.0,3145728,25165824</span>
+<span class="s1">20141222183631,192.168.10.11,55255,192.168.10.2,5001,4,0.0-1.0,3145728,25165824</span>
+<span class="s1">20141222183631,192.168.10.11,55256,192.168.10.2,5001,5,0.0-1.0,3145728,25165824</span>
+<span class="s1">20141222183631,192.168.10.11,0,192.168.10.2,5001,-1,0.0-1.0,12451840,99614720</span>
+<span class="s1">20141222183632,192.168.10.11,55257,192.168.10.2,5001,6,1.0-2.0,2883584,23068672</span>
+<span class="s1">20141222183632,192.168.10.11,55255,192.168.10.2,5001,4,1.0-2.0,2883584,23068672</span>
+<span class="s1">20141222183632,192.168.10.11,55254,192.168.10.2,5001,3,1.0-2.0,3014656,24117248</span>
+<span class="s1">20141222183632,192.168.10.11,55256,192.168.10.2,5001,5,1.0-2.0,2883584,23068672</span>
+<span class="s1">20141222183632,192.168.10.11,0,192.168.10.2,5001,-1,1.0-2.0,11665408,93323264</span>
+<span class="s1">20141222183633,192.168.10.11,55254,192.168.10.2,5001,3,2.0-3.0,2883584,23068672</span>
+<span class="s1">20141222183633,192.168.10.11,55256,192.168.10.2,5001,5,2.0-3.0,2883584,23068672</span>
+<span class="s1">20141222183633,192.168.10.11,55257,192.168.10.2,5001,6,2.0-3.0,3014656,24117248</span>
+<span class="s1">20141222183633,192.168.10.11,55255,192.168.10.2,5001,4,2.0-3.0,3014656,24117248</span>
+<span class="s1">20141222183633,192.168.10.11,0,192.168.10.2,5001,-1,2.0-3.0,11796480,94371840</span>
+<span class="s1">20141222183634,192.168.10.11,55256,192.168.10.2,5001,5,3.0-4.0,2883584,23068672</span>
+<span class="s1">20141222183634,192.168.10.11,55257,192.168.10.2,5001,6,3.0-4.0,2883584,23068672</span>
+<span class="s1">20141222183634,192.168.10.11,55254,192.168.10.2,5001,3,3.0-4.0,3014656,24117248</span>
+<span class="s1">20141222183634,192.168.10.11,55255,192.168.10.2,5001,4,3.0-4.0,2883584,23068672</span>
+<span class="s1">20141222183634,192.168.10.11,0,192.168.10.2,5001,-1,3.0-4.0,11665408,93323264</span>
+<span class="s1">20141222183635,192.168.10.11,55257,192.168.10.2,5001,6,4.0-5.0,2883584,23068672</span>
+<span class="s1">20141222183635,192.168.10.11,55255,192.168.10.2,5001,4,4.0-5.0,2883584,23068672</span>
+<span class="s1">20141222183635,192.168.10.11,55254,192.168.10.2,5001,3,4.0-5.0,2883584,23068672</span>
+<span class="s1">20141222183635,192.168.10.11,55256,192.168.10.2,5001,5,4.0-5.0,3014656,24117248</span>
+<span class="s1">20141222183635,192.168.10.11,0,192.168.10.2,5001,-1,4.0-5.0,11665408,93323264</span>
+<span class="s1">20141222183636,192.168.10.11,55256,192.168.10.2,5001,5,5.0-6.0,2883584,23068672</span>
+<span class="s1">20141222183636,192.168.10.11,55257,192.168.10.2,5001,6,5.0-6.0,3014656,24117248</span>
+<span class="s1">20141222183636,192.168.10.11,55255,192.168.10.2,5001,4,5.0-6.0,3014656,24117248</span>
+<span class="s1">20141222183636,192.168.10.11,55254,192.168.10.2,5001,3,5.0-6.0,3014656,24117248</span>
+<span class="s1">20141222183636,192.168.10.11,0,192.168.10.2,5001,-1,5.0-6.0,11927552,95420416</span>
+<span class="s1">20141222183637,192.168.10.11,55257,192.168.10.2,5001,6,6.0-7.0,2883584,23068672</span>
+<span class="s1">20141222183637,192.168.10.11,55255,192.168.10.2,5001,4,6.0-7.0,2883584,23068672</span>
+<span class="s1">20141222183637,192.168.10.11,55254,192.168.10.2,5001,3,6.0-7.0,2883584,23068672</span>
+<span class="s1">20141222183637,192.168.10.11,55256,192.168.10.2,5001,5,6.0-7.0,3014656,24117248</span>
+<span class="s1">20141222183637,192.168.10.11,0,192.168.10.2,5001,-1,6.0-7.0,11665408,93323264</span>
+<span class="s1">20141222183638,192.168.10.11,55257,192.168.10.2,5001,6,7.0-8.0,2883584,23068672</span>
+<span class="s1">20141222183638,192.168.10.11,55254,192.168.10.2,5001,3,7.0-8.0,2883584,23068672</span>
+<span class="s1">20141222183638,192.168.10.11,55256,192.168.10.2,5001,5,7.0-8.0,2883584,23068672</span>
+<span class="s1">20141222183638,192.168.10.11,55255,192.168.10.2,5001,4,7.0-8.0,3014656,24117248</span>
+<span class="s1">20141222183638,192.168.10.11,0,192.168.10.2,5001,-1,7.0-8.0,11665408,93323264</span>
+<span class="s1">20141222183639,192.168.10.11,55256,192.168.10.2,5001,5,8.0-9.0,2883584,23068672</span>
+<span class="s1">20141222183639,192.168.10.11,55257,192.168.10.2,5001,6,8.0-9.0,3014656,24117248</span>
+<span class="s1">20141222183639,192.168.10.11,55255,192.168.10.2,5001,4,8.0-9.0,2883584,23068672</span>
+<span class="s1">20141222183639,192.168.10.11,55254,192.168.10.2,5001,3,8.0-9.0,3014656,24117248</span>
+<span class="s1">20141222183639,192.168.10.11,0,192.168.10.2,5001,-1,8.0-9.0,11796480,94371840</span>
+<span class="s1">20141222183640,192.168.10.11,55257,192.168.10.2,5001,6,9.0-10.0,2883584,23068672</span>
+<span class="s1">20141222183640,192.168.10.11,55257,192.168.10.2,5001,6,0.0-10.1,29622272,23569322</span>
+<span class="s1">20141222183640,192.168.10.11,55255,192.168.10.2,5001,4,9.0-10.0,2883584,23068672</span>
+<span class="s1">20141222183640,192.168.10.11,55255,192.168.10.2,5001,4,0.0-10.1,29622272,23551349</span>
+<span class="s1">20141222183640,192.168.10.11,55254,192.168.10.2,5001,3,9.0-10.0,2883584,23068672</span>
+<span class="s1">20141222183640,192.168.10.11,55254,192.168.10.2,5001,3,0.0-10.1,29622272,23535348</span>
+<span class="s1">20141222183640,192.168.10.11,55256,192.168.10.2,5001,5,9.0-10.0,3014656,24117248</span>
+<span class="s1">20141222183640,192.168.10.11,0,192.168.10.2,5001,-1,9.0-10.0,11665408,93323264</span>
+<span class="s1">20141222183640,192.168.10.11,55256,192.168.10.2,5001,5,0.0-10.1,29622272,23489978</span>
+<span class="s1">20141222183640,192.168.10.11,0,192.168.10.2,5001,-1,0.0-10.1,118489088,{expected}</span>
+<span class="s1">&#39;&#39;&#39;</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="nd">@given</span><span class="p">(</span><span class="s">&quot;a data set of csv-formatted iperf output&quot;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="nd">@given</span><span class="p">(</span><span class="s2">&quot;a data set of csv-formatted iperf output&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">csv_input</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
-    <span class="n">context</span><span class="o">.</span><span class="n">parser</span> <span class="o">=</span> <span class="n">SumParser</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="s">&#39;bits&#39;</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">parser</span> <span class="o">=</span> <span class="n">SumParser</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="s1">&#39;bits&#39;</span><span class="p">)</span>
     <span class="n">context</span><span class="o">.</span><span class="n">expected</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
 
     <span class="n">csv_data</span> <span class="o">=</span> <span class="n">csv_data_sample</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">expected</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">expected</span><span class="p">)</span>
@@ -330,7 +330,7 @@
     </p>
     <p>
         &copy; Copyright 2013, cloistered monkey.<br/>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.<br/>
     </p>
   </div>
 </footer>

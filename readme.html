@@ -9,7 +9,7 @@
     
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootswatch-3.2.0/readable/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootswatch-3.3.4/spacelab/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
@@ -26,7 +26,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="IperfLexer 0.1.4 documentation" href="index.html" />
     <link rel="next" title="The SumParser" href="sumparser.html" />
@@ -37,7 +37,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 
   </head>
-  <body>
+  <body role="document">
 
   <div id="navbar" class="navbar navbar-default navbar-fixed-top">
     <div class="container">
@@ -162,33 +162,33 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12 content">
       
   <div class="section" id="the-iperf-lexer-read-me">
 <h1>The Iperf Lexer (Read Me)<a class="headerlink" href="#the-iperf-lexer-read-me" title="Permalink to this headline">¶</a></h1>
 <p>This is a program to extract bandwidths and data transfers from <a class="reference external" href="http://sourceforge.net/projects/iperf/">iperf</a> output. To install it you can use pip.</p>
-<div class="highlight-python"><div class="highlight"><pre>pip install iperflexer
+<div class="highlight-python"><div class="highlight"><pre><span></span>pip install iperflexer
 </pre></div>
 </div>
-<p>It is meant to be used with files with data-reporting intervals shorter than the total run-time (e.g. 1 second intervals). Once installed it creates a command-line command named <tt class="docutils literal"><span class="pre">parseiperf</span></tt> and can also be used as a library (see the <a class="reference external" href="https://pythonhosted.org//iperflexer/sumparser.html#using-the-sumparser">SumParser</a> class documentation for an example of using it this way).</p>
+<p>It is meant to be used with files with data-reporting intervals shorter than the total run-time (e.g. 1 second intervals). Once installed it creates a command-line command named <code class="docutils literal"><span class="pre">parseiperf</span></code> and can also be used as a library (see the <a class="reference external" href="https://pythonhosted.org//iperflexer/sumparser.html#using-the-sumparser">SumParser</a> class documentation for an example of using it this way).</p>
 <div class="section" id="running-it">
 <h2>Running It<a class="headerlink" href="#running-it" title="Permalink to this headline">¶</a></h2>
 <p>The original idea behind it was to use it as part of a pipeline so you can pipe iperf output to it directly</p>
-<div class="highlight-python"><div class="highlight"><pre>iperf -c 192.168.10.5 -i 1 -P 4 | parseiperf
+<div class="highlight-python"><div class="highlight"><pre><span></span>iperf -c 192.168.10.5 -i 1 -P 4 | parseiperf
 </pre></div>
 </div>
-<p>Which will then send the total bandwidth for each interval to standard-output (it does this so that it can then be piped to another command). You can also <tt class="docutils literal"><span class="pre">cat</span></tt> an existing file to it:</p>
-<div class="highlight-python"><div class="highlight"><pre>cat test.iperf | parseiperf
+<p>Which will then send the total bandwidth for each interval to standard-output (it does this so that it can then be piped to another command). You can also <code class="docutils literal"><span class="pre">cat</span></code> an existing file to it:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>cat test.iperf | parseiperf
 </pre></div>
 </div>
 </div>
 <div class="section" id="the-command-line-options">
 <h2>The Command-Line Options<a class="headerlink" href="#the-command-line-options" title="Permalink to this headline">¶</a></h2>
 <p>You can get a list of the options using the help option.</p>
-<div class="code bash highlight-python"><div class="highlight"><pre><span class="n">parseiperf</span> <span class="o">-</span><span class="n">h</span>
+<div class="code bash highlight-python"><div class="highlight"><pre><span></span><span class="n">parseiperf</span> <span class="o">-</span><span class="n">h</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>usage: parseiperf [-h] [-g GLOB] [-u UNITS] [-i INTERVAL]
+<div class="highlight-python"><div class="highlight"><pre><span></span>usage: parseiperf [-h] [-g GLOB] [-u UNITS] [-i INTERVAL]
                   [--tolerance TOLERANCE] [-s] [-v] [--pudb] [--pdb] [-t]
                   [-p THREADS] [-m MAXIMUM] [-l] [-d]
 
@@ -226,57 +226,57 @@ optional arguments:
 </div>
 <div class="section" id="glob">
 <h3>Glob<a class="headerlink" href="#glob" title="Permalink to this headline">¶</a></h3>
-<p>Although I said above that you pipe input to the <tt class="docutils literal"><span class="pre">parseiperf</span></tt> command you can also use a file-glob to pass in file-names to it. It descends into all sub-directories to look for matches so you need to make sure the glob is restrictive enough to not match unexpected files and you also need to surround it with quotation marks (so that the shell&#8217;s interface doesn&#8217;t expand the glob before passing it to the command). The output for all the files will be concatenated and output to standard output.</p>
-<div class="highlight-python"><div class="highlight"><pre>parseiperf -g &quot;*.iperf&quot;
+<p>Although I said above that you pipe input to the <code class="docutils literal"><span class="pre">parseiperf</span></code> command you can also use a file-glob to pass in file-names to it. It descends into all sub-directories to look for matches so you need to make sure the glob is restrictive enough to not match unexpected files and you also need to surround it with quotation marks (so that the shell&#8217;s interface doesn&#8217;t expand the glob before passing it to the command). The output for all the files will be concatenated and output to standard output.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>parseiperf -g &quot;*.iperf&quot;
 </pre></div>
 </div>
 <p>Although my example uses a glob you could just pass in a file name.</p>
 </div>
 <div class="section" id="units">
 <h3>Units<a class="headerlink" href="#units" title="Permalink to this headline">¶</a></h3>
-<p>The <tt class="docutils literal"><span class="pre">--units</span></tt> tells the <cite>iperflexer</cite> what units the bandwidths should use. One of the reasons for this code was to allow the iperf raw-data to be output in bits per second and then converted later to the more human-readable Megabits or Gigabits per second. The names for the units is meant to match the iperf headers (so to get megabits-per-second use <cite>Mbits</cite>).</p>
+<p>The <code class="docutils literal"><span class="pre">--units</span></code> tells the <cite>iperflexer</cite> what units the bandwidths should use. One of the reasons for this code was to allow the iperf raw-data to be output in bits per second and then converted later to the more human-readable Megabits or Gigabits per second. The names for the units is meant to match the iperf headers (so to get megabits-per-second use <cite>Mbits</cite>).</p>
 </div>
 <div class="section" id="saves">
 <h3>Saves<a class="headerlink" href="#saves" title="Permalink to this headline">¶</a></h3>
-<p>As noted above, the default behavior is to send output to standard output, concatenating the values for multiple data-files, but if you passed in a file-name-glob you can use the <tt class="docutils literal"><span class="pre">--save</span></tt> option and it will save the output for each input file to a separate file. The output-file-names will be the input-file-names with <cite>_parsed.csv</cite> appended to them.</p>
+<p>As noted above, the default behavior is to send output to standard output, concatenating the values for multiple data-files, but if you passed in a file-name-glob you can use the <code class="docutils literal"><span class="pre">--save</span></code> option and it will save the output for each input file to a separate file. The output-file-names will be the input-file-names with <cite>_parsed.csv</cite> appended to them.</p>
 </div>
 <div class="section" id="voodoo">
 <h3>VooDoo<a class="headerlink" href="#voodoo" title="Permalink to this headline">¶</a></h3>
-<p>The <tt class="docutils literal"><span class="pre">--voodoo</span></tt> flag will tell <tt class="docutils literal"><span class="pre">iperflexer</span></tt> to re-add the individual threads (otherwise it uses the summed-values that iperf provides). In retrospect this should have been the default, but I didn&#8217;t have a complete enough understanding of how iperf&#8217;s reporting worked when I created the command-line interface. If you are doing a time-series analysis, the <tt class="docutils literal"><span class="pre">--voodoo</span></tt> interval sums will catch reporting intervals that are missing their summation lines and so should be considered better for that case. The intervals aren&#8217;t quiet right for re-calculating the total values though, so you should use the <tt class="docutils literal"><span class="pre">--lastlinebandwidth</span></tt> and <tt class="docutils literal"><span class="pre">--lastlinetransfers</span></tt> if you are trying to find the values for the entire session.</p>
+<p>The <code class="docutils literal"><span class="pre">--voodoo</span></code> flag will tell <code class="docutils literal"><span class="pre">iperflexer</span></code> to re-add the individual threads (otherwise it uses the summed-values that iperf provides). In retrospect this should have been the default, but I didn&#8217;t have a complete enough understanding of how iperf&#8217;s reporting worked when I created the command-line interface. If you are doing a time-series analysis, the <code class="docutils literal"><span class="pre">--voodoo</span></code> interval sums will catch reporting intervals that are missing their summation lines and so should be considered better for that case. The intervals aren&#8217;t quiet right for re-calculating the total values though, so you should use the <code class="docutils literal"><span class="pre">--lastlinebandwidth</span></code> and <code class="docutils literal"><span class="pre">--lastlinetransfers</span></code> if you are trying to find the values for the entire session.</p>
 </div>
 <div class="section" id="debugging">
 <h3>Debugging<a class="headerlink" href="#debugging" title="Permalink to this headline">¶</a></h3>
-<p>The <tt class="docutils literal"><span class="pre">--pudb</span></tt> and <tt class="docutils literal"><span class="pre">--pdb</span></tt> options will start the chosen debugger before running the command.</p>
+<p>The <code class="docutils literal"><span class="pre">--pudb</span></code> and <code class="docutils literal"><span class="pre">--pdb</span></code> options will start the chosen debugger before running the command.</p>
 </div>
 <div class="section" id="tee">
 <h3>Tee<a class="headerlink" href="#tee" title="Permalink to this headline">¶</a></h3>
-<p>The <tt class="docutils literal"><span class="pre">--tee</span></tt> option tells the command to send the un-parsed iperf lines to standard error. This way if you use it in the originally intended way (piping to another command) you can still see what happened or you can pipe it to another command (including another instance of the <tt class="docutils literal"><span class="pre">parseiperf</span></tt> command).</p>
+<p>The <code class="docutils literal"><span class="pre">--tee</span></code> option tells the command to send the un-parsed iperf lines to standard error. This way if you use it in the originally intended way (piping to another command) you can still see what happened or you can pipe it to another command (including another instance of the <code class="docutils literal"><span class="pre">parseiperf</span></code> command).</p>
 </div>
 <div class="section" id="threads">
 <h3>Threads<a class="headerlink" href="#threads" title="Permalink to this headline">¶</a></h3>
-<p>By default, it is assumed that only one thread is being used. If more than one thread was used the number of threads has to be specified by passing in the <tt class="docutils literal"><span class="pre">--threads</span></tt> option. I might change it to make it infer them but I originally chose to do it this way because it seemed safest in the event of incomplete data output.</p>
+<p>By default, it is assumed that only one thread is being used. If more than one thread was used the number of threads has to be specified by passing in the <code class="docutils literal"><span class="pre">--threads</span></code> option. I might change it to make it infer them but I originally chose to do it this way because it seemed safest in the event of incomplete data output.</p>
 </div>
 <div class="section" id="maximum">
 <h3>Maximum<a class="headerlink" href="#maximum" title="Permalink to this headline">¶</a></h3>
-<p>Sometimes when the bandwidth gets really small iperf seems to react by generating an unbelievably large number. When the <tt class="docutils literal"><span class="pre">iperflexer</span></tt> sees a bandwidth that&#8217;s larger than what&#8217;s set as the <tt class="docutils literal"><span class="pre">--maximum</span></tt> (default is <img class="math" src="_images/math/550df0159f2d6d5bf2a137c8484c0b557cf6edde.png" alt="10^6"/>) it will report the value as 0.</p>
+<p>Sometimes when the bandwidth gets really small iperf seems to react by generating an unbelievably large number. When the <code class="docutils literal"><span class="pre">iperflexer</span></code> sees a bandwidth that&#8217;s larger than what&#8217;s set as the <code class="docutils literal"><span class="pre">--maximum</span></code> (default is <img class="math" src="_images/math/550df0159f2d6d5bf2a137c8484c0b557cf6edde.png" alt="10^6"/>) it will report the value as 0.</p>
 </div>
 <div class="section" id="last-line-bandwidth">
 <h3>Last Line Bandwidth<a class="headerlink" href="#last-line-bandwidth" title="Permalink to this headline">¶</a></h3>
 <p>If set, this will grab the last sum-line whose interval is bigger than the interval given (which is assumed to be the bandwidth-rate that iperf calculated for the session). This will generally be different from the value you would get if you were to re-add the interval counts, especially if any of the threads doesn&#8217;t report back in time for the interval (it looks like iperf drops the value for the interval&#8217;s reporting but adds it in once the thread does report back). Since it&#8217;s usually the last line you could probably get it with some clever <cite>tail</cite> and <cite>sed</cite> combining or some other command-line combination, but this will also convert the units for you and allow you to process a set of files. Suppose you wanted to create a column of the bandwidth summaries for files that start with &#8216;client&#8217; and end with &#8216;iperf&#8217; and you want to store the outcome in &#8216;client_summaries.csv&#8217;. You could do it with:</p>
-<div class="highlight-python"><div class="highlight"><pre>parseiperf -g &quot;client*iperf&quot; -l &gt; client_summaries.csv
+<div class="highlight-python"><div class="highlight"><pre><span></span>parseiperf -g &quot;client*iperf&quot; -l &gt; client_summaries.csv
 </pre></div>
 </div>
 </div>
 <div class="section" id="last-line-transfer">
 <h3>Last Line Transfer<a class="headerlink" href="#last-line-transfer" title="Permalink to this headline">¶</a></h3>
 <p>As you might suspect, this tries to grab the last reported data-transfer (the transfer for the entire interval). It is currently mutually-exclusive to the last line bandwidth. This should be changed eventually. An example to gather the server-side information (assuming the names are meaningful):</p>
-<div class="highlight-python"><div class="highlight"><pre>parseiperf -g &quot;server*iperf&quot; -d &gt; server_transfer_summaries.csv
+<div class="highlight-python"><div class="highlight"><pre><span></span>parseiperf -g &quot;server*iperf&quot; -d &gt; server_transfer_summaries.csv
 </pre></div>
 </div>
 </div>
 <div class="section" id="interval">
 <h3>Interval<a class="headerlink" href="#interval" title="Permalink to this headline">¶</a></h3>
-<p>The expected reporting interval (e.g. every second is <tt class="docutils literal"><span class="pre">-i</span> <span class="pre">1</span></tt>). If the interval found on a line exceeds the expected interval, then it is assumed to be a total summation line and not used by the interval values, but is used by the SumParser.last_line_bandwidth and last_line_transfer.</p>
+<p>The expected reporting interval (e.g. every second is <code class="docutils literal"><span class="pre">-i</span> <span class="pre">1</span></code>). If the interval found on a line exceeds the expected interval, then it is assumed to be a total summation line and not used by the interval values, but is used by the SumParser.last_line_bandwidth and last_line_transfer.</p>
 </div>
 <div class="section" id="tolerance">
 <h3>Tolerance<a class="headerlink" href="#tolerance" title="Permalink to this headline">¶</a></h3>
@@ -287,37 +287,37 @@ optional arguments:
 <h2>Building the Documentation<a class="headerlink" href="#building-the-documentation" title="Permalink to this headline">¶</a></h2>
 <p>I try to keep an updated build of the documentation on the web at <a class="reference external" href="https://rsnakamura.github.io/iperflexer/">GitHub</a> and <a class="reference external" href="https://pythonhosted.org/iperflexer/">pypi</a> but these instructions should help if you want to build them yourself.</p>
 <p>The code was written in a literate programming style using <a class="reference external" href="http://mpastell.com/pweave/">Pweave</a> so next to each python file you will also find a restructured-text file used for the documentation &#8211; the python package is also the <a class="reference external" href="http://sphinx-doc.org/">sphinx</a> source for the documentation. If you want to edit or re-generate a file you need pweave:</p>
-<div class="highlight-python"><div class="highlight"><pre>pip install pweave
+<div class="highlight-python"><div class="highlight"><pre><span></span>pip install pweave
 </pre></div>
 </div>
-<p>Note that pweave has changed since I started using it, requiring Python 3 style <tt class="docutils literal"><span class="pre">print</span></tt> functions instead of the older python <tt class="docutils literal"><span class="pre">print</span></tt> statements so if you install it now some of the files may raise an error when weaving (generating the rst files). I don&#8217;t <em>think</em> they will since I&#8217;m using stdout and stderr directly, not printing, but buyer beware.</p>
+<p>Note that pweave has changed since I started using it, requiring Python 3 style <code class="docutils literal"><span class="pre">print</span></code> functions instead of the older python <code class="docutils literal"><span class="pre">print</span></code> statements so if you install it now some of the files may raise an error when weaving (generating the rst files). I don&#8217;t <em>think</em> they will since I&#8217;m using stdout and stderr directly, not printing, but buyer beware.</p>
 <p>Pweave itself requires matplotlib if you want to generate the rst files (it&#8217;s meant to facilitate <a class="reference external" href="http://www.ploscompbiol.org/article/info%3Adoi%2F10.1371%2Fjournal.pcbi.1003285">reproducible research</a> and it has some conveniences for creating plots with matplotlib). So if you want to create the rst files you need to install it:</p>
-<div class="highlight-python"><div class="highlight"><pre>pip install matplotlib
+<div class="highlight-python"><div class="highlight"><pre><span></span>pip install matplotlib
 </pre></div>
 </div>
 <p>Matplotlib itself requires numpy and they can take a long time to build. If you&#8217;re not into building them just for this and you have a package manager it&#8217;s probably better to use it. For debian-based systems:</p>
-<div class="highlight-python"><div class="highlight"><pre>sudo apt-get install python-matplotlib
+<div class="highlight-python"><div class="highlight"><pre><span></span>sudo apt-get install python-matplotlib
 </pre></div>
 </div>
 <p>Since it&#8217;s a sphinx repository you&#8217;ll of course need sphinx:</p>
-<div class="highlight-python"><div class="highlight"><pre>pip install sphinx
+<div class="highlight-python"><div class="highlight"><pre><span></span>pip install sphinx
 </pre></div>
 </div>
 <p>I&#8217;m using the <a class="reference external" href="https://github.com/bitprophet/alabaster">alabaster</a> sphinx theme so you need that too:</p>
-<div class="highlight-python"><div class="highlight"><pre>pip install alabaster
+<div class="highlight-python"><div class="highlight"><pre><span></span>pip install alabaster
 </pre></div>
 </div>
-<p>At the moment I&#8217;m using <tt class="docutils literal"><span class="pre">sphinxcontrib-plantuml</span></tt> for the UML diagrams. If you want them you&#8217;ll need both plantuml and the sphinx extension:</p>
-<div class="highlight-python"><div class="highlight"><pre>apt-get install plantuml
+<p>At the moment I&#8217;m using <code class="docutils literal"><span class="pre">sphinxcontrib-plantuml</span></code> for the UML diagrams. If you want them you&#8217;ll need both plantuml and the sphinx extension:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>apt-get install plantuml
 apt-get install graphviz
 pip install sphinxcontrib-plantuml
 </pre></div>
 </div>
 <p>I think that&#8217;s everything. If it is, then when you&#8217;re next to the <cite>Makefile</cite> you can build the (html) documentation with:</p>
-<div class="highlight-python"><div class="highlight"><pre>make html
+<div class="highlight-python"><div class="highlight"><pre><span></span>make html
 </pre></div>
 </div>
-<p>And it will output the html files to <tt class="docutils literal"><span class="pre">build/html</span></tt>.</p>
+<p>And it will output the html files to <code class="docutils literal"><span class="pre">build/html</span></code>.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">I <cite>rsync</cite> the html files to a folder where my apache server can see it so if you build it before I remember to get rid of that in the Makefile you will likely see an error but that shouldn&#8217;t affect the built documentation (although if just by coincidence you have the exact same file structure as me it might clobber something (sorry)).</p>
@@ -325,7 +325,7 @@ pip install sphinxcontrib-plantuml
 </div>
 <div class="section" id="running-the-tests">
 <h2>Running the Tests<a class="headerlink" href="#running-the-tests" title="Permalink to this headline">¶</a></h2>
-<p>I was originally using python&#8217;s <tt class="docutils literal"><span class="pre">unittest</span></tt> module but I&#8217;ve switched over to using <tt class="docutils literal"><span class="pre">behave</span></tt> and <tt class="docutils literal"><span class="pre">pyhamcrest</span></tt> so the tests at the top of the package need <tt class="docutils literal"><span class="pre">nosetests</span></tt> and the tests in the <cite>iperflexer/tests</cite> folder need <a class="reference external" href="https://pypi.python.org/pypi/behave">behave</a> and <a class="reference external" href="https://pypi.python.org/pypi/PyHamcrest">PyHamcrest</a>.</p>
+<p>I was originally using python&#8217;s <code class="docutils literal"><span class="pre">unittest</span></code> module but I&#8217;ve switched over to using <code class="docutils literal"><span class="pre">behave</span></code> and <code class="docutils literal"><span class="pre">pyhamcrest</span></code> so the tests at the top of the package need <code class="docutils literal"><span class="pre">nosetests</span></code> and the tests in the <cite>iperflexer/tests</cite> folder need <a class="reference external" href="https://pypi.python.org/pypi/behave">behave</a> and <a class="reference external" href="https://pypi.python.org/pypi/PyHamcrest">PyHamcrest</a>.</p>
 </div>
 </div>
 
@@ -342,7 +342,7 @@ pip install sphinxcontrib-plantuml
     </p>
     <p>
         &copy; Copyright 2013, cloistered monkey.<br/>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.<br/>
     </p>
   </div>
 </footer>

@@ -1,6 +1,9 @@
 Index Builder
 =============
 
+
+
+
 .. module:: iperflexer.infrastructure.index_builder
 
 .. _index-builder-introduction:
@@ -33,6 +36,7 @@ The first non-empty line of the included files will be used as the `pretty name`
 
 
 
+
 The Toctree Creator
 -------------------
 
@@ -40,12 +44,13 @@ This function will generate a toctree by applying the :ref:`assumptions <index-b
 
     <<name='example', echo=False, wrap=False, results='sphinx'>>=
     create_toctree(maxdepth=1)
-    
+    @
 
 .. autosummary::
    :toctree: api
 
    create_toctree
+
 
 
 Subfolder Toctree
@@ -57,4 +62,6 @@ For sub-folders there are different cases. I think most of the time it is easies
    :toctree: api
 
    subfolder_toctree
+
+
 

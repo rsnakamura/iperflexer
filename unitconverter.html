@@ -9,7 +9,7 @@
     
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootswatch-3.2.0/readable/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootswatch-3.3.4/spacelab/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
@@ -26,18 +26,16 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="IperfLexer 0.1.4 documentation" href="index.html" />
-    <link rel="next" title="iperflexer.unitconverter.BaseConverter" href="api/iperflexer.unitconverter.BaseConverter.html" />
-    <link rel="prev" title="iperflexer.sumparser.SumParser.reset" href="api/iperflexer.sumparser.SumParser.reset.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
 <meta name="apple-mobile-web-app-capable" content="yes">
 
   </head>
-  <body>
+  <body role="document">
 
   <div id="navbar" class="navbar navbar-default navbar-fixed-top">
     <div class="container">
@@ -131,14 +129,6 @@
             
               
                 
-  <li>
-    <a href="api/iperflexer.sumparser.SumParser.reset.html" title="Previous Chapter: iperflexer.sumparser.SumParser.reset"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; iperflexer.sumpa...</span>
-    </a>
-  </li>
-  <li>
-    <a href="api/iperflexer.unitconverter.BaseConverter.html" title="Next Chapter: iperflexer.unitconverter.BaseConverter"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">iperflexer.unitc... &raquo;</span>
-    </a>
-  </li>
               
             
             
@@ -168,7 +158,7 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12 content">
       
   <div class="section" id="the-unit-converter">
 <h1>The Unit Converter<a class="headerlink" href="#the-unit-converter" title="Permalink to this headline">¶</a></h1>
@@ -179,81 +169,81 @@
 <div class="section" id="decimal-unit-names">
 <h3>Decimal Unit Names<a class="headerlink" href="#decimal-unit-names" title="Permalink to this headline">¶</a></h3>
 <p>These are base-10 units. The intention is to use them to convert the iperf (goodput) output so the strings themselves have to match the units iperf uses. Bit to make it easier to remember I&#8217;m aliasing them with long-names as well.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">UnitNames</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">UnitNames</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Unit Names is a namespace to hold units</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">__slots__</span> <span class="o">=</span> <span class="p">()</span>
-    <span class="c">#bits</span>
-    <span class="n">bits</span> <span class="o">=</span> <span class="s">&quot;bits&quot;</span>
-    <span class="n">kbits</span> <span class="o">=</span> <span class="s">&quot;K&quot;</span> <span class="o">+</span> <span class="n">bits</span>
+    <span class="c1">#bits</span>
+    <span class="n">bits</span> <span class="o">=</span> <span class="s2">&quot;bits&quot;</span>
+    <span class="n">kbits</span> <span class="o">=</span> <span class="s2">&quot;K&quot;</span> <span class="o">+</span> <span class="n">bits</span>
     <span class="n">kilobits</span> <span class="o">=</span> <span class="n">kbits</span>
-    <span class="n">mbits</span> <span class="o">=</span> <span class="s">&quot;M&quot;</span> <span class="o">+</span> <span class="n">bits</span>
+    <span class="n">mbits</span> <span class="o">=</span> <span class="s2">&quot;M&quot;</span> <span class="o">+</span> <span class="n">bits</span>
     <span class="n">megabits</span> <span class="o">=</span> <span class="n">mbits</span>
-    <span class="n">gbits</span> <span class="o">=</span> <span class="s">&quot;G&quot;</span> <span class="o">+</span> <span class="n">bits</span>
+    <span class="n">gbits</span> <span class="o">=</span> <span class="s2">&quot;G&quot;</span> <span class="o">+</span> <span class="n">bits</span>
     <span class="n">gigabits</span> <span class="o">=</span> <span class="n">gbits</span>
-    <span class="n">tbits</span> <span class="o">=</span> <span class="s">&quot;T&quot;</span> <span class="o">+</span> <span class="n">bits</span>
+    <span class="n">tbits</span> <span class="o">=</span> <span class="s2">&quot;T&quot;</span> <span class="o">+</span> <span class="n">bits</span>
     <span class="n">terabits</span> <span class="o">=</span> <span class="n">tbits</span>
-    <span class="n">pbits</span> <span class="o">=</span> <span class="s">&quot;P&quot;</span> <span class="o">+</span> <span class="n">bits</span>
+    <span class="n">pbits</span> <span class="o">=</span> <span class="s2">&quot;P&quot;</span> <span class="o">+</span> <span class="n">bits</span>
     <span class="n">petabits</span> <span class="o">=</span> <span class="n">pbits</span>
-    <span class="n">ebits</span> <span class="o">=</span> <span class="s">&quot;E&quot;</span> <span class="o">+</span> <span class="n">bits</span>
+    <span class="n">ebits</span> <span class="o">=</span> <span class="s2">&quot;E&quot;</span> <span class="o">+</span> <span class="n">bits</span>
     <span class="n">exabits</span> <span class="o">=</span> <span class="n">ebits</span>
-    <span class="n">zbits</span> <span class="o">=</span> <span class="s">&quot;Z&quot;</span> <span class="o">+</span> <span class="n">bits</span>
+    <span class="n">zbits</span> <span class="o">=</span> <span class="s2">&quot;Z&quot;</span> <span class="o">+</span> <span class="n">bits</span>
     <span class="n">zettabits</span> <span class="o">=</span> <span class="n">zbits</span>
-    <span class="n">ybits</span> <span class="o">=</span> <span class="s">&quot;Y&quot;</span> <span class="o">+</span> <span class="n">bits</span>
+    <span class="n">ybits</span> <span class="o">=</span> <span class="s2">&quot;Y&quot;</span> <span class="o">+</span> <span class="n">bits</span>
     <span class="n">yottabits</span> <span class="o">=</span> <span class="n">ybits</span>
 
-    <span class="c"># bytes</span>
-    <span class="nb">bytes</span> <span class="o">=</span> <span class="s">&quot;Bytes&quot;</span>
-    <span class="n">kbytes</span> <span class="o">=</span> <span class="s">&quot;K&quot;</span> <span class="o">+</span> <span class="nb">bytes</span>
+    <span class="c1"># bytes</span>
+    <span class="nb">bytes</span> <span class="o">=</span> <span class="s2">&quot;Bytes&quot;</span>
+    <span class="n">kbytes</span> <span class="o">=</span> <span class="s2">&quot;K&quot;</span> <span class="o">+</span> <span class="nb">bytes</span>
     <span class="n">kilobytes</span> <span class="o">=</span> <span class="n">kbytes</span>
-    <span class="n">mbytes</span> <span class="o">=</span> <span class="s">&quot;M&quot;</span> <span class="o">+</span> <span class="nb">bytes</span>
+    <span class="n">mbytes</span> <span class="o">=</span> <span class="s2">&quot;M&quot;</span> <span class="o">+</span> <span class="nb">bytes</span>
     <span class="n">megabytes</span> <span class="o">=</span> <span class="n">mbytes</span>
-    <span class="n">gbytes</span> <span class="o">=</span> <span class="s">&quot;G&quot;</span> <span class="o">+</span> <span class="nb">bytes</span>
+    <span class="n">gbytes</span> <span class="o">=</span> <span class="s2">&quot;G&quot;</span> <span class="o">+</span> <span class="nb">bytes</span>
     <span class="n">gigabytes</span> <span class="o">=</span> <span class="n">gbytes</span>
-    <span class="n">tbytes</span> <span class="o">=</span> <span class="s">&quot;T&quot;</span> <span class="o">+</span> <span class="nb">bytes</span>
+    <span class="n">tbytes</span> <span class="o">=</span> <span class="s2">&quot;T&quot;</span> <span class="o">+</span> <span class="nb">bytes</span>
     <span class="n">terabytes</span> <span class="o">=</span> <span class="n">tbytes</span>
-    <span class="n">pbytes</span> <span class="o">=</span> <span class="s">&quot;P&quot;</span> <span class="o">+</span> <span class="nb">bytes</span>
+    <span class="n">pbytes</span> <span class="o">=</span> <span class="s2">&quot;P&quot;</span> <span class="o">+</span> <span class="nb">bytes</span>
     <span class="n">petabytes</span> <span class="o">=</span> <span class="n">pbytes</span>
-    <span class="n">ebytes</span> <span class="o">=</span> <span class="s">&quot;E&quot;</span> <span class="o">+</span> <span class="nb">bytes</span>
+    <span class="n">ebytes</span> <span class="o">=</span> <span class="s2">&quot;E&quot;</span> <span class="o">+</span> <span class="nb">bytes</span>
     <span class="n">exabytes</span> <span class="o">=</span> <span class="n">ebytes</span>
-    <span class="n">zbytes</span> <span class="o">=</span> <span class="s">&#39;Z&#39;</span> <span class="o">+</span> <span class="nb">bytes</span>
+    <span class="n">zbytes</span> <span class="o">=</span> <span class="s1">&#39;Z&#39;</span> <span class="o">+</span> <span class="nb">bytes</span>
     <span class="n">zettabytes</span> <span class="o">=</span> <span class="n">zbytes</span>
-    <span class="n">ybytes</span> <span class="o">=</span> <span class="s">&#39;Y&#39;</span> <span class="o">+</span> <span class="nb">bytes</span>
+    <span class="n">ybytes</span> <span class="o">=</span> <span class="s1">&#39;Y&#39;</span> <span class="o">+</span> <span class="nb">bytes</span>
     <span class="n">yottabytes</span> <span class="o">=</span> <span class="n">ybytes</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="binary-unit-names">
 <h3>Binary Unit Names<a class="headerlink" href="#binary-unit-names" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">BinaryUnitNames</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">BinaryUnitNames</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    namespace for binary-unit names</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">__slots__</span> <span class="o">=</span> <span class="p">()</span>
     <span class="n">bits</span> <span class="o">=</span> <span class="n">UnitNames</span><span class="o">.</span><span class="n">bits</span>
-    <span class="n">bibits</span> <span class="o">=</span> <span class="s">&#39;bi&#39;</span> <span class="o">+</span> <span class="n">bits</span>
-    <span class="n">kibibits</span> <span class="o">=</span> <span class="s">&quot;ki&quot;</span> <span class="o">+</span> <span class="n">bibits</span>
-    <span class="n">mebibits</span> <span class="o">=</span> <span class="s">&#39;me&#39;</span> <span class="o">+</span> <span class="n">bibits</span>
-    <span class="n">gibibits</span> <span class="o">=</span> <span class="s">&quot;gi&quot;</span> <span class="o">+</span> <span class="n">bibits</span>
-    <span class="n">tebibits</span> <span class="o">=</span> <span class="s">&quot;te&quot;</span> <span class="o">+</span> <span class="n">bibits</span>
-    <span class="n">pebibits</span> <span class="o">=</span> <span class="s">&quot;pe&quot;</span> <span class="o">+</span> <span class="n">bibits</span>
-    <span class="n">exbibits</span> <span class="o">=</span> <span class="s">&quot;ex&quot;</span> <span class="o">+</span> <span class="n">bibits</span>
-    <span class="n">zebibits</span> <span class="o">=</span> <span class="s">&quot;ze&quot;</span> <span class="o">+</span> <span class="n">bibits</span>
-    <span class="n">yobibits</span> <span class="o">=</span> <span class="s">&quot;yo&quot;</span> <span class="o">+</span> <span class="n">bibits</span>
+    <span class="n">bibits</span> <span class="o">=</span> <span class="s1">&#39;bi&#39;</span> <span class="o">+</span> <span class="n">bits</span>
+    <span class="n">kibibits</span> <span class="o">=</span> <span class="s2">&quot;ki&quot;</span> <span class="o">+</span> <span class="n">bibits</span>
+    <span class="n">mebibits</span> <span class="o">=</span> <span class="s1">&#39;me&#39;</span> <span class="o">+</span> <span class="n">bibits</span>
+    <span class="n">gibibits</span> <span class="o">=</span> <span class="s2">&quot;gi&quot;</span> <span class="o">+</span> <span class="n">bibits</span>
+    <span class="n">tebibits</span> <span class="o">=</span> <span class="s2">&quot;te&quot;</span> <span class="o">+</span> <span class="n">bibits</span>
+    <span class="n">pebibits</span> <span class="o">=</span> <span class="s2">&quot;pe&quot;</span> <span class="o">+</span> <span class="n">bibits</span>
+    <span class="n">exbibits</span> <span class="o">=</span> <span class="s2">&quot;ex&quot;</span> <span class="o">+</span> <span class="n">bibits</span>
+    <span class="n">zebibits</span> <span class="o">=</span> <span class="s2">&quot;ze&quot;</span> <span class="o">+</span> <span class="n">bibits</span>
+    <span class="n">yobibits</span> <span class="o">=</span> <span class="s2">&quot;yo&quot;</span> <span class="o">+</span> <span class="n">bibits</span>
 
-    <span class="nb">bytes</span> <span class="o">=</span> <span class="s">&#39;bytes&#39;</span>
-    <span class="n">bibytes</span> <span class="o">=</span> <span class="s">&#39;bi&#39;</span> <span class="o">+</span> <span class="nb">bytes</span>
-    <span class="n">kibibytes</span> <span class="o">=</span> <span class="s">&quot;ki&quot;</span> <span class="o">+</span> <span class="n">bibytes</span>
-    <span class="n">mebibytes</span> <span class="o">=</span> <span class="s">&quot;me&quot;</span> <span class="o">+</span> <span class="n">bibytes</span>
-    <span class="n">gibibytes</span> <span class="o">=</span> <span class="s">&#39;gi&#39;</span> <span class="o">+</span> <span class="n">bibytes</span>
-    <span class="n">tebibytes</span> <span class="o">=</span> <span class="s">&#39;te&#39;</span> <span class="o">+</span> <span class="n">bibytes</span>
-    <span class="n">pebibytes</span> <span class="o">=</span> <span class="s">&#39;pe&#39;</span> <span class="o">+</span> <span class="n">bibytes</span>
-    <span class="n">exbibytes</span> <span class="o">=</span> <span class="s">&quot;ex&quot;</span> <span class="o">+</span> <span class="n">bibytes</span>
-    <span class="n">zebibytes</span> <span class="o">=</span> <span class="s">&quot;ze&quot;</span> <span class="o">+</span> <span class="n">bibytes</span>
-    <span class="n">yobibytes</span> <span class="o">=</span> <span class="s">&quot;yo&quot;</span> <span class="o">+</span> <span class="n">bibytes</span>
+    <span class="nb">bytes</span> <span class="o">=</span> <span class="s1">&#39;bytes&#39;</span>
+    <span class="n">bibytes</span> <span class="o">=</span> <span class="s1">&#39;bi&#39;</span> <span class="o">+</span> <span class="nb">bytes</span>
+    <span class="n">kibibytes</span> <span class="o">=</span> <span class="s2">&quot;ki&quot;</span> <span class="o">+</span> <span class="n">bibytes</span>
+    <span class="n">mebibytes</span> <span class="o">=</span> <span class="s2">&quot;me&quot;</span> <span class="o">+</span> <span class="n">bibytes</span>
+    <span class="n">gibibytes</span> <span class="o">=</span> <span class="s1">&#39;gi&#39;</span> <span class="o">+</span> <span class="n">bibytes</span>
+    <span class="n">tebibytes</span> <span class="o">=</span> <span class="s1">&#39;te&#39;</span> <span class="o">+</span> <span class="n">bibytes</span>
+    <span class="n">pebibytes</span> <span class="o">=</span> <span class="s1">&#39;pe&#39;</span> <span class="o">+</span> <span class="n">bibytes</span>
+    <span class="n">exbibytes</span> <span class="o">=</span> <span class="s2">&quot;ex&quot;</span> <span class="o">+</span> <span class="n">bibytes</span>
+    <span class="n">zebibytes</span> <span class="o">=</span> <span class="s2">&quot;ze&quot;</span> <span class="o">+</span> <span class="n">bibytes</span>
+    <span class="n">yobibytes</span> <span class="o">=</span> <span class="s2">&quot;yo&quot;</span> <span class="o">+</span> <span class="n">bibytes</span>
 
-    <span class="c"># iperf base 2</span>
+    <span class="c1"># iperf base 2</span>
     <span class="n">iperf_bytes</span> <span class="o">=</span> <span class="n">UnitNames</span><span class="o">.</span><span class="n">bytes</span>
     <span class="n">iperf_kibibytes</span> <span class="o">=</span> <span class="n">UnitNames</span><span class="o">.</span><span class="n">kbytes</span>
     <span class="n">iperf_mebibytes</span> <span class="o">=</span> <span class="n">UnitNames</span><span class="o">.</span><span class="n">mbytes</span>
@@ -263,10 +253,10 @@
     <span class="n">iperf_exbibytes</span> <span class="o">=</span> <span class="n">UnitNames</span><span class="o">.</span><span class="n">ebytes</span>
     <span class="n">iperf_zebibytes</span> <span class="o">=</span> <span class="n">UnitNames</span><span class="o">.</span><span class="n">zbytes</span>
     <span class="n">iperf_yobibytes</span> <span class="o">=</span> <span class="n">UnitNames</span><span class="o">.</span><span class="n">ybytes</span>
-<span class="c"># end BinaryUnitNames</span>
+<span class="c1"># end BinaryUnitNames</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">IDENTITY</span> <span class="o">=</span> <span class="mi">1</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">IDENTITY</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">ONE</span> <span class="o">=</span> <span class="mf">1.0</span>
 <span class="n">BYTE</span> <span class="o">=</span> <span class="mi">8</span>
 <span class="n">TO_BYTE</span> <span class="o">=</span> <span class="n">ONE</span><span class="o">/</span><span class="n">BYTE</span>
@@ -284,27 +274,27 @@
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="api/iperflexer.unitconverter.BaseConverter.html#iperflexer.unitconverter.BaseConverter" title="iperflexer.unitconverter.BaseConverter"><tt class="xref py py-obj docutils literal"><span class="pre">BaseConverter</span></tt></a>(to_units,&nbsp;kilo_prefix)</td>
-<td>A creator of unit-conversion dictionaries</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">BaseConverter</span></code></td>
+<td></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="api/iperflexer.unitconverter.BaseConverter.prefix_conversions.html#iperflexer.unitconverter.BaseConverter.prefix_conversions" title="iperflexer.unitconverter.BaseConverter.prefix_conversions"><tt class="xref py py-obj docutils literal"><span class="pre">BaseConverter.prefix_conversions</span></tt></a></td>
-<td>List of lists of prefix conversions</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">BaseConverter.prefix_conversions</span></code></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="api/iperflexer.unitconverter.BaseConverter.bits_to_bytes.html#iperflexer.unitconverter.BaseConverter.bits_to_bytes" title="iperflexer.unitconverter.BaseConverter.bits_to_bytes"><tt class="xref py py-obj docutils literal"><span class="pre">BaseConverter.bits_to_bytes</span></tt></a></td>
-<td>List of conversions for bits to bytes</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">BaseConverter.bits_to_bytes</span></code></td>
+<td></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="api/iperflexer.unitconverter.BaseConverter.bytes_to_bits.html#iperflexer.unitconverter.BaseConverter.bytes_to_bits" title="iperflexer.unitconverter.BaseConverter.bytes_to_bits"><tt class="xref py py-obj docutils literal"><span class="pre">BaseConverter.bytes_to_bits</span></tt></a></td>
-<td>list of conversions for bytes to bits</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">BaseConverter.bytes_to_bits</span></code></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="api/iperflexer.unitconverter.BaseConverter.conversions.html#iperflexer.unitconverter.BaseConverter.conversions" title="iperflexer.unitconverter.BaseConverter.conversions"><tt class="xref py py-obj docutils literal"><span class="pre">BaseConverter.conversions</span></tt></a>(conversion_factor)</td>
-<td>Creates the converter-lists</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">BaseConverter.conversions</span></code></td>
+<td></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="api/iperflexer.unitconverter.BaseConverter.build_conversions.html#iperflexer.unitconverter.BaseConverter.build_conversions" title="iperflexer.unitconverter.BaseConverter.build_conversions"><tt class="xref py py-obj docutils literal"><span class="pre">BaseConverter.build_conversions</span></tt></a>()</td>
-<td>builds the dictionary</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">BaseConverter.build_conversions</span></code></td>
+<td></td>
 </tr>
 </tbody>
 </table>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">BaseConverter</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">BaseConverter</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A creator of unit-conversion dictionaries</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -324,7 +314,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_bits_to_bytes</span> <span class="o">=</span> <span class="bp">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_bytes_to_bits</span> <span class="o">=</span> <span class="bp">None</span>
 
-        <span class="c"># split the to_units list for later</span>
+        <span class="c1"># split the to_units list for later</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bit_conversions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">byte_conversions</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">to_units</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bit_units</span> <span class="o">=</span> <span class="n">to_units</span><span class="p">[:</span><span class="bp">self</span><span class="o">.</span><span class="n">bit_conversions</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">byte_units</span> <span class="o">=</span> <span class="n">to_units</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">byte_conversions</span><span class="p">:]</span>
@@ -336,9 +326,9 @@
 <span class="sd">        List of lists of prefix conversions</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_prefix_conversions</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="c"># start with list that assumes value has no prefix</span>
-            <span class="c"># this list is for &#39;bits&#39; or &#39;bytes&#39;</span>
-            <span class="c"># the values will be 1, 1/kilo, 1/mega, etc.</span>
+            <span class="c1"># start with list that assumes value has no prefix</span>
+            <span class="c1"># this list is for &#39;bits&#39; or &#39;bytes&#39;</span>
+            <span class="c1"># the values will be 1, 1/kilo, 1/mega, etc.</span>
             <span class="n">start_list</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">kilo_prefix</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="n">power</span><span class="p">)</span>
                                          <span class="k">for</span> <span class="n">power</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bit_conversions</span><span class="p">)]</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_prefix_conversions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conversions</span><span class="p">(</span><span class="n">conversion_factor</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
@@ -375,14 +365,14 @@
 <span class="sd">        :return: list of conversion_lists</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">start_list</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="c"># assume that prefix_conversions exists (not safe, but...)</span>
+            <span class="c1"># assume that prefix_conversions exists (not safe, but...)</span>
             <span class="n">start_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">prefix_conversions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="c"># start with byte_factor times the base conversions (1, 1/kilo, etc.)</span>
+        <span class="c1"># start with byte_factor times the base conversions (1, 1/kilo, etc.)</span>
         <span class="n">converter_list</span> <span class="o">=</span> <span class="p">[[</span><span class="n">conversion_factor</span> <span class="o">*</span> <span class="n">conversion</span>
                            <span class="k">for</span> <span class="n">conversion</span> <span class="ow">in</span> <span class="n">start_list</span><span class="p">]]</span>
         <span class="k">for</span> <span class="n">previous</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bit_conversions</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
-            <span class="c"># &#39;pop&#39; last item from previous list</span>
-            <span class="c"># and prepend one higher-power conversion</span>
+            <span class="c1"># &#39;pop&#39; last item from previous list</span>
+            <span class="c1"># and prepend one higher-power conversion</span>
             <span class="n">next_conversions</span> <span class="o">=</span> <span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">kilo_prefix</span><span class="o">**</span><span class="p">(</span><span class="n">previous</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">conversion_factor</span><span class="p">]</span> <span class="o">+</span>
                                 <span class="n">converter_list</span><span class="p">[</span><span class="n">previous</span><span class="p">][:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
             <span class="n">converter_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">next_conversions</span><span class="p">)</span>
@@ -392,17 +382,17 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        builds the dictionary</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c"># from bits to bits or bytes</span>
+        <span class="c1"># from bits to bits or bytes</span>
         <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">units</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bit_units</span><span class="p">):</span>
             <span class="bp">self</span><span class="p">[</span><span class="n">units</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">to_units</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">prefix_conversions</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">+</span>
                                    <span class="bp">self</span><span class="o">.</span><span class="n">bits_to_bytes</span><span class="p">[</span><span class="n">index</span><span class="p">]))</span>
 
-        <span class="c"># from bytes to bits or bytes</span>
+        <span class="c1"># from bytes to bits or bytes</span>
         <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">units</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">byte_units</span><span class="p">):</span>
             <span class="bp">self</span><span class="p">[</span><span class="n">units</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">to_units</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bytes_to_bits</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">+</span>
                                    <span class="bp">self</span><span class="o">.</span><span class="n">prefix_conversions</span><span class="p">[</span><span class="n">index</span><span class="p">]))</span>
         <span class="k">return</span>
-<span class="c"># end class BaseConverter</span>
+<span class="c1"># end class BaseConverter</span>
 </pre></div>
 </div>
 </div>
@@ -420,15 +410,15 @@
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="api/iperflexer.unitconverter.UnitConverter.html#iperflexer.unitconverter.UnitConverter" title="iperflexer.unitconverter.UnitConverter"><tt class="xref py py-obj docutils literal"><span class="pre">UnitConverter</span></tt></a>()</td>
-<td>The UnitConverter makes conversions based on a base-10 system</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">UnitConverter</span></code></td>
+<td></td>
 </tr>
 </tbody>
 </table>
 <div class="section" id="decimal-to-units-list">
 <h3>Decimal To-Units List<a class="headerlink" href="#decimal-to-units-list" title="Permalink to this headline">¶</a></h3>
 <p>The <cite>decimal_to_units</cite> list defines the valid conversions for the <cite>UnitConverter</cite></p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">bit_units</span> <span class="o">=</span> <span class="p">[</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">bits</span><span class="p">,</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">bit_units</span> <span class="o">=</span> <span class="p">[</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">bits</span><span class="p">,</span>
              <span class="n">UnitNames</span><span class="o">.</span><span class="n">kbits</span><span class="p">,</span>
              <span class="n">UnitNames</span><span class="o">.</span><span class="n">mbits</span><span class="p">,</span>
              <span class="n">UnitNames</span><span class="o">.</span><span class="n">gbits</span><span class="p">,</span>
@@ -452,7 +442,7 @@
 </pre></div>
 </div>
 <p>As noted above, the <cite>UnitConverter</cite> is a base-10 converter so it uses the <cite>KILO</cite> variable as its base.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">KILO</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="mi">3</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">KILO</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="mi">3</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -463,7 +453,7 @@
 <div class="section" id="decimalunitconverter">
 <h3>DecimalUnitConverter<a class="headerlink" href="#decimalunitconverter" title="Permalink to this headline">¶</a></h3>
 <p>Since the <cite>UnitConverter</cite> was created before I thought I needed a <cite>BinaryUnitConverter</cite> it was just called the <cite>UnitConverter</cite>. To keep from breaking the code that uses it I&#8217;ll leave the name the same, but add an alias called the <cite>DecimalUnitConverter</cite> to make a less ambiguous name.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">DecimalUnitConverter</span> <span class="o">=</span> <span class="n">UnitConverter</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">DecimalUnitConverter</span> <span class="o">=</span> <span class="n">UnitConverter</span>
 </pre></div>
 </div>
 </div>
@@ -474,7 +464,7 @@
 <div class="section" id="binary-to-units">
 <h3>Binary To Units<a class="headerlink" href="#binary-to-units" title="Permalink to this headline">¶</a></h3>
 <p>The &#8216;binary_to_units&#8217; define what the valid conversions are.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">to_bits</span> <span class="o">=</span> <span class="p">[</span><span class="n">BinaryUnitNames</span><span class="o">.</span><span class="n">bits</span><span class="p">,</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">to_bits</span> <span class="o">=</span> <span class="p">[</span><span class="n">BinaryUnitNames</span><span class="o">.</span><span class="n">bits</span><span class="p">,</span>
            <span class="n">BinaryUnitNames</span><span class="o">.</span><span class="n">kibibits</span><span class="p">,</span>
            <span class="n">BinaryUnitNames</span><span class="o">.</span><span class="n">mebibits</span><span class="p">,</span>
            <span class="n">BinaryUnitNames</span><span class="o">.</span><span class="n">gibibits</span><span class="p">,</span>
@@ -501,7 +491,7 @@
 <div class="section" id="the-base-prefix-converter">
 <h3>The Base Prefix Converter<a class="headerlink" href="#the-base-prefix-converter" title="Permalink to this headline">¶</a></h3>
 <p>As noted above, this is a base-2 converter so all the unit converters are powers of 2. They use <img class="math" src="_images/math/a8c7933dfb7d99a0d39c6f0cf80609805004079e.png" alt="2^{10}"/> as their base.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">KIBI</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="mi">10</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">KIBI</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="mi">10</span>
 </pre></div>
 </div>
 </div>
@@ -518,8 +508,8 @@
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="api/iperflexer.unitconverter.BinaryUnitconverter.html#iperflexer.unitconverter.BinaryUnitconverter" title="iperflexer.unitconverter.BinaryUnitconverter"><tt class="xref py py-obj docutils literal"><span class="pre">BinaryUnitconverter</span></tt></a>()</td>
-<td>The BinaryUnitconverter is a conversion lookup table for binary data</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">BinaryUnitconverter</span></code></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -536,7 +526,7 @@
 <p class="first admonition-title">Note</p>
 <p class="last">Iperf&#8217;s <cite>stdio.h</cite> file seems to indicate that only units up to Gbits and GBytes are supported so I&#8217;m only guessing as to what the output might be if they change it.</p>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">to_bits</span> <span class="o">=</span> <span class="p">[</span><span class="n">BinaryUnitNames</span><span class="o">.</span><span class="n">bits</span><span class="p">,</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">to_bits</span> <span class="o">=</span> <span class="p">[</span><span class="n">BinaryUnitNames</span><span class="o">.</span><span class="n">bits</span><span class="p">,</span>
            <span class="n">BinaryUnitNames</span><span class="o">.</span><span class="n">kibibits</span><span class="p">,</span>
            <span class="n">BinaryUnitNames</span><span class="o">.</span><span class="n">mebibits</span><span class="p">,</span>
            <span class="n">BinaryUnitNames</span><span class="o">.</span><span class="n">gibibits</span><span class="p">,</span>
@@ -577,8 +567,8 @@
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="api/iperflexer.unitconverter.IperfbinaryConverter.html#iperflexer.unitconverter.IperfbinaryConverter" title="iperflexer.unitconverter.IperfbinaryConverter"><tt class="xref py py-obj docutils literal"><span class="pre">IperfbinaryConverter</span></tt></a>()</td>
-<td>The IperfbinaryConverter is a conversion lookup table for binary data</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">IperfbinaryConverter</span></code></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -588,34 +578,34 @@
 <div class="section" id="example-use">
 <h2>Example Use<a class="headerlink" href="#example-use" title="Permalink to this headline">¶</a></h2>
 <p>The expected way to use this is to multiply your original value by the value returned by the converter. For instance, to convert from bits to Mbits you could do this.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__builtin__&quot;</span><span class="p">:</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s2">&quot;__builtin__&quot;</span><span class="p">:</span>
     <span class="n">unit_converter</span> <span class="o">=</span> <span class="n">UnitConverter</span><span class="p">()</span>
     <span class="n">bits</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="mi">6</span>
-    <span class="n">converted</span> <span class="o">=</span> <span class="n">bits</span> <span class="o">*</span> <span class="n">unit_converter</span><span class="p">[</span><span class="s">&#39;bits&#39;</span><span class="p">][</span><span class="s">&#39;Mbits&#39;</span><span class="p">]</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">&quot;{0} Mbits&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">converted</span><span class="p">))</span>
+    <span class="n">converted</span> <span class="o">=</span> <span class="n">bits</span> <span class="o">*</span> <span class="n">unit_converter</span><span class="p">[</span><span class="s1">&#39;bits&#39;</span><span class="p">][</span><span class="s1">&#39;Mbits&#39;</span><span class="p">]</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;{0} Mbits&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">converted</span><span class="p">))</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>1.0 Mbits
+<div class="highlight-python"><div class="highlight"><pre><span></span>1.0 Mbits
 </pre></div>
 </div>
 <p>And to convert from Mebibytes to bits you could do this.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__builtin__&quot;</span><span class="p">:</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s2">&quot;__builtin__&quot;</span><span class="p">:</span>
     <span class="n">binary_converter</span> <span class="o">=</span> <span class="n">BinaryUnitconverter</span><span class="p">()</span>
     <span class="n">MBytes</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="n">bits</span> <span class="o">=</span> <span class="n">MBytes</span> <span class="o">*</span> <span class="n">binary_converter</span><span class="p">[</span><span class="n">BinaryUnitNames</span><span class="o">.</span><span class="n">mebibytes</span><span class="p">][</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">bits</span><span class="p">]</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">&quot;{0:,} bits&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">bits</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;{0:,} bits&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">bits</span><span class="p">))</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>8,388,608 bits
+<div class="highlight-python"><div class="highlight"><pre><span></span>8,388,608 bits
 </pre></div>
 </div>
 <p>That previous example was half-way to the original use-case for creating the <cite>BinaryUnitConverter</cite> &#8211; converting the data-transferred to bits so that I could calculate the transferred Megabits.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__builtin__&#39;</span><span class="p">:</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__builtin__&#39;</span><span class="p">:</span>
     <span class="n">mbits</span> <span class="o">=</span> <span class="n">bits</span> <span class="o">*</span> <span class="n">unit_converter</span><span class="p">[</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">bits</span><span class="p">][</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">mbits</span><span class="p">]</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">&#39;{0} Mbits&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mbits</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;{0} Mbits&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mbits</span><span class="p">))</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>8.388608 Mbits
+<div class="highlight-python"><div class="highlight"><pre><span></span>8.388608 Mbits
 </pre></div>
 </div>
 </div>
@@ -634,7 +624,7 @@
     </p>
     <p>
         &copy; Copyright 2013, cloistered monkey.<br/>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.<br/>
     </p>
   </div>
 </footer>

@@ -9,7 +9,7 @@
     
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootswatch-3.2.0/readable/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootswatch-3.3.4/spacelab/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
@@ -26,7 +26,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="IperfLexer 0.1.4 documentation" href="index.html" />
     <link rel="next" title="iperflexer.sumparser.HumanExpression" href="api/iperflexer.sumparser.HumanExpression.html" />
@@ -37,7 +37,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 
   </head>
-  <body>
+  <body role="document">
 
   <div id="navbar" class="navbar navbar-default navbar-fixed-top">
     <div class="container">
@@ -120,11 +120,11 @@
               
                 
   <li>
-    <a href="readme.html" title="Previous Chapter: The Iperf Lexer (Read Me)"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; The Iperf Lexer ...</span>
+    <a href="readme.html" title="Previous Chapter: The Iperf Lexer (Read Me)"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; The Iperf Lex...</span>
     </a>
   </li>
   <li>
-    <a href="api/iperflexer.sumparser.HumanExpression.html" title="Next Chapter: iperflexer.sumparser.HumanExpression"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">iperflexer.sumpa... &raquo;</span>
+    <a href="api/iperflexer.sumparser.HumanExpression.html" title="Next Chapter: iperflexer.sumparser.HumanExpression"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">iperflexer.su... &raquo;</span>
     </a>
   </li>
               
@@ -156,11 +156,11 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12 content">
       
   <div class="section" id="the-sumparser">
 <h1>The SumParser<a class="headerlink" href="#the-sumparser" title="Permalink to this headline">¶</a></h1>
-<p>The sumparser parses sum-lines and stores the bandwidth sum. Unlike the <cite>IperfParser</cite> it uses the summed lines that iperf calculates. This means that if intervals and parallel threads were used and within one (or more) of those intervals one or more of the threads didn&#8217;t report its value then the interval-sums will have fewer values than there were intervals (iperf will just skip summing an interval that didn&#8217;t have all the threads reporting back). The <tt class="docutils literal"><span class="pre">IperfParser</span></tt>, in contrast, will under-report the interval (unless the thread was actually dead) but it will at least give you a value. On the other hand, if all the sum-lines were there, then this would presumably be the more accurate method since we&#8217;re taking what iperf itself reports.</p>
+<p>The sumparser parses sum-lines and stores the bandwidth sum. Unlike the <cite>IperfParser</cite> it uses the summed lines that iperf calculates. This means that if intervals and parallel threads were used and within one (or more) of those intervals one or more of the threads didn&#8217;t report its value then the interval-sums will have fewer values than there were intervals (iperf will just skip summing an interval that didn&#8217;t have all the threads reporting back). The <code class="docutils literal"><span class="pre">IperfParser</span></code>, in contrast, will under-report the interval (unless the thread was actually dead) but it will at least give you a value. On the other hand, if all the sum-lines were there, then this would presumably be the more accurate method since we&#8217;re taking what iperf itself reports.</p>
 <div class="section" id="the-humanexpressionsum-class">
 <h2>The HumanExpressionSum Class<a class="headerlink" href="#the-humanexpressionsum-class" title="Permalink to this headline">¶</a></h2>
 <p class="plantuml">
@@ -174,10 +174,10 @@
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="api/iperflexer.sumparser.HumanExpression.html#iperflexer.sumparser.HumanExpression" title="iperflexer.sumparser.HumanExpression"><tt class="xref py py-obj docutils literal"><span class="pre">HumanExpression</span></tt></a>()</td>
+<tr class="row-odd"><td><a class="reference internal" href="api/iperflexer.sumparser.HumanExpression.html#iperflexer.sumparser.HumanExpression" title="iperflexer.sumparser.HumanExpression"><code class="xref py py-obj docutils literal"><span class="pre">HumanExpression</span></code></a>()</td>
 <td>The Human Expression matches the human-readable iperf output</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="api/iperflexer.sumparser.HumanExpression.thread_column.html#iperflexer.sumparser.HumanExpression.thread_column" title="iperflexer.sumparser.HumanExpression.thread_column"><tt class="xref py py-obj docutils literal"><span class="pre">HumanExpression.thread_column</span></tt></a></td>
+<tr class="row-even"><td><a class="reference internal" href="api/iperflexer.sumparser.HumanExpression.thread_column.html#iperflexer.sumparser.HumanExpression.thread_column" title="iperflexer.sumparser.HumanExpression.thread_column"><code class="xref py py-obj docutils literal"><span class="pre">HumanExpression.thread_column</span></code></a></td>
 <td>an expression for the thread-number column</td>
 </tr>
 </tbody>
@@ -196,10 +196,10 @@
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="api/iperflexer.sumparser.CsvExpressionSum.html#iperflexer.sumparser.CsvExpressionSum" title="iperflexer.sumparser.CsvExpressionSum"><tt class="xref py py-obj docutils literal"><span class="pre">CsvExpressionSum</span></tt></a>([threads])</td>
+<tr class="row-odd"><td><a class="reference internal" href="api/iperflexer.sumparser.CsvExpressionSum.html#iperflexer.sumparser.CsvExpressionSum" title="iperflexer.sumparser.CsvExpressionSum"><code class="xref py py-obj docutils literal"><span class="pre">CsvExpressionSum</span></code></a>([threads])</td>
 <td>Changes the thread column to look for -1 if needed</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="api/iperflexer.sumparser.CsvExpressionSum.thread_column.html#iperflexer.sumparser.CsvExpressionSum.thread_column" title="iperflexer.sumparser.CsvExpressionSum.thread_column"><tt class="xref py py-obj docutils literal"><span class="pre">CsvExpressionSum.thread_column</span></tt></a></td>
+<tr class="row-even"><td><a class="reference internal" href="api/iperflexer.sumparser.CsvExpressionSum.thread_column.html#iperflexer.sumparser.CsvExpressionSum.thread_column" title="iperflexer.sumparser.CsvExpressionSum.thread_column"><code class="xref py py-obj docutils literal"><span class="pre">CsvExpressionSum.thread_column</span></code></a></td>
 <td><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -228,28 +228,28 @@ SumParser: last_line_bandwidth" />
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="api/iperflexer.sumparser.SumParser.html#iperflexer.sumparser.SumParser" title="iperflexer.sumparser.SumParser"><tt class="xref py py-obj docutils literal"><span class="pre">SumParser</span></tt></a>(*args,&nbsp;**kwargs)</td>
+<tr class="row-odd"><td><a class="reference internal" href="api/iperflexer.sumparser.SumParser.html#iperflexer.sumparser.SumParser" title="iperflexer.sumparser.SumParser"><code class="xref py py-obj docutils literal"><span class="pre">SumParser</span></code></a>(*args,&nbsp;**kwargs)</td>
 <td>The SumParser emits bandwidth sum lines</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="api/iperflexer.sumparser.SumParser.__call__.html#iperflexer.sumparser.SumParser.__call__" title="iperflexer.sumparser.SumParser.__call__"><tt class="xref py py-obj docutils literal"><span class="pre">SumParser.__call__</span></tt></a>(line)</td>
+<tr class="row-even"><td><a class="reference internal" href="api/iperflexer.sumparser.SumParser.__call__.html#iperflexer.sumparser.SumParser.__call__" title="iperflexer.sumparser.SumParser.__call__"><code class="xref py py-obj docutils literal"><span class="pre">SumParser.__call__</span></code></a>(line)</td>
 <td>The Main interface to add raw iperf lines to the parser</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="api/iperflexer.sumparser.SumParser.pipe.html#iperflexer.sumparser.SumParser.pipe" title="iperflexer.sumparser.SumParser.pipe"><tt class="xref py py-obj docutils literal"><span class="pre">SumParser.pipe</span></tt></a>(*args,&nbsp;**kwargs)</td>
+<tr class="row-odd"><td><a class="reference internal" href="api/iperflexer.sumparser.SumParser.pipe.html#iperflexer.sumparser.SumParser.pipe" title="iperflexer.sumparser.SumParser.pipe"><code class="xref py py-obj docutils literal"><span class="pre">SumParser.pipe</span></code></a>(*args,&nbsp;**kwargs)</td>
 <td></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="api/iperflexer.sumparser.SumParser.transfer_units.html#iperflexer.sumparser.SumParser.transfer_units" title="iperflexer.sumparser.SumParser.transfer_units"><tt class="xref py py-obj docutils literal"><span class="pre">SumParser.transfer_units</span></tt></a></td>
+<tr class="row-even"><td><a class="reference internal" href="api/iperflexer.sumparser.SumParser.transfer_units.html#iperflexer.sumparser.SumParser.transfer_units" title="iperflexer.sumparser.SumParser.transfer_units"><code class="xref py py-obj docutils literal"><span class="pre">SumParser.transfer_units</span></code></a></td>
 <td>a hack to handle the fact that only the bandwidth units are being specified</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="api/iperflexer.sumparser.SumParser.traverse.html#iperflexer.sumparser.SumParser.traverse" title="iperflexer.sumparser.SumParser.traverse"><tt class="xref py py-obj docutils literal"><span class="pre">SumParser.traverse</span></tt></a>(intervals)</td>
+<tr class="row-odd"><td><a class="reference internal" href="api/iperflexer.sumparser.SumParser.traverse.html#iperflexer.sumparser.SumParser.traverse" title="iperflexer.sumparser.SumParser.traverse"><code class="xref py py-obj docutils literal"><span class="pre">SumParser.traverse</span></code></a>(intervals)</td>
 <td>traverses the intervals, infilling missing intervals</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="api/iperflexer.sumparser.SumParser.bandwidths.html#iperflexer.sumparser.SumParser.bandwidths" title="iperflexer.sumparser.SumParser.bandwidths"><tt class="xref py py-obj docutils literal"><span class="pre">SumParser.bandwidths</span></tt></a></td>
+<tr class="row-even"><td><a class="reference internal" href="api/iperflexer.sumparser.SumParser.bandwidths.html#iperflexer.sumparser.SumParser.bandwidths" title="iperflexer.sumparser.SumParser.bandwidths"><code class="xref py py-obj docutils literal"><span class="pre">SumParser.bandwidths</span></code></a></td>
 <td>Traverses self.interval&#8217;s keys in sorted order and generates their bandwidths.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="api/iperflexer.sumparser.SumParser.transfers.html#iperflexer.sumparser.SumParser.transfers" title="iperflexer.sumparser.SumParser.transfers"><tt class="xref py py-obj docutils literal"><span class="pre">SumParser.transfers</span></tt></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="api/iperflexer.sumparser.SumParser.transfers.html#iperflexer.sumparser.SumParser.transfers" title="iperflexer.sumparser.SumParser.transfers"><code class="xref py py-obj docutils literal"><span class="pre">SumParser.transfers</span></code></a></td>
 <td>generator of transfer values</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="api/iperflexer.sumparser.SumParser.regex.html#iperflexer.sumparser.SumParser.regex" title="iperflexer.sumparser.SumParser.regex"><tt class="xref py py-obj docutils literal"><span class="pre">SumParser.regex</span></tt></a></td>
+<tr class="row-even"><td><a class="reference internal" href="api/iperflexer.sumparser.SumParser.regex.html#iperflexer.sumparser.SumParser.regex" title="iperflexer.sumparser.SumParser.regex"><code class="xref py py-obj docutils literal"><span class="pre">SumParser.regex</span></code></a></td>
 <td><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -260,7 +260,7 @@ SumParser: last_line_bandwidth" />
 </table>
 </td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="api/iperflexer.sumparser.SumParser.html#iperflexer.sumparser.SumParser.valid" title="iperflexer.sumparser.SumParser.valid"><tt class="xref py py-obj docutils literal"><span class="pre">SumParser.valid</span></tt></a>(match)</td>
+<tr class="row-odd"><td><a class="reference internal" href="api/iperflexer.sumparser.SumParser.valid.html#iperflexer.sumparser.SumParser.valid" title="iperflexer.sumparser.SumParser.valid"><code class="xref py py-obj docutils literal"><span class="pre">SumParser.valid</span></code></a>(match)</td>
 <td><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -271,7 +271,7 @@ SumParser: last_line_bandwidth" />
 </table>
 </td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="api/iperflexer.sumparser.SumParser.html#iperflexer.sumparser.SumParser.bandwidth" title="iperflexer.sumparser.SumParser.bandwidth"><tt class="xref py py-obj docutils literal"><span class="pre">SumParser.bandwidth</span></tt></a>(match)</td>
+<tr class="row-even"><td><a class="reference internal" href="api/iperflexer.sumparser.SumParser.bandwidth.html#iperflexer.sumparser.SumParser.bandwidth" title="iperflexer.sumparser.SumParser.bandwidth"><code class="xref py py-obj docutils literal"><span class="pre">SumParser.bandwidth</span></code></a>(match)</td>
 <td><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -282,7 +282,7 @@ SumParser: last_line_bandwidth" />
 </table>
 </td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="api/iperflexer.sumparser.SumParser.transfer.html#iperflexer.sumparser.SumParser.transfer" title="iperflexer.sumparser.SumParser.transfer"><tt class="xref py py-obj docutils literal"><span class="pre">SumParser.transfer</span></tt></a>(match)</td>
+<tr class="row-odd"><td><a class="reference internal" href="api/iperflexer.sumparser.SumParser.transfer.html#iperflexer.sumparser.SumParser.transfer" title="iperflexer.sumparser.SumParser.transfer"><code class="xref py py-obj docutils literal"><span class="pre">SumParser.transfer</span></code></a>(match)</td>
 <td><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -293,7 +293,7 @@ SumParser: last_line_bandwidth" />
 </table>
 </td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="api/iperflexer.sumparser.SumParser.html#iperflexer.sumparser.SumParser.search" title="iperflexer.sumparser.SumParser.search"><tt class="xref py py-obj docutils literal"><span class="pre">SumParser.search</span></tt></a>(line)</td>
+<tr class="row-even"><td><a class="reference internal" href="api/iperflexer.sumparser.SumParser.search.html#iperflexer.sumparser.SumParser.search" title="iperflexer.sumparser.SumParser.search"><code class="xref py py-obj docutils literal"><span class="pre">SumParser.search</span></code></a>(line)</td>
 <td><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -304,10 +304,10 @@ SumParser: last_line_bandwidth" />
 </table>
 </td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="api/iperflexer.sumparser.SumParser.html#iperflexer.sumparser.SumParser.reset" title="iperflexer.sumparser.SumParser.reset"><tt class="xref py py-obj docutils literal"><span class="pre">SumParser.reset</span></tt></a>()</td>
+<tr class="row-odd"><td><a class="reference internal" href="api/iperflexer.sumparser.SumParser.reset.html#iperflexer.sumparser.SumParser.reset" title="iperflexer.sumparser.SumParser.reset"><code class="xref py py-obj docutils literal"><span class="pre">SumParser.reset</span></code></a>()</td>
 <td>Resets the attributes set during parsing</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="api/iperflexer.sumparser.SumParser.filename.html#iperflexer.sumparser.SumParser.filename" title="iperflexer.sumparser.SumParser.filename"><tt class="xref py py-obj docutils literal"><span class="pre">SumParser.filename</span></tt></a>(basename)</td>
+<tr class="row-even"><td><a class="reference internal" href="api/iperflexer.sumparser.SumParser.filename.html#iperflexer.sumparser.SumParser.filename" title="iperflexer.sumparser.SumParser.filename"><code class="xref py py-obj docutils literal"><span class="pre">SumParser.filename</span></code></a>(basename)</td>
 <td>Changes the extension of the basename to .csv</td>
 </tr>
 </tbody>
@@ -318,10 +318,10 @@ SumParser: last_line_bandwidth" />
 </div>
 <div class="section" id="checking-the-call-output">
 <h2>Checking The Call Output<a class="headerlink" href="#checking-the-call-output" title="Permalink to this headline">¶</a></h2>
-<p>The <tt class="docutils literal"><span class="pre">__call__</span></tt> is the main way to use it. There are two ways to get the interval sums from the SumParser (and the IperfParser). One is to poll the returned value from the <tt class="docutils literal"><span class="pre">__call__</span></tt> to see if a value was returned. I&#8217;ll start by working with <tt class="xref download docutils literal"><span class="pre">client-side</span></tt> input that has two threads and one-second reporting intervals.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">if</span> <span class="n">in_documentation</span><span class="p">:</span>
-    <span class="n">data_folder</span> <span class="o">=</span> <span class="s">&#39;tests/steps/samples/&#39;</span>
-    <span class="n">data_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_folder</span><span class="p">,</span> <span class="s">&#39;client_data.iperf&#39;</span><span class="p">)</span>
+<p>The <code class="docutils literal"><span class="pre">__call__</span></code> is the main way to use it. There are two ways to get the interval sums from the SumParser (and the IperfParser). One is to poll the returned value from the <code class="docutils literal"><span class="pre">__call__</span></code> to see if a value was returned. I&#8217;ll start by working with <code class="xref download docutils literal"><span class="pre">client-side</span></code> input that has two threads and one-second reporting intervals.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">in_documentation</span><span class="p">:</span>
+    <span class="n">data_folder</span> <span class="o">=</span> <span class="s1">&#39;tests/steps/samples/&#39;</span>
+    <span class="n">data_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_folder</span><span class="p">,</span> <span class="s1">&#39;client_data.iperf&#39;</span><span class="p">)</span>
     <span class="n">parser</span> <span class="o">=</span> <span class="n">SumParser</span><span class="p">(</span><span class="n">threads</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="n">data_path</span><span class="p">):</span>
@@ -330,31 +330,19 @@ SumParser: last_line_bandwidth" />
             <span class="k">print</span><span class="p">(</span><span class="n">bandwidth</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="mf">96.5</span>
-<span class="mf">94.4</span>
-<span class="mf">94.4</span>
-<span class="mf">93.3</span>
-<span class="mf">93.3</span>
-<span class="mf">94.4</span>
-<span class="mf">94.4</span>
-<span class="mf">94.4</span>
-<span class="mf">92.3</span>
-<span class="mf">94.4</span>
-</pre></div>
-</div>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">the returned value is a float, not a string so it has to be cast to a string to be saved (don&#8217;t do <tt class="docutils literal"><span class="pre">bandwidth</span> <span class="pre">+</span> <span class="pre">'\n'</span></tt>).</p>
+<p class="last">the returned value is a float, not a string so it has to be cast to a string to be saved (don&#8217;t do <code class="docutils literal"><span class="pre">bandwidth</span> <span class="pre">+</span> <span class="pre">'\n'</span></code>).</p>
 </div>
 </div>
 <div class="section" id="traversing-the-values">
 <h2>Traversing the Values<a class="headerlink" href="#traversing-the-values" title="Permalink to this headline">¶</a></h2>
-<p>The original way to use it is to add all the lines and traverse the bandwidths afterwards. For the <tt class="docutils literal"><span class="pre">IperfParser</span></tt> this might be the safer way to use it if the data is being fed to it live while iperf is running, since it&#8217;s adding up the threads.</p>
+<p>The original way to use it is to add all the lines and traverse the bandwidths afterwards. For the <code class="docutils literal"><span class="pre">IperfParser</span></code> this might be the safer way to use it if the data is being fed to it live while iperf is running, since it&#8217;s adding up the threads.</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">The way iperf seems to work is that if you are using multiple threads and one or more of the threads misses a reporting interval it will report the thread information but not a summed-line. This means that the SumParser will have fewer data-points than the actual number of intervals that really exist (and the times will be shifted backwards). If you don&#8217;t inspect the raw output before using the SumParser you could end up with incorrect data. If you need to work with the intervals, use the IperfParser.</p>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">if</span> <span class="n">in_documentation</span><span class="p">:</span>
+<div class="code python highlight-python"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">in_documentation</span><span class="p">:</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
 
     <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="n">data_path</span><span class="p">):</span>
@@ -364,27 +352,15 @@ SumParser: last_line_bandwidth" />
         <span class="k">print</span><span class="p">(</span><span class="n">bandwidth</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="mf">96.5</span>
-<span class="mf">94.4</span>
-<span class="mf">94.4</span>
-<span class="mf">93.3</span>
-<span class="mf">93.3</span>
-<span class="mf">94.4</span>
-<span class="mf">94.4</span>
-<span class="mf">94.4</span>
-<span class="mf">92.3</span>
-<span class="mf">94.4</span>
-</pre></div>
-</div>
 </div>
 <div class="section" id="the-last-line-bandwidth">
 <h2>The Last Line Bandwidth<a class="headerlink" href="#the-last-line-bandwidth" title="Permalink to this headline">¶</a></h2>
-<p>When the <cite>SumParser</cite> matches a line that has an interval larger than what it is set to accept then it will set its <tt class="docutils literal"><span class="pre">last_line_bandwidth</span></tt> attribute to it, so once the whole iperf output has been consumed that attribute will have the final bandwidth value that iperf calculated for the entire session, assuming that the output is complete and this was the last line. If the line is missing it should be None.</p>
+<p>When the <cite>SumParser</cite> matches a line that has an interval larger than what it is set to accept then it will set its <code class="docutils literal"><span class="pre">last_line_bandwidth</span></code> attribute to it, so once the whole iperf output has been consumed that attribute will have the final bandwidth value that iperf calculated for the entire session, assuming that the output is complete and this was the last line. If the line is missing it should be None.</p>
 <p>From what I can tell it looks like this is the most accurate value not the added interval sums.</p>
 <div class="section" id="a-comparison-to-the-sums">
 <h3>A Comparison to the Sums<a class="headerlink" href="#a-comparison-to-the-sums" title="Permalink to this headline">¶</a></h3>
-<p>Here I&#8217;ll compare what happens when you add the sum-lines up and take the mean versus using the <tt class="docutils literal"><span class="pre">last_line_bandwidth</span></tt> (iperf&#8217;s calculated rate). <tt class="docutils literal"><span class="pre">parser.bandwidths</span></tt> is a generator of interval bandwidths and <tt class="docutils literal"><span class="pre">parser.intervals</span></tt> is a  dictionary that maps <cite>interval:bandwidth</cite>. Since the <tt class="docutils literal"><span class="pre">bandwidths</span></tt> attribute is a generator I can&#8217;t take it&#8217;s length so I&#8217;m using the length of the <tt class="docutils literal"><span class="pre">intervals</span></tt> instead.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">if</span> <span class="n">in_documentation</span><span class="p">:</span>
+<p>Here I&#8217;ll compare what happens when you add the sum-lines up and take the mean versus using the <code class="docutils literal"><span class="pre">last_line_bandwidth</span></code> (iperf&#8217;s calculated rate). <code class="docutils literal"><span class="pre">parser.bandwidths</span></code> is a generator of interval bandwidths and <code class="docutils literal"><span class="pre">parser.intervals</span></code> is a  dictionary that maps <cite>interval:bandwidth</cite>. Since the <code class="docutils literal"><span class="pre">bandwidths</span></code> attribute is a generator I can&#8217;t take it&#8217;s length so I&#8217;m using the length of the <code class="docutils literal"><span class="pre">intervals</span></code> instead.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">in_documentation</span><span class="p">:</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">threads</span> <span class="o">=</span> <span class="mi">4</span>
 
@@ -395,105 +371,62 @@ SumParser: last_line_bandwidth" />
 </pre></div>
 </div>
 <p>Now the outcome.</p>
-<table border="1" class="docutils">
-<caption>Calculated Sums-mean vs Iperf&#8217;s Mean</caption>
-<colgroup>
-<col width="50%" />
-<col width="50%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Source</th>
-<th class="head">Bandwidth (Mbits/Second)</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>Sum Lines</td>
-<td>94.18</td>
-</tr>
-<tr class="row-odd"><td>Iperf</td>
-<td>94.1</td>
-</tr>
-</tbody>
-</table>
 <p>So... the re-calculated mean is higher... I don&#8217;t really know what this means. My guess would be that this is a problem of loss of precision in converting everything into Mbits/second. Let&#8217;s try an iperf file that used bits as the units.</p>
 </div>
 <div class="section" id="bit-sums">
 <h3>Bit Sums<a class="headerlink" href="#bit-sums" title="Permalink to this headline">¶</a></h3>
-<p>First I&#8217;ll set up the IperfParser and SumParser to convert to bits (which means no conversion in this case, since the source file was in bits). I&#8217;ll also import the UnitConverter, a dict that has a sub-dict that returns the conversion factor when converting from one unit to another (it takes the form <cite>unitconverter[&lt;from units&gt;][&lt;to units&gt;] = &lt;conversion factor&gt;</cite>). The file that&#8217;s going to be checked is <tt class="xref download docutils literal"><span class="pre">tests/steps/samples/client_p4_bits.iperf</span></tt> which is the output of the client-side output (the transmitter) when run with four parallel threads and the output format in bits.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">if</span> <span class="n">in_documentation</span><span class="p">:</span>
-    <span class="c">#set up the unitconverter</span>
+<p>First I&#8217;ll set up the IperfParser and SumParser to convert to bits (which means no conversion in this case, since the source file was in bits). I&#8217;ll also import the UnitConverter, a dict that has a sub-dict that returns the conversion factor when converting from one unit to another (it takes the form <cite>unitconverter[&lt;from units&gt;][&lt;to units&gt;] = &lt;conversion factor&gt;</cite>). The file that&#8217;s going to be checked is <code class="xref download docutils literal"><span class="pre">tests/steps/samples/client_p4_bits.iperf</span></code> which is the output of the client-side output (the transmitter) when run with four parallel threads and the output format in bits.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">in_documentation</span><span class="p">:</span>
+    <span class="c1">#set up the unitconverter</span>
     <span class="kn">from</span> <span class="nn">unitconverter</span> <span class="kn">import</span> <span class="n">UnitConverter</span>
     <span class="kn">from</span> <span class="nn">unitconverter</span> <span class="kn">import</span> <span class="n">UnitNames</span>
     <span class="kn">from</span> <span class="nn">unitconverter</span> <span class="kn">import</span> <span class="n">BinaryUnitNames</span> <span class="k">as</span> <span class="n">b_names</span>
     <span class="kn">from</span> <span class="nn">unitconverter</span> <span class="kn">import</span>  <span class="n">BinaryUnitconverter</span>
     <span class="n">converter</span> <span class="o">=</span> <span class="n">UnitConverter</span><span class="p">()</span>
     <span class="n">b_converter</span> <span class="o">=</span> <span class="n">BinaryUnitconverter</span><span class="p">()</span>
-    <span class="n">data_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_folder</span><span class="p">,</span> <span class="s">&#39;client_p4_bits.iperf&#39;</span><span class="p">)</span>
+    <span class="n">data_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_folder</span><span class="p">,</span> <span class="s1">&#39;client_p4_bits.iperf&#39;</span><span class="p">)</span>
 
-    <span class="c"># rename the sum-parser used earlier to make it clearer</span>
+    <span class="c1"># rename the sum-parser used earlier to make it clearer</span>
     <span class="n">sum_parser</span> <span class="o">=</span> <span class="n">parser</span>
 
-    <span class="c">#setup the parsers to use bits</span>
+    <span class="c1">#setup the parsers to use bits</span>
     <span class="n">voodoo</span> <span class="o">=</span> <span class="n">IperfParser</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">bits</span><span class="p">,</span> <span class="n">threads</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
     <span class="n">sum_parser</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
     <span class="n">sum_parser</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="n">UnitNames</span><span class="o">.</span><span class="n">bits</span>
     <span class="n">sum_parser</span><span class="o">.</span><span class="n">threads</span> <span class="o">=</span> <span class="mi">4</span>
 
-    <span class="c"># load them up with the raw lines</span>
+    <span class="c1"># load them up with the raw lines</span>
     <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="n">data_path</span><span class="p">):</span>
         <span class="n">sum_parser</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
         <span class="n">voodoo</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Now we add the interval bandwidths together, convert the total from bits to Mbits and then take the mean.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">if</span> <span class="n">in_documentation</span><span class="p">:</span>
-    <span class="c"># convert the sums to Mbits and take the average</span>
+<div class="code python highlight-python"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">in_documentation</span><span class="p">:</span>
+    <span class="c1"># convert the sums to Mbits and take the average</span>
     <span class="n">total_bandwidth</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">sum_parser</span><span class="o">.</span><span class="n">bandwidths</span><span class="p">)</span> <span class="o">*</span> <span class="n">converter</span><span class="p">[</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">bits</span><span class="p">][</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">mbits</span><span class="p">]</span>
     <span class="n">calculated_average</span> <span class="o">=</span> <span class="n">total_bandwidth</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">sum_parser</span><span class="o">.</span><span class="n">intervals</span><span class="p">)</span>
 
-    <span class="c"># same for the re-added threads</span>
-    <span class="n">v_total</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">voodoo</span><span class="o">.</span><span class="n">bandwidths</span><span class="p">)</span> <span class="o">*</span> <span class="n">converter</span><span class="p">[</span><span class="s">&#39;bits&#39;</span><span class="p">][</span><span class="s">&#39;Mbits&#39;</span><span class="p">]</span>
+    <span class="c1"># same for the re-added threads</span>
+    <span class="n">v_total</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">voodoo</span><span class="o">.</span><span class="n">bandwidths</span><span class="p">)</span> <span class="o">*</span> <span class="n">converter</span><span class="p">[</span><span class="s1">&#39;bits&#39;</span><span class="p">][</span><span class="s1">&#39;Mbits&#39;</span><span class="p">]</span>
     <span class="n">v_average</span> <span class="o">=</span> <span class="n">v_total</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">voodoo</span><span class="o">.</span><span class="n">intervals</span><span class="p">)</span>
 
-    <span class="c"># now iperf&#39;s</span>
-    <span class="n">iperf_mean</span> <span class="o">=</span> <span class="n">sum_parser</span><span class="o">.</span><span class="n">last_line_bandwidth</span> <span class="o">*</span> <span class="n">converter</span><span class="p">[</span><span class="s">&#39;bits&#39;</span><span class="p">][</span><span class="s">&#39;Mbits&#39;</span><span class="p">]</span>
+    <span class="c1"># now iperf&#39;s</span>
+    <span class="n">iperf_mean</span> <span class="o">=</span> <span class="n">sum_parser</span><span class="o">.</span><span class="n">last_line_bandwidth</span> <span class="o">*</span> <span class="n">converter</span><span class="p">[</span><span class="s1">&#39;bits&#39;</span><span class="p">][</span><span class="s1">&#39;Mbits&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>And here&#8217;s what we get.</p>
-<table border="1" class="docutils">
-<caption>Bandwidth Comparison</caption>
-<colgroup>
-<col width="50%" />
-<col width="50%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Source</th>
-<th class="head">Mean Bandwidth (Mbits/Second)</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>Iperf</td>
-<td>93.592467</td>
-</tr>
-<tr class="row-odd"><td>Sum-Lines</td>
-<td>93.9524096</td>
-</tr>
-<tr class="row-even"><td>Threads</td>
-<td>93.9524096</td>
-</tr>
-</tbody>
-</table>
 <p>So in this case, since there were no threads with missing intervals the SumParser and the IperfParser came up with the same values but both were higher than iperf&#8217;s calculated final value. It appears that there&#8217;s more going on than just a round-off error.</p>
 </div>
 </div>
 <div class="section" id="transfers">
 <h2>Transfers<a class="headerlink" href="#transfers" title="Permalink to this headline">¶</a></h2>
 <p>I think that there are multiple things going on. One is that I&#8217;m assuming that each interval is exactly 1 second, but that&#8217;s not necessarily the case. Also, the last transfer isn&#8217;t included in the interval reports, just in the final report. I&#8217;ll try a file with bits again, but this time I specified two threads and a buffer of 512 KiloBytes.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">if</span> <span class="n">in_documentation</span><span class="p">:</span>
+<div class="code python highlight-python"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">in_documentation</span><span class="p">:</span>
     <span class="n">voodoo</span> <span class="o">=</span> <span class="n">IperfParser</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">bits</span><span class="p">,</span> <span class="n">threads</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
     <span class="n">sum_parser</span> <span class="o">=</span> <span class="n">SumParser</span><span class="p">(</span><span class="n">threads</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">bits</span><span class="p">)</span>
 
-    <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_folder</span><span class="p">,</span> <span class="s">&#39;tartarus_p2_bits_halfM.iperf&#39;</span><span class="p">)</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_folder</span><span class="p">,</span> <span class="s1">&#39;tartarus_p2_bits_halfM.iperf&#39;</span><span class="p">)</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">reader</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
             <span class="n">voodoo</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
@@ -501,11 +434,8 @@ SumParser: last_line_bandwidth" />
     <span class="k">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>[SUM]  0.0-10.2 sec  119537664 Bytes  94015278 bits/sec
-</pre></div>
-</div>
 <p>Looking at the last line output you can see that it actually ran for a reported 10.2 seconds (or at least one of the threads did). We&#8217;ll try the re-calculation on the transfers.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">if</span> <span class="n">in_documentation</span><span class="p">:</span>
+<div class="code python highlight-python"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">in_documentation</span><span class="p">:</span>
     <span class="n">mbytes</span> <span class="o">=</span> <span class="n">b_converter</span><span class="p">[</span><span class="n">b_names</span><span class="o">.</span><span class="n">bytes</span><span class="p">][</span><span class="n">b_names</span><span class="o">.</span><span class="n">mebibytes</span><span class="p">]</span>
 
     <span class="n">recalculated_transfer</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">voodoo</span><span class="o">.</span><span class="n">transfers</span><span class="p">)</span>
@@ -515,55 +445,15 @@ SumParser: last_line_bandwidth" />
     <span class="n">iperfs_transfer_mbytes</span> <span class="o">=</span> <span class="n">iperfs_transfer</span> <span class="o">*</span> <span class="n">mbytes</span>
 </pre></div>
 </div>
-<table border="1" class="docutils">
-<caption>Data Transfered</caption>
-<colgroup>
-<col width="50%" />
-<col width="50%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Source</th>
-<th class="head">Transfer (MBytes)</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>Re-Calculated</td>
-<td>113.0</td>
-</tr>
-<tr class="row-odd"><td>Iperf&#8217;s Transfer</td>
-<td>114.0</td>
-</tr>
-</tbody>
-</table>
 <p>So the re-added transfer is still missing data. The most likely reason is that the last data-transfer isn&#8217;t added to the last interval but added to the final tally instead. Each thread adds one buffer&#8217;s worth of data to the final tally so in this case it should be 1 Megabyte short like we see. We can double-check.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">if</span> <span class="n">in_documentation</span><span class="p">:</span>
+<div class="code python highlight-python"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">in_documentation</span><span class="p">:</span>
     <span class="n">missing</span> <span class="o">=</span> <span class="n">b_converter</span><span class="p">[</span><span class="n">b_names</span><span class="o">.</span><span class="n">mebibytes</span><span class="p">][</span><span class="n">b_names</span><span class="o">.</span><span class="n">bytes</span><span class="p">]</span>
     <span class="n">recalculated_transfer</span> <span class="o">+=</span> <span class="n">missing</span>
     <span class="n">recalculated_transfer_mbytes</span> <span class="o">=</span> <span class="n">recalculated_transfer</span> <span class="o">*</span> <span class="n">mbytes</span>
 </pre></div>
 </div>
-<table border="1" class="docutils">
-<caption>Re-added Data Transfered</caption>
-<colgroup>
-<col width="50%" />
-<col width="50%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Source</th>
-<th class="head">Transfer(Mbytes)</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>Re-Calculated</td>
-<td>114.0</td>
-</tr>
-<tr class="row-odd"><td>Iperf&#8217;s Transfer</td>
-<td>114.0</td>
-</tr>
-</tbody>
-</table>
 <p>Now we can re-try the bandwidth, remembering that it took 10.2 seconds to finish.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">if</span> <span class="n">in_documentation</span><span class="p">:</span>
+<div class="code python highlight-python"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">in_documentation</span><span class="p">:</span>
     <span class="n">m_bits</span> <span class="o">=</span> <span class="n">converter</span><span class="p">[</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">bits</span><span class="p">][</span><span class="n">UnitNames</span><span class="o">.</span><span class="n">mbits</span><span class="p">]</span>
     <span class="n">recalculated_bandwidth</span> <span class="o">=</span> <span class="n">recalculated_transfer</span> <span class="o">*</span> <span class="n">b_converter</span><span class="p">[</span><span class="n">b_names</span><span class="o">.</span><span class="n">bytes</span><span class="p">][</span><span class="n">b_names</span><span class="o">.</span><span class="n">bits</span><span class="p">]</span>
     <span class="n">recalculated_bandwidth</span> <span class="o">=</span> <span class="n">recalculated_bandwidth</span>
@@ -571,64 +461,21 @@ SumParser: last_line_bandwidth" />
     <span class="n">iperfs_bandwidth</span> <span class="o">=</span> <span class="n">sum_parser</span><span class="o">.</span><span class="n">last_line_bandwidth</span> <span class="o">*</span> <span class="n">m_bits</span>
 </pre></div>
 </div>
-<table border="1" class="docutils">
-<caption>Bandwidths</caption>
-<colgroup>
-<col width="50%" />
-<col width="50%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Source</th>
-<th class="head">Bandwidth (Mbits)</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>Re-Calculated</td>
-<td>93.76</td>
-</tr>
-<tr class="row-odd"><td>Iperf</td>
-<td>94.02</td>
-</tr>
-</tbody>
-</table>
 <p>So it still doesn&#8217;t capture the full bandwidth... We can get the actual time with a little algebra.</p>
 <div class="math">
 <p><img src="_images/math/de670d413e5a4b8b68097b1cb43fd166a555351f.png" alt="bandwidth &amp;=  \frac{bits}{seconds}\\
 seconds &amp;= \frac{bits}{bandwidth}\\"/></p>
-</div><div class="highlight-python"><div class="highlight"><pre><span class="k">if</span> <span class="n">in_documentation</span><span class="p">:</span>
+</div><div class="code python highlight-python"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">in_documentation</span><span class="p">:</span>
     <span class="n">transfer</span> <span class="o">=</span> <span class="n">sum_parser</span><span class="o">.</span><span class="n">last_line_transfer</span> <span class="o">*</span> <span class="n">b_converter</span><span class="p">[</span><span class="n">b_names</span><span class="o">.</span><span class="n">bytes</span><span class="p">][</span><span class="n">b_names</span><span class="o">.</span><span class="n">bits</span><span class="p">]</span>
     <span class="n">seconds</span> <span class="o">=</span> <span class="n">transfer</span><span class="o">/</span><span class="nb">float</span><span class="p">(</span><span class="n">sum_parser</span><span class="o">.</span><span class="n">last_line_bandwidth</span><span class="p">)</span>
     <span class="k">print</span><span class="p">(</span><span class="n">seconds</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="mf">10.1717649763</span>
-</pre></div>
-</div>
 <p>Once more with feeling.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">if</span> <span class="n">in_documentation</span><span class="p">:</span>
+<div class="code python highlight-python"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">in_documentation</span><span class="p">:</span>
     <span class="n">recalculated_bandwidth_mbits</span> <span class="o">=</span> <span class="p">(</span><span class="n">recalculated_bandwidth</span><span class="o">/</span><span class="n">seconds</span><span class="p">)</span> <span class="o">*</span> <span class="n">m_bits</span>
 </pre></div>
 </div>
-<table border="1" class="docutils">
-<caption>Final Bandwidths</caption>
-<colgroup>
-<col width="50%" />
-<col width="50%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Source</th>
-<th class="head">Bandwidth (Mbits)</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>Re-Calculated</td>
-<td>94.02</td>
-</tr>
-<tr class="row-odd"><td>Iperf</td>
-<td>94.02</td>
-</tr>
-</tbody>
-</table>
 <p>So there you have it.</p>
 </div>
 </div>
@@ -646,7 +493,7 @@ seconds &amp;= \frac{bits}{bandwidth}\\"/></p>
     </p>
     <p>
         &copy; Copyright 2013, cloistered monkey.<br/>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.<br/>
     </p>
   </div>
 </footer>

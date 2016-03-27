@@ -9,7 +9,7 @@
     
     <link rel="stylesheet" href="../../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/bootswatch-3.2.0/readable/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootswatch-3.3.4/spacelab/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
@@ -26,7 +26,7 @@
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="../../_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="IperfLexer 0.1.4 documentation" href="../../index.html" />
     <link rel="up" title="The Iperf Lexer Test Implementations" href="index.html" />
@@ -37,7 +37,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 
   </head>
-  <body>
+  <body role="document">
 
   <div id="navbar" class="navbar navbar-default navbar-fixed-top">
     <div class="container">
@@ -113,7 +113,7 @@
               
                 
   <li>
-    <a href="lastlinebandwidth.html" title="Previous Chapter: Last Line Bandwidth"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Last Line Bandwi...</span>
+    <a href="lastlinebandwidth.html" title="Previous Chapter: Last Line Bandwidth"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Last Line Ban...</span>
     </a>
   </li>
               
@@ -145,11 +145,11 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12 content">
       
   <div class="section" id="transfer-feature">
 <h1>Transfer Feature<a class="headerlink" href="#transfer-feature" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-gherkin"><div class="highlight"><pre><span class="k">Feature:</span><span class="nf"> Transfer Data</span>
+<div class="highlight-gherkin"><div class="highlight"><pre><span></span><span class="k">Feature:</span><span class="nf"> Transfer Data</span>
 <span class="nf"> </span><span class="k">Scenario Outline:</span><span class="nf"> The IperfParser  generates transfers</span>
 <span class="k">   Given </span><span class="nf">an </span><span class="nv">&lt;parser&gt;</span><span class="nf"> with </span><span class="nv">&lt;data&gt;</span><span class="nf"> data loaded and set to bits</span>
 <span class="nf">   </span><span class="k">When </span><span class="nf">the transfers are traversed</span>
@@ -170,80 +170,80 @@
 <span class="nf">   </span><span class="k">Then </span><span class="nf">the transfer from the last line is saved as last_line_transfer</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">data</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
-<span class="s">------------------------------------------------------------</span>
-<span class="s">Client connecting to tartarus, TCP port 5001</span>
-<span class="s">TCP window size: 87040 Byte (default)</span>
-<span class="s">------------------------------------------------------------</span>
-<span class="s">[  4] local 192.168.1.2 port 36821 connected with 192.168.1.3 port 5001</span>
-<span class="s">[  3] local 192.168.1.2 port 36820 connected with 192.168.1.3 port 5001</span>
-<span class="s">[ ID] Interval       Transfer     Bandwidth</span>
-<span class="s">[  4]  0.0- 1.0 sec  6291456 Bytes  50331648 bits/sec</span>
-<span class="s">[  3]  0.0- 1.0 sec  6291456 Bytes  50331648 bits/sec</span>
-<span class="s">[SUM]  0.0- 1.0 sec  12582912 Bytes  100663296 bits/sec</span>
-<span class="s">[  4]  1.0- 2.0 sec  5767168 Bytes  46137344 bits/sec</span>
-<span class="s">[  3]  1.0- 2.0 sec  5767168 Bytes  46137344 bits/sec</span>
-<span class="s">[SUM]  1.0- 2.0 sec  11534336 Bytes  92274688 bits/sec</span>
-<span class="s">[  4]  2.0- 3.0 sec  5767168 Bytes  46137344 bits/sec</span>
-<span class="s">[  3]  2.0- 3.0 sec  5767168 Bytes  46137344 bits/sec</span>
-<span class="s">[SUM]  2.0- 3.0 sec  11534336 Bytes  92274688 bits/sec</span>
-<span class="s">[  4]  3.0- 4.0 sec  5767168 Bytes  46137344 bits/sec</span>
-<span class="s">[  3]  3.0- 4.0 sec  5767168 Bytes  46137344 bits/sec</span>
-<span class="s">[SUM]  3.0- 4.0 sec  11534336 Bytes  92274688 bits/sec</span>
-<span class="s">[  4]  4.0- 5.0 sec  6291456 Bytes  50331648 bits/sec</span>
-<span class="s">[  3]  4.0- 5.0 sec  6291456 Bytes  50331648 bits/sec</span>
-<span class="s">[SUM]  4.0- 5.0 sec  12582912 Bytes  100663296 bits/sec</span>
-<span class="s">[  4]  5.0- 6.0 sec  5767168 Bytes  46137344 bits/sec</span>
-<span class="s">[  3]  5.0- 6.0 sec  5767168 Bytes  46137344 bits/sec</span>
-<span class="s">[SUM]  5.0- 6.0 sec  11534336 Bytes  92274688 bits/sec</span>
-<span class="s">[  4]  6.0- 7.0 sec  5767168 Bytes  46137344 bits/sec</span>
-<span class="s">[  3]  6.0- 7.0 sec  5767168 Bytes  46137344 bits/sec</span>
-<span class="s">[SUM]  6.0- 7.0 sec  11534336 Bytes  92274688 bits/sec</span>
-<span class="s">[  4]  7.0- 8.0 sec  5767168 Bytes  46137344 bits/sec</span>
-<span class="s">[  3]  7.0- 8.0 sec  5767168 Bytes  46137344 bits/sec</span>
-<span class="s">[SUM]  7.0- 8.0 sec  11534336 Bytes  92274688 bits/sec</span>
-<span class="s">[  4]  8.0- 9.0 sec  5767168 Bytes  46137344 bits/sec</span>
-<span class="s">[  3]  8.0- 9.0 sec  5767168 Bytes  46137344 bits/sec</span>
-<span class="s">[SUM]  8.0- 9.0 sec  11534336 Bytes  92274688 bits/sec</span>
-<span class="s">[  4]  9.0-10.0 sec  6291456 Bytes  50331648 bits/sec</span>
-<span class="s">[  4]  0.0-10.2 sec  59768832 Bytes  47007639 bits/sec</span>
-<span class="s">[  3]  9.0-10.0 sec  6291456 Bytes  50331648 bits/sec</span>
-<span class="s">[SUM]  9.0-10.0 sec  12582912 Bytes  100663296 bits/sec</span>
-<span class="s">[  3]  0.0-10.2 sec  59768832 Bytes  47028560 bits/sec</span>
-<span class="s">[SUM]  0.0-10.2 sec  119537664 Bytes  94015278 bits/sec</span>
-<span class="s">&quot;&quot;&quot;</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">------------------------------------------------------------</span>
+<span class="s2">Client connecting to tartarus, TCP port 5001</span>
+<span class="s2">TCP window size: 87040 Byte (default)</span>
+<span class="s2">------------------------------------------------------------</span>
+<span class="s2">[  4] local 192.168.1.2 port 36821 connected with 192.168.1.3 port 5001</span>
+<span class="s2">[  3] local 192.168.1.2 port 36820 connected with 192.168.1.3 port 5001</span>
+<span class="s2">[ ID] Interval       Transfer     Bandwidth</span>
+<span class="s2">[  4]  0.0- 1.0 sec  6291456 Bytes  50331648 bits/sec</span>
+<span class="s2">[  3]  0.0- 1.0 sec  6291456 Bytes  50331648 bits/sec</span>
+<span class="s2">[SUM]  0.0- 1.0 sec  12582912 Bytes  100663296 bits/sec</span>
+<span class="s2">[  4]  1.0- 2.0 sec  5767168 Bytes  46137344 bits/sec</span>
+<span class="s2">[  3]  1.0- 2.0 sec  5767168 Bytes  46137344 bits/sec</span>
+<span class="s2">[SUM]  1.0- 2.0 sec  11534336 Bytes  92274688 bits/sec</span>
+<span class="s2">[  4]  2.0- 3.0 sec  5767168 Bytes  46137344 bits/sec</span>
+<span class="s2">[  3]  2.0- 3.0 sec  5767168 Bytes  46137344 bits/sec</span>
+<span class="s2">[SUM]  2.0- 3.0 sec  11534336 Bytes  92274688 bits/sec</span>
+<span class="s2">[  4]  3.0- 4.0 sec  5767168 Bytes  46137344 bits/sec</span>
+<span class="s2">[  3]  3.0- 4.0 sec  5767168 Bytes  46137344 bits/sec</span>
+<span class="s2">[SUM]  3.0- 4.0 sec  11534336 Bytes  92274688 bits/sec</span>
+<span class="s2">[  4]  4.0- 5.0 sec  6291456 Bytes  50331648 bits/sec</span>
+<span class="s2">[  3]  4.0- 5.0 sec  6291456 Bytes  50331648 bits/sec</span>
+<span class="s2">[SUM]  4.0- 5.0 sec  12582912 Bytes  100663296 bits/sec</span>
+<span class="s2">[  4]  5.0- 6.0 sec  5767168 Bytes  46137344 bits/sec</span>
+<span class="s2">[  3]  5.0- 6.0 sec  5767168 Bytes  46137344 bits/sec</span>
+<span class="s2">[SUM]  5.0- 6.0 sec  11534336 Bytes  92274688 bits/sec</span>
+<span class="s2">[  4]  6.0- 7.0 sec  5767168 Bytes  46137344 bits/sec</span>
+<span class="s2">[  3]  6.0- 7.0 sec  5767168 Bytes  46137344 bits/sec</span>
+<span class="s2">[SUM]  6.0- 7.0 sec  11534336 Bytes  92274688 bits/sec</span>
+<span class="s2">[  4]  7.0- 8.0 sec  5767168 Bytes  46137344 bits/sec</span>
+<span class="s2">[  3]  7.0- 8.0 sec  5767168 Bytes  46137344 bits/sec</span>
+<span class="s2">[SUM]  7.0- 8.0 sec  11534336 Bytes  92274688 bits/sec</span>
+<span class="s2">[  4]  8.0- 9.0 sec  5767168 Bytes  46137344 bits/sec</span>
+<span class="s2">[  3]  8.0- 9.0 sec  5767168 Bytes  46137344 bits/sec</span>
+<span class="s2">[SUM]  8.0- 9.0 sec  11534336 Bytes  92274688 bits/sec</span>
+<span class="s2">[  4]  9.0-10.0 sec  6291456 Bytes  50331648 bits/sec</span>
+<span class="s2">[  4]  0.0-10.2 sec  59768832 Bytes  47007639 bits/sec</span>
+<span class="s2">[  3]  9.0-10.0 sec  6291456 Bytes  50331648 bits/sec</span>
+<span class="s2">[SUM]  9.0-10.0 sec  12582912 Bytes  100663296 bits/sec</span>
+<span class="s2">[  3]  0.0-10.2 sec  59768832 Bytes  47028560 bits/sec</span>
+<span class="s2">[SUM]  0.0-10.2 sec  119537664 Bytes  94015278 bits/sec</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
 
-<span class="n">transfers</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;12582912</span>
-<span class="s">11534336</span>
-<span class="s">11534336</span>
-<span class="s">11534336</span>
-<span class="s">12582912</span>
-<span class="s">11534336</span>
-<span class="s">11534336</span>
-<span class="s">11534336</span>
-<span class="s">11534336</span>
-<span class="s">12582912</span>
-<span class="s">&quot;&quot;&quot;</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+<span class="n">transfers</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;12582912</span>
+<span class="s2">11534336</span>
+<span class="s2">11534336</span>
+<span class="s2">11534336</span>
+<span class="s2">12582912</span>
+<span class="s2">11534336</span>
+<span class="s2">11534336</span>
+<span class="s2">11534336</span>
+<span class="s2">11534336</span>
+<span class="s2">12582912</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
 </pre></div>
 </div>
 <div class="section" id="scenario-the-iperfparser-is-generates-transfers">
 <h2>Scenario: The IperfParser is generates transfers<a class="headerlink" href="#scenario-the-iperfparser-is-generates-transfers" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python"><div class="highlight"><pre><span class="nd">@given</span><span class="p">(</span><span class="s">&quot;an IperfParser with all data loaded and set to bits&quot;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="nd">@given</span><span class="p">(</span><span class="s2">&quot;an IperfParser with all data loaded and set to bits&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">bits_parser</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
-    <span class="n">context</span><span class="o">.</span><span class="n">parser</span> <span class="o">=</span> <span class="n">IperfParser</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="s">&#39;bits&#39;</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">parser</span> <span class="o">=</span> <span class="n">IperfParser</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="s1">&#39;bits&#39;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
         <span class="n">context</span><span class="o">.</span><span class="n">parser</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
     <span class="k">return</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="nd">@when</span><span class="p">(</span><span class="s">&quot;the transfers are traversed&quot;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="nd">@when</span><span class="p">(</span><span class="s2">&quot;the transfers are traversed&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">traverse_transfers</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
     <span class="n">context</span><span class="o">.</span><span class="n">expected</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">transfers</span><span class="p">]</span>
     <span class="n">context</span><span class="o">.</span><span class="n">actual</span> <span class="o">=</span> <span class="p">[</span><span class="n">transfer</span> <span class="k">for</span> <span class="n">transfer</span> <span class="ow">in</span> <span class="n">context</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">transfers</span><span class="p">]</span>
     <span class="k">return</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="nd">@then</span><span class="p">(</span><span class="s">&quot;the values from the data column have the sums&quot;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="nd">@then</span><span class="p">(</span><span class="s2">&quot;the values from the data column have the sums&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">assert_values</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
     <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">expected</span><span class="p">,</span>
                 <span class="n">contains</span><span class="p">(</span><span class="o">*</span><span class="n">context</span><span class="o">.</span><span class="n">actual</span><span class="p">))</span>
@@ -253,59 +253,59 @@
 </div>
 <div class="section" id="example-missing-sums">
 <h2>Example: missing sums<a class="headerlink" href="#example-missing-sums" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">missing_sums</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
-<span class="s">------------------------------------------------------------</span>
-<span class="s">Client connecting to tartarus, TCP port 5001</span>
-<span class="s">TCP window size: 87040 Byte (default)</span>
-<span class="s">------------------------------------------------------------</span>
-<span class="s">[  4] local 192.168.1.2 port 36821 connected with 192.168.1.3 port 5001</span>
-<span class="s">[  3] local 192.168.1.2 port 36820 connected with 192.168.1.3 port 5001</span>
-<span class="s">[ ID] Interval       Transfer     Bandwidth</span>
-<span class="s">[  4]  0.0- 1.0 sec  6291456 Bytes  50331648 bits/sec</span>
-<span class="s">[  3]  0.0- 1.0 sec  6291456 Bytes  50331648 bits/sec</span>
-<span class="s">[SUM]  0.0- 1.0 sec  12582912 Bytes  100663296 bits/sec</span>
-<span class="s">[  4]  1.0- 2.0 sec  5767168 Bytes  46137344 bits/sec</span>
-<span class="s">[  3]  1.0- 2.0 sec  5767168 Bytes  46137344 bits/sec</span>
-<span class="s">[  4]  2.0- 3.0 sec  5767168 Bytes  46137344 bits/sec</span>
-<span class="s">[  3]  2.0- 3.0 sec  5767168 Bytes  46137344 bits/sec</span>
-<span class="s">[SUM]  2.0- 3.0 sec  11534336 Bytes  92274688 bits/sec</span>
-<span class="s">[  4]  3.0- 4.0 sec  5767168 Bytes  46137344 bits/sec</span>
-<span class="s">[  3]  3.0- 4.0 sec  5767168 Bytes  46137344 bits/sec</span>
-<span class="s">[SUM]  3.0- 4.0 sec  11534336 Bytes  92274688 bits/sec</span>
-<span class="s">[  4]  4.0- 5.0 sec  6291456 Bytes  50331648 bits/sec</span>
-<span class="s">[  3]  4.0- 5.0 sec  6291456 Bytes  50331648 bits/sec</span>
-<span class="s">[SUM]  4.0- 5.0 sec  12582912 Bytes  100663296 bits/sec</span>
-<span class="s">[  4]  5.0- 6.0 sec  5767168 Bytes  46137344 bits/sec</span>
-<span class="s">[  3]  5.0- 6.0 sec  5767168 Bytes  46137344 bits/sec</span>
-<span class="s">[  4]  6.0- 7.0 sec  5767168 Bytes  46137344 bits/sec</span>
-<span class="s">[  3]  6.0- 7.0 sec  5767168 Bytes  46137344 bits/sec</span>
-<span class="s">[  4]  7.0- 8.0 sec  5767168 Bytes  46137344 bits/sec</span>
-<span class="s">[  3]  7.0- 8.0 sec  5767168 Bytes  46137344 bits/sec</span>
-<span class="s">[SUM]  7.0- 8.0 sec  11534336 Bytes  92274688 bits/sec</span>
-<span class="s">[  4]  8.0- 9.0 sec  5767168 Bytes  46137344 bits/sec</span>
-<span class="s">[  3]  8.0- 9.0 sec  5767168 Bytes  46137344 bits/sec</span>
-<span class="s">[SUM]  8.0- 9.0 sec  11534336 Bytes  92274688 bits/sec</span>
-<span class="s">[  4]  9.0-10.0 sec  6291456 Bytes  50331648 bits/sec</span>
-<span class="s">[  4]  0.0-10.2 sec  59768832 Bytes  47007639 bits/sec</span>
-<span class="s">[  3]  9.0-10.0 sec  6291456 Bytes  50331648 bits/sec</span>
-<span class="s">[SUM]  9.0-10.0 sec  12582912 Bytes  100663296 bits/sec</span>
-<span class="s">[  3]  0.0-10.2 sec  59768832 Bytes  47028560 bits/sec</span>
-<span class="s">[SUM]  0.0-10.2 sec  119537664 Bytes  94015278 bits/sec</span>
-<span class="s">&quot;&quot;&quot;</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">missing_sums</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">------------------------------------------------------------</span>
+<span class="s2">Client connecting to tartarus, TCP port 5001</span>
+<span class="s2">TCP window size: 87040 Byte (default)</span>
+<span class="s2">------------------------------------------------------------</span>
+<span class="s2">[  4] local 192.168.1.2 port 36821 connected with 192.168.1.3 port 5001</span>
+<span class="s2">[  3] local 192.168.1.2 port 36820 connected with 192.168.1.3 port 5001</span>
+<span class="s2">[ ID] Interval       Transfer     Bandwidth</span>
+<span class="s2">[  4]  0.0- 1.0 sec  6291456 Bytes  50331648 bits/sec</span>
+<span class="s2">[  3]  0.0- 1.0 sec  6291456 Bytes  50331648 bits/sec</span>
+<span class="s2">[SUM]  0.0- 1.0 sec  12582912 Bytes  100663296 bits/sec</span>
+<span class="s2">[  4]  1.0- 2.0 sec  5767168 Bytes  46137344 bits/sec</span>
+<span class="s2">[  3]  1.0- 2.0 sec  5767168 Bytes  46137344 bits/sec</span>
+<span class="s2">[  4]  2.0- 3.0 sec  5767168 Bytes  46137344 bits/sec</span>
+<span class="s2">[  3]  2.0- 3.0 sec  5767168 Bytes  46137344 bits/sec</span>
+<span class="s2">[SUM]  2.0- 3.0 sec  11534336 Bytes  92274688 bits/sec</span>
+<span class="s2">[  4]  3.0- 4.0 sec  5767168 Bytes  46137344 bits/sec</span>
+<span class="s2">[  3]  3.0- 4.0 sec  5767168 Bytes  46137344 bits/sec</span>
+<span class="s2">[SUM]  3.0- 4.0 sec  11534336 Bytes  92274688 bits/sec</span>
+<span class="s2">[  4]  4.0- 5.0 sec  6291456 Bytes  50331648 bits/sec</span>
+<span class="s2">[  3]  4.0- 5.0 sec  6291456 Bytes  50331648 bits/sec</span>
+<span class="s2">[SUM]  4.0- 5.0 sec  12582912 Bytes  100663296 bits/sec</span>
+<span class="s2">[  4]  5.0- 6.0 sec  5767168 Bytes  46137344 bits/sec</span>
+<span class="s2">[  3]  5.0- 6.0 sec  5767168 Bytes  46137344 bits/sec</span>
+<span class="s2">[  4]  6.0- 7.0 sec  5767168 Bytes  46137344 bits/sec</span>
+<span class="s2">[  3]  6.0- 7.0 sec  5767168 Bytes  46137344 bits/sec</span>
+<span class="s2">[  4]  7.0- 8.0 sec  5767168 Bytes  46137344 bits/sec</span>
+<span class="s2">[  3]  7.0- 8.0 sec  5767168 Bytes  46137344 bits/sec</span>
+<span class="s2">[SUM]  7.0- 8.0 sec  11534336 Bytes  92274688 bits/sec</span>
+<span class="s2">[  4]  8.0- 9.0 sec  5767168 Bytes  46137344 bits/sec</span>
+<span class="s2">[  3]  8.0- 9.0 sec  5767168 Bytes  46137344 bits/sec</span>
+<span class="s2">[SUM]  8.0- 9.0 sec  11534336 Bytes  92274688 bits/sec</span>
+<span class="s2">[  4]  9.0-10.0 sec  6291456 Bytes  50331648 bits/sec</span>
+<span class="s2">[  4]  0.0-10.2 sec  59768832 Bytes  47007639 bits/sec</span>
+<span class="s2">[  3]  9.0-10.0 sec  6291456 Bytes  50331648 bits/sec</span>
+<span class="s2">[SUM]  9.0-10.0 sec  12582912 Bytes  100663296 bits/sec</span>
+<span class="s2">[  3]  0.0-10.2 sec  59768832 Bytes  47028560 bits/sec</span>
+<span class="s2">[SUM]  0.0-10.2 sec  119537664 Bytes  94015278 bits/sec</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
 
-<span class="n">missing_data</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;12582912</span>
-<span class="s">11534336</span>
-<span class="s">11534336</span>
-<span class="s">12582912</span>
-<span class="s">11534336</span>
-<span class="s">11534336</span>
-<span class="s">12582912</span>
-<span class="s">&quot;&quot;&quot;</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+<span class="n">missing_data</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;12582912</span>
+<span class="s2">11534336</span>
+<span class="s2">11534336</span>
+<span class="s2">12582912</span>
+<span class="s2">11534336</span>
+<span class="s2">11534336</span>
+<span class="s2">12582912</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="nd">@given</span><span class="p">(</span><span class="s">&quot;an IperfParser with missing data loaded and set to bits&quot;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="nd">@given</span><span class="p">(</span><span class="s2">&quot;an IperfParser with missing data loaded and set to bits&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">bits_parser</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
-    <span class="n">context</span><span class="o">.</span><span class="n">parser</span> <span class="o">=</span> <span class="n">IperfParser</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="s">&#39;bits&#39;</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">parser</span> <span class="o">=</span> <span class="n">IperfParser</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="s1">&#39;bits&#39;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">missing_sums</span><span class="p">:</span>
         <span class="n">context</span><span class="o">.</span><span class="n">parser</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
     <span class="k">return</span>
@@ -314,9 +314,9 @@
 </div>
 <div class="section" id="example-sumparser-with-all-sums">
 <h2>Example SumParser with all sums<a class="headerlink" href="#example-sumparser-with-all-sums" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python"><div class="highlight"><pre><span class="nd">@given</span><span class="p">(</span><span class="s">&quot;an SumParser with all data loaded and set to bits&quot;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="nd">@given</span><span class="p">(</span><span class="s2">&quot;an SumParser with all data loaded and set to bits&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">bits_parser</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
-    <span class="n">context</span><span class="o">.</span><span class="n">parser</span> <span class="o">=</span> <span class="n">SumParser</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="s">&#39;bits&#39;</span><span class="p">,</span> <span class="n">threads</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">parser</span> <span class="o">=</span> <span class="n">SumParser</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="s1">&#39;bits&#39;</span><span class="p">,</span> <span class="n">threads</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
         <span class="n">context</span><span class="o">.</span><span class="n">parser</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
     <span class="k">return</span>
@@ -325,15 +325,15 @@
 </div>
 <div class="section" id="example-sumparser-with-missing-sums">
 <h2>Example SumParser with missing sums<a class="headerlink" href="#example-sumparser-with-missing-sums" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python"><div class="highlight"><pre><span class="nd">@given</span><span class="p">(</span><span class="s">&quot;an SumParser with missing data loaded and set to bits&quot;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="nd">@given</span><span class="p">(</span><span class="s2">&quot;an SumParser with missing data loaded and set to bits&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">bits_parser</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
-    <span class="n">context</span><span class="o">.</span><span class="n">parser</span> <span class="o">=</span> <span class="n">SumParser</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="s">&#39;bits&#39;</span><span class="p">,</span> <span class="n">threads</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">parser</span> <span class="o">=</span> <span class="n">SumParser</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="s1">&#39;bits&#39;</span><span class="p">,</span> <span class="n">threads</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">missing_sums</span><span class="p">:</span>
         <span class="n">context</span><span class="o">.</span><span class="n">parser</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
     <span class="k">return</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="nd">@then</span><span class="p">(</span><span class="s">&quot;the values from the data column have the fewer points&quot;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="nd">@then</span><span class="p">(</span><span class="s2">&quot;the values from the data column have the fewer points&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">assert_values</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
     <span class="n">expected</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">missing_data</span><span class="p">]</span>
     <span class="n">assert_that</span><span class="p">(</span><span class="n">expected</span><span class="p">,</span>
@@ -344,15 +344,15 @@
 </div>
 <div class="section" id="scenario-last-transfer">
 <h2>Scenario: Last Transfer<a class="headerlink" href="#scenario-last-transfer" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python"><div class="highlight"><pre><span class="nd">@given</span><span class="p">(</span><span class="s">&quot;a SumParser loaded with data that has a last line&quot;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="nd">@given</span><span class="p">(</span><span class="s2">&quot;a SumParser loaded with data that has a last line&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">load_sumparser</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
-    <span class="n">context</span><span class="o">.</span><span class="n">parser</span> <span class="o">=</span> <span class="n">SumParser</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="s">&#39;bits&#39;</span><span class="p">,</span> <span class="n">threads</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">parser</span> <span class="o">=</span> <span class="n">SumParser</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="s1">&#39;bits&#39;</span><span class="p">,</span> <span class="n">threads</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">missing_sums</span><span class="p">:</span>
         <span class="n">context</span><span class="o">.</span><span class="n">parser</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
     <span class="k">return</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="nd">@then</span><span class="p">(</span><span class="s">&quot;the transfer from the last line is saved as last_line_transfer&quot;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="nd">@then</span><span class="p">(</span><span class="s2">&quot;the transfer from the last line is saved as last_line_transfer&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">last_line_transfer</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
     <span class="n">expected</span> <span class="o">=</span> <span class="mi">119537664</span>
     <span class="n">actual</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">last_line_transfer</span>
@@ -377,7 +377,7 @@
     </p>
     <p>
         &copy; Copyright 2013, cloistered monkey.<br/>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.<br/>
     </p>
   </div>
 </footer>
