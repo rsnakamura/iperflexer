@@ -4,6 +4,8 @@ The Iperf Lexer
 
 
 
+The *iperflexer* was written to make extracting time-series data from *iperf* output easier. It was built to be both a command-line command and a component used within other programs. The code is hosted on `github <https://github.com/russellnakamura/iperflexer>`_.
+
 Written Documentation
 ---------------------
 
