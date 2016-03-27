@@ -3,11 +3,10 @@
 import os
 
 #this package
-from iperfparser import IperfParser 
-from iperfexpressions import HumanExpression, ParserKeys, CsvExpression
-import oatbran as bran
-from coroutine import coroutine
-
+from iperflexer.iperfparser import IperfParser 
+from iperflexer.iperfexpressions import HumanExpression, ParserKeys, CsvExpression
+import iperflexer.oatbran as bran
+from iperflexer.coroutine import coroutine
 
 class HumanExpressionSum(HumanExpression):
     """
@@ -37,7 +36,6 @@ class HumanExpressionSum(HumanExpression):
         return self._thread_column
 # end class HumanExpressionSum
 
-
 class CsvExpressionSum(CsvExpression):
     """
     Changes the thread column to look for -1 if needed
@@ -64,8 +62,7 @@ class CsvExpressionSum(CsvExpression):
                 thread = bran.INTEGER
             self._thread_column = bran.NAMED(ParserKeys.thread, thread)
         return self._thread_column
-# end class CsvExpressionSum    
-
+# end class CsvExpressionSum
 
 class SumParser(IperfParser):
     """
@@ -141,9 +138,7 @@ class SumParser(IperfParser):
         return
 # end class SumParser
 
-
 in_documentation = __name__ == '__builtin__'
-
 
 if in_documentation:
     data_folder = 'tests/steps/samples/'
@@ -155,7 +150,6 @@ if in_documentation:
         if bandwidth is not None:
             print(bandwidth)
 
-
 if in_documentation:
     parser.reset()
 
@@ -164,8 +158,6 @@ if in_documentation:
     
     for bandwidth in parser.bandwidths:
         print(bandwidth)
-
-
 
 if in_documentation:
     parser.reset()
@@ -176,11 +168,9 @@ if in_documentation:
     
     calculated_average = sum(parser.bandwidths)/len(parser.intervals)
 
-
 if in_documentation:
     print('   Sum Lines, {0}'.format(calculated_average))
     print("   Iperf, {0}".format(parser.last_line_bandwidth))
-
 
 if in_documentation:
     #set up the unitconverter
@@ -206,7 +196,6 @@ if in_documentation:
         sum_parser(line)
         voodoo(line)
 
-
 if in_documentation:
     # convert the sums to Mbits and take the average
     total_bandwidth = sum(sum_parser.bandwidths) * converter[UnitNames.bits][UnitNames.mbits]
@@ -219,12 +208,10 @@ if in_documentation:
     # now iperf's
     iperf_mean = sum_parser.last_line_bandwidth * converter['bits']['Mbits']
 
-
 if in_documentation:
     print("   Iperf, {0}".format(iperf_mean))    
     print('   Sum-Lines, {0}'.format(calculated_average))
-    print("   Threads, {0}".format(v_average))          
-
+    print("   Threads, {0}".format(v_average))
 
 if in_documentation:
     voodoo = IperfParser(units=UnitNames.bits, threads=2)
@@ -237,7 +224,6 @@ if in_documentation:
             sum_parser(line)
     print(line)
 
-
 if in_documentation:
     mbytes = b_converter[b_names.bytes][b_names.mebibytes]
     
@@ -247,23 +233,18 @@ if in_documentation:
     iperfs_transfer = sum_parser.last_line_transfer
     iperfs_transfer_mbytes = iperfs_transfer * mbytes
 
-
 if in_documentation:
     print("   Re-Calculated,{0}".format(recalculated_transfer_mbytes))
     print("   Iperf's Transfer,{0}").format(iperfs_transfer_mbytes)
-
 
 if in_documentation:
     missing = b_converter[b_names.mebibytes][b_names.bytes]
     recalculated_transfer += missing
     recalculated_transfer_mbytes = recalculated_transfer * mbytes
-    
-
 
 if in_documentation:
     print("   Re-Calculated,{0}".format(recalculated_transfer_mbytes))
     print("   Iperf's Transfer,{0}").format(iperfs_transfer_mbytes)
-
 
 if in_documentation:
     m_bits = converter[UnitNames.bits][UnitNames.mbits]
@@ -272,21 +253,17 @@ if in_documentation:
     recalculated_bandwidth_mbits = (recalculated_bandwidth/10.2) * m_bits
     iperfs_bandwidth = sum_parser.last_line_bandwidth * m_bits
 
-
 if in_documentation:
     print('   Re-Calculated,{0:.2f}'.format(recalculated_bandwidth_mbits))
     print('   Iperf,{0:.2f}'.format(iperfs_bandwidth))
-
 
 if in_documentation:
     transfer = sum_parser.last_line_transfer * b_converter[b_names.bytes][b_names.bits]
     seconds = transfer/float(sum_parser.last_line_bandwidth)
     print(seconds)
 
-
 if in_documentation:
     recalculated_bandwidth_mbits = (recalculated_bandwidth/seconds) * m_bits
-
 
 if in_documentation:
     print('   Re-Calculated,{0:.2f}'.format(recalculated_bandwidth_mbits))

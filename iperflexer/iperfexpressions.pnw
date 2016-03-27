@@ -10,8 +10,8 @@ import re
 from abc import ABCMeta, abstractproperty
 
 #this code
-from baseclass import BaseClass
-import oatbran as bran
+from iperflexer.baseclass import BaseClass
+import iperflexer.oatbran as bran
 @
 
 .. _iperfexpressions-expression-base:

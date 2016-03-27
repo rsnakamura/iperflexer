@@ -5,13 +5,12 @@ import os
 
 # this code
 from iperflexer import MAXIMUM_BANDWITH
-from baseclass import BaseClass
+from iperflexer.baseclass import BaseClass
 
-from iperfexpressions import HumanExpression, ParserKeys
-from iperfexpressions import CsvExpression
-from unitconverter import UnitConverter, IperfbinaryConverter, BinaryUnitNames
-from coroutine import coroutine
-
+from iperflexer.iperfexpressions import HumanExpression, ParserKeys
+from iperflexer.iperfexpressions import CsvExpression
+from iperflexer.unitconverter import UnitConverter, IperfbinaryConverter, BinaryUnitNames
+from iperflexer.coroutine import coroutine
 
 class IperfParser(BaseClass):
     """

@@ -4,9 +4,6 @@ Coroutines
 
 A module for generic coroutines.
 
-<<name='import', echo=False>>=
-from types import FileType
-@
 <<name='constants', echo=False>>=
 COMMA = ','
 NEWLINE = '\n'
@@ -222,8 +219,9 @@ def file_output(file_object):
 
      - `file_object`: opened, writable file or name of file to open
     """
-    if not type(file_object) is FileType:
-        file_object = open(file_object, WRITEABLE)
+    #if not type(file_object) is FileType:
+    #    file_object = open(file_object, WRITEABLE)
+    # python 3 lacks the FileType
     while True:
         line = (yield)
         line = line.rstrip(NEWLINE) + NEWLINE

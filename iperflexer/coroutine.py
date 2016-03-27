@@ -1,12 +1,8 @@
 
-from types import FileType
-
-
 COMMA = ','
 NEWLINE = '\n'
 COMMA_JOIN = "{0},{1}"
 WRITEABLE = 'w'
-
 
 def coroutine(func):
     """
@@ -22,7 +18,6 @@ def coroutine(func):
         return coroutine_func
     return wrap
 
-
 @coroutine
 def broadcast(targets):
     """
@@ -37,7 +32,6 @@ def broadcast(targets):
         for target in targets:
             target.send(line)
     return
-
 
 @coroutine
 def comma_join(target, input_count):
@@ -56,7 +50,6 @@ def comma_join(target, input_count):
         target.send(line)
     return
 
-
 @coroutine
 def output(target_file):    
     """
@@ -73,7 +66,6 @@ def output(target_file):
         target_file.write(line)
     return
 
-
 @coroutine
 def comma_append(source, target):
     """
@@ -89,7 +81,6 @@ def comma_append(source, target):
         target.send(COMMA_JOIN.format(line.rstrip(NEWLINE), line_2))
     return
 
-
 @coroutine
 def file_output(file_object):
     """
@@ -99,8 +90,9 @@ def file_output(file_object):
 
      - `file_object`: opened, writable file or name of file to open
     """
-    if not type(file_object) is FileType:
-        file_object = open(file_object, WRITEABLE)
+    #if not type(file_object) is FileType:
+    #    file_object = open(file_object, WRITEABLE)
+    # python 3 lacks the FileType
     while True:
         line = (yield)
         line = line.rstrip(NEWLINE) + NEWLINE

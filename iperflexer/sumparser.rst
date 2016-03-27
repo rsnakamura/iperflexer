@@ -7,6 +7,7 @@ The sumparser parses sum-lines and stores the bandwidth sum. Unlike the `IperfPa
 
 
 
+
 The HumanExpressionSum Class
 ----------------------------
 
@@ -23,6 +24,7 @@ The HumanExpressionSum Class
 
 
 
+
 CsvExpressionSum Class
 ----------------------
 
@@ -35,6 +37,7 @@ CsvExpressionSum Class
 
    CsvExpressionSum
    CsvExpressionSum.thread_column   
+
 
 
 
@@ -67,6 +70,7 @@ The SumParser
 
 
 
+
 Using the SumParser
 -------------------
 
@@ -77,7 +81,11 @@ The ``__call__`` is the main way to use it. There are two ways to get the interv
 
 .. '
 
-::
+
+
+
+
+.. code:: python
 
     if in_documentation:
         data_folder = 'tests/steps/samples/'
@@ -88,20 +96,6 @@ The ``__call__`` is the main way to use it. There are two ways to get the interv
             bandwidth = parser(line)
             if bandwidth is not None:
                 print(bandwidth)
-    
-
-::
-
-    96.5
-    94.4
-    94.4
-    93.3
-    93.3
-    94.4
-    94.4
-    94.4
-    92.3
-    94.4
     
 
 
@@ -117,7 +111,8 @@ The original way to use it is to add all the lines and traverse the bandwidths a
 
 .. warning:: The way iperf seems to work is that if you are using multiple threads and one or more of the threads misses a reporting interval it will report the thread information but not a summed-line. This means that the SumParser will have fewer data-points than the actual number of intervals that really exist (and the times will be shifted backwards). If you don't inspect the raw output before using the SumParser you could end up with incorrect data. If you need to work with the intervals, use the IperfParser.
 
-::
+
+.. code:: python
 
     if in_documentation:
         parser.reset()
@@ -127,21 +122,6 @@ The original way to use it is to add all the lines and traverse the bandwidths a
         
         for bandwidth in parser.bandwidths:
             print(bandwidth)
-    
-    
-
-::
-
-    96.5
-    94.4
-    94.4
-    93.3
-    93.3
-    94.4
-    94.4
-    94.4
-    92.3
-    94.4
     
 
 
@@ -160,7 +140,8 @@ Here I'll compare what happens when you add the sum-lines up and take the mean v
 
 .. '
 
-::
+
+.. code:: python
 
     if in_documentation:
         parser.reset()
@@ -179,8 +160,7 @@ Now the outcome.
 .. csv-table:: Calculated Sums-mean vs Iperf's Mean
    :header: Source, Bandwidth (Mbits/Second)
 
-   Sum Lines, 94.18
-   Iperf, 94.1
+
 
 
 .. '
@@ -194,7 +174,8 @@ First I'll set up the IperfParser and SumParser to convert to bits (which means 
 
 .. '
 
-::
+
+.. code:: python
 
     if in_documentation:
         #set up the unitconverter
@@ -225,7 +206,8 @@ First I'll set up the IperfParser and SumParser to convert to bits (which means 
 
 Now we add the interval bandwidths together, convert the total from bits to Mbits and then take the mean. 
 
-::
+
+.. code:: python
 
     if in_documentation:
         # convert the sums to Mbits and take the average
@@ -249,9 +231,7 @@ And here's what we get.
 .. csv-table:: Bandwidth Comparison
    :header: Source, Mean Bandwidth (Mbits/Second)   
 
-   Iperf, 93.592467
-   Sum-Lines, 93.9524096
-   Threads, 93.9524096
+
 
 
 So in this case, since there were no threads with missing intervals the SumParser and the IperfParser came up with the same values but both were higher than iperf's calculated final value. It appears that there's more going on than just a round-off error.
@@ -261,7 +241,8 @@ Transfers
 
 I think that there are multiple things going on. One is that I'm assuming that each interval is exactly 1 second, but that's not necessarily the case. Also, the last transfer isn't included in the interval reports, just in the final report. I'll try a file with bits again, but this time I specified two threads and a buffer of 512 KiloBytes.
 
-::
+
+.. code:: python
 
     if in_documentation:
         voodoo = IperfParser(units=UnitNames.bits, threads=2)
@@ -275,19 +256,14 @@ I think that there are multiple things going on. One is that I'm assuming that e
         print(line)
     
 
-::
-
-    [SUM]  0.0-10.2 sec  119537664 Bytes  94015278 bits/sec
-    
-    
-
 
 
 Looking at the last line output you can see that it actually ran for a reported 10.2 seconds (or at least one of the threads did). We'll try the re-calculation on the transfers.
 
 .. '
 
-::
+
+.. code:: python
 
     if in_documentation:
         mbytes = b_converter[b_names.bytes][b_names.mebibytes]
@@ -304,19 +280,18 @@ Looking at the last line output you can see that it actually ran for a reported 
 .. csv-table:: Data Transfered
    :header: Source, Transfer (MBytes)
    
-   Re-Calculated,113.0
-   Iperf's Transfer,114.0
+
 
 
 So the re-added transfer is still missing data. The most likely reason is that the last data-transfer isn't added to the last interval but added to the final tally instead. Each thread adds one buffer's worth of data to the final tally so in this case it should be 1 Megabyte short like we see. We can double-check.
 
-::
+
+.. code:: python
 
     if in_documentation:
         missing = b_converter[b_names.mebibytes][b_names.bytes]
         recalculated_transfer += missing
         recalculated_transfer_mbytes = recalculated_transfer * mbytes
-        
     
 
 
@@ -324,13 +299,13 @@ So the re-added transfer is still missing data. The most likely reason is that t
 .. csv-table:: Re-added Data Transfered
    :header: Source, Transfer(Mbytes)
 
-   Re-Calculated,114.0
-   Iperf's Transfer,114.0
+
 
 
 Now we can re-try the bandwidth, remembering that it took 10.2 seconds to finish.
 
-::
+
+.. code:: python
 
     if in_documentation:
         m_bits = converter[UnitNames.bits][UnitNames.mbits]
@@ -345,8 +320,7 @@ Now we can re-try the bandwidth, remembering that it took 10.2 seconds to finish
 .. csv-table:: Bandwidths
    :header: Source, Bandwidth (Mbits)
 
-   Re-Calculated,93.76
-   Iperf,94.02
+
 
 
 So it still doesn't capture the full bandwidth... We can get the actual time with a little algebra.
@@ -358,7 +332,8 @@ So it still doesn't capture the full bandwidth... We can get the actual time wit
    bandwidth &=  \frac{bits}{seconds}\\
    seconds &= \frac{bits}{bandwidth}\\
 
-::
+
+.. code:: python
 
     if in_documentation:
         transfer = sum_parser.last_line_transfer * b_converter[b_names.bytes][b_names.bits]
@@ -366,16 +341,12 @@ So it still doesn't capture the full bandwidth... We can get the actual time wit
         print(seconds)
     
 
-::
-
-    10.1717649763
-    
-
 
 
 Once more with feeling.
 
-::
+
+.. code:: python
 
     if in_documentation:
         recalculated_bandwidth_mbits = (recalculated_bandwidth/seconds) * m_bits
@@ -386,8 +357,7 @@ Once more with feeling.
 .. csv-table:: Final Bandwidths
    :header: Source, Bandwidth (Mbits)
 
-   Re-Calculated,94.02
-   Iperf,94.02
+
 
 
 So there you have it.

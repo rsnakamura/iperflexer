@@ -6,7 +6,6 @@ import argparse
 import subprocess
 @
 
-.. currentmodule:: iperflexer.argumentparser
 
 The ArgumentParser provides the main user interface to the *IperfLexer*.
 
@@ -24,6 +23,7 @@ This was originally called the `ArgumentParser` but re-named `Arguments` so as n
        Arguments o-- argparse.ArgumentParser
        Arguments : Namespace parse_args()
 
+.. currentmodule:: iperflexer.argumentparser       
 .. autosummary::
    :toctree: api
 

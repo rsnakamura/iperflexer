@@ -4,9 +4,8 @@ import re
 from abc import ABCMeta, abstractproperty
 
 #this code
-from baseclass import BaseClass
-import oatbran as bran
-
+from iperflexer.baseclass import BaseClass
+import iperflexer.oatbran as bran
 
 class ExpressionBase(BaseClass):
     """
@@ -39,7 +38,6 @@ class ExpressionBase(BaseClass):
         if self._regex is None:
             self._regex = re.compile(self.expression)
         return self._regex
-
 
 class HumanExpression(ExpressionBase):
     """
@@ -90,7 +88,6 @@ class HumanExpression(ExpressionBase):
             self.logger.debug('HumanExpression: {0}'.format(self._expression))
         return self._expression
 # end class HumanExpression
-
 
 class CsvExpression(ExpressionBase):
     """
@@ -150,7 +147,6 @@ class CsvExpression(ExpressionBase):
         return self._regex
 # end class CsvExpression
 
-
 class CombinedExpression(ExpressionBase):
     """
     A Combined expression matches either case (but doesn't break up the line).
@@ -199,7 +195,6 @@ class CombinedExpression(ExpressionBase):
             self._regex = re.compile(self.expression)
         return self._regex
 # end class CombinedExpression
-
 
 class ParserKeys(object):
     """

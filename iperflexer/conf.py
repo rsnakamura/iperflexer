@@ -118,7 +118,7 @@ else:
 # documentation.
 #html_theme_options = {}
 html_theme_options = {
-    'bootswatch_theme': "readable",
+    'bootswatch_theme': "spacelab",
 }
 
 

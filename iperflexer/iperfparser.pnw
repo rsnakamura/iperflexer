@@ -11,12 +11,12 @@ import os
 
 # this code
 from iperflexer import MAXIMUM_BANDWITH
-from baseclass import BaseClass
+from iperflexer.baseclass import BaseClass
 
-from iperfexpressions import HumanExpression, ParserKeys
-from iperfexpressions import CsvExpression
-from unitconverter import UnitConverter, IperfbinaryConverter, BinaryUnitNames
-from coroutine import coroutine
+from iperflexer.iperfexpressions import HumanExpression, ParserKeys
+from iperflexer.iperfexpressions import CsvExpression
+from iperflexer.unitconverter import UnitConverter, IperfbinaryConverter, BinaryUnitNames
+from iperflexer.coroutine import coroutine
 @
 
 The `IperfParser` extracts a column from the iperf-output. Currently it only extracts bandwidths or data-transfers. Either it needs to be made more flexible (or a better idea might be to create a family of column extractors). The `IperfParser` is differentiated from the `SumParser` in that it re-adds adds the parallel threads and in-fills zeros for missing time-intervals.
@@ -40,6 +40,7 @@ The `IperfParser` extracts a column from the iperf-output. Currently it only ext
    IperfParser : bandwidth(match)
    IperfParser : valid(match)
 
+.. currentmodule:: iperflexer.iperfparser   
 .. autosummary::
    :toctree: api
 
