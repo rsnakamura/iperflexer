@@ -10,10 +10,10 @@ The sumparser parses sum-lines and stores the bandwidth sum. Unlike the `IperfPa
 import os
 
 #this package
-from iperfparser import IperfParser 
-from iperfexpressions import HumanExpression, ParserKeys, CsvExpression
-import oatbran as bran
-from coroutine import coroutine
+from iperflexer.iperfparser import IperfParser 
+from iperflexer.iperfexpressions import HumanExpression, ParserKeys, CsvExpression
+import iperflexer.oatbran as bran
+from iperflexer.coroutine import coroutine
 @
 
 The HumanExpressionSum Class

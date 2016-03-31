@@ -3,11 +3,9 @@
 import argparse
 import subprocess
 
-
 if __name__ == '__builtin__':
     # we're in pweave
     print(subprocess.check_output('parseiperf -h'.split()))
-
 
 class Arguments(object):
     """

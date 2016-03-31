@@ -6,6 +6,7 @@ This is the class that performs the work of extracting the data-column.
 
 
 
+
 The `IperfParser` extracts a column from the iperf-output. Currently it only extracts bandwidths or data-transfers. Either it needs to be made more flexible (or a better idea might be to create a family of column extractors). The `IperfParser` is differentiated from the `SumParser` in that it re-adds adds the parallel threads and in-fills zeros for missing time-intervals.
 
 .. warning:: The ``intervals`` and ``transfer_intervals`` are defaultdict objects. This was done so that if an expected interval is missing then a 0 will be returned. As a side, effect, though, if you ask for an interval that didn't exist, you will always get 0, even if it is outside of the range of the data.
@@ -27,6 +28,7 @@ The `IperfParser` extracts a column from the iperf-output. Currently it only ext
    IperfParser : bandwidth(match)
    IperfParser : valid(match)
 
+.. currentmodule:: iperflexer.iperfparser   
 .. autosummary::
    :toctree: api
 
@@ -59,3 +61,6 @@ regex
 
 This is a dictionary holding the regular expressions for the csv-format and the human-readable format. The keys should be accessed through ``iperfexpressions.ParserKeys`` (e.g. ``self.regex[ParserKeys.human]`` to get the regular expression for the human-readable iperf output).
    
+
+
+
