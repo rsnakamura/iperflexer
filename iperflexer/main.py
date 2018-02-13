@@ -1,23 +1,18 @@
-
 # python
-from __future__ import print_function
 import sys
 import os
 
 # iperflexer
-from argumentparser import Arguments
-from iperfparser import IperfParser
-from sumparser import SumParser
-from unitconverter import UnitNames
-from finder import find
-
+from iperflexer.argumentparser import Arguments
+from iperflexer.iperfparser import IperfParser
+from iperflexer.sumparser import SumParser
+from iperflexer.unitconverter import UnitNames
+from iperflexer.finder import find
 
 class ArgumentError(Exception):
     """
     An error to raise if something is wrong with the arguments
     """
-# end class ArgumentError
-
 
 UNITS = {'bits': UnitNames.bits,
          'kbits': UnitNames.kbits,
@@ -31,7 +26,6 @@ UNITS = {'bits': UnitNames.bits,
 WRITEABLE = 'w'
 ADD_NEWLINE = "{0}\n"
 
-
 def enable_debugging():
     try:
         import pudb
@@ -39,7 +33,6 @@ def enable_debugging():
     except ImportError as error:
         print(error)
         raise ArgumentError("`pudb` argument given but unable to import `pudb`")
-
 
 def pipe(args, infile=None, outfile=None):
     """
@@ -78,7 +71,6 @@ def pipe(args, infile=None, outfile=None):
     parser.reset()
     return
 
-
 def find_files(args):
     """
     Reads data from files and outputs to files
@@ -92,7 +84,6 @@ def find_files(args):
             output = None
         pipe(args, open(name), output)
     return
-
 
 def main():
     args = Arguments().parse_args()

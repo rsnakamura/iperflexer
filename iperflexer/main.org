@@ -1,31 +1,49 @@
-The Main Module
-===============
-<<name='imports', echo=False>>=
+#+TITLE: The Main Module
+
+* The Tangle
+
+#+BEGIN_SRC python :tangle main.py
+<<imports>>
+
+<<argument-error>>
+
+<<constants>>
+
+<<enable-debugging>>
+
+<<pipe>>
+
+<<find-files>>
+
+<<main>>
+#+END_SRC
+* Imports
+#+BEGIN_SRC python :noweb-ref imports
 # python
-from __future__ import print_function
 import sys
 import os
 
 # iperflexer
-from argumentparser import Arguments
-from iperfparser import IperfParser
-from sumparser import SumParser
-from unitconverter import UnitNames
-from finder import find
-@
+from iperflexer.argumentparser import Arguments
+from iperflexer.iperfparser import IperfParser
+from iperflexer.sumparser import SumParser
+from iperflexer.unitconverter import UnitNames
+from iperflexer.finder import find
+#+END_SRC
 
-Argument Error
---------------
 
-<<name='ArgumentError', wrap=False>>=
+* Argument Error
+
+#+BEGIN_SRC python :noweb-ref argument-error
 class ArgumentError(Exception):
     """
     An error to raise if something is wrong with the arguments
     """
-# end class ArgumentError
-@
+#+END_SRC
 
-<<name='constants', wrap=False>>=
+* Constants
+
+#+BEGIN_SRC python :noweb-ref constants
 UNITS = {'bits': UnitNames.bits,
          'kbits': UnitNames.kbits,
          'mbits': UnitNames.mbits,
@@ -37,12 +55,11 @@ UNITS = {'bits': UnitNames.bits,
 
 WRITEABLE = 'w'
 ADD_NEWLINE = "{0}\n"
-@
+#+END_SRC
 
-Enable Debugging
-----------------
+* Enable Debugging
 
-<<name='enable_debugging', wrap=False>>=
+#+BEGIN_SRC python :noweb-ref enable-debugging
 def enable_debugging():
     try:
         import pudb
@@ -50,13 +67,11 @@ def enable_debugging():
     except ImportError as error:
         print(error)
         raise ArgumentError("`pudb` argument given but unable to import `pudb`")
-@    
+#+END_SRC
 
-Pipe Function
--------------
+* Pipe Function
 
-
-<<name='pipe', wrap=False>>=
+#+BEGIN_SRC python :noweb-ref pipe
 def pipe(args, infile=None, outfile=None):
     """
     Reads input from standard in and sends output to standard out.
@@ -93,12 +108,11 @@ def pipe(args, infile=None, outfile=None):
             outfile.write(ADD_NEWLINE.format(bandwidth))
     parser.reset()
     return
-@
+#+END_SRC
 
-Find Files Function
--------------------
+* Find Files Function
 
-<<name='find_files', echo=False>>=
+#+BEGIN_SRC python :noweb-ref find-files
 def find_files(args):
     """
     Reads data from files and outputs to files
@@ -112,12 +126,11 @@ def find_files(args):
             output = None
         pipe(args, open(name), output)
     return
-@
+#+END_SRC
 
-Main
-----
+* Main
 
-<<name='main', wrap=False>>=
+#+BEGIN_SRC python :noweb-ref main
 def main():
     args = Arguments().parse_args()
     if args.pudb:
@@ -127,4 +140,4 @@ def main():
     else:
         find_files(args)
     return
-@
+#+END_SRC

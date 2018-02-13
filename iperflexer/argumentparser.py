@@ -1,11 +1,6 @@
-
 # python standard library
 import argparse
 import subprocess
-
-if __name__ == '__builtin__':
-    # we're in pweave
-    print(subprocess.check_output('parseiperf -h'.split()))
 
 class Arguments(object):
     """
@@ -81,4 +76,3 @@ class Arguments(object):
                                 help="Get Iperf's final reported data transfer (default=%(default)s)",
                                  default=False, action="store_true")
         return self.parser.parse_args()
-# end class Arguments

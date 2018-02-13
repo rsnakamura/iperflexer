@@ -1,3 +1,7 @@
+IDENTITY = 1
+ONE = 1.0
+BYTE = 8
+TO_BYTE = ONE/BYTE 
 
 class UnitNames(object):
     """
@@ -42,7 +46,6 @@ class UnitNames(object):
     ybytes = 'Y' + bytes
     yottabytes = ybytes
 
-
 class BinaryUnitNames(object):
     """
     namespace for binary-unit names
@@ -80,14 +83,6 @@ class BinaryUnitNames(object):
     iperf_exbibytes = UnitNames.ebytes
     iperf_zebibytes = UnitNames.zbytes
     iperf_yobibytes = UnitNames.ybytes
-# end BinaryUnitNames
-
-
-IDENTITY = 1
-ONE = 1.0
-BYTE = 8
-TO_BYTE = ONE/BYTE
-
 
 class BaseConverter(dict):
     """
@@ -125,7 +120,7 @@ class BaseConverter(dict):
             # this list is for 'bits' or 'bytes'
             # the values will be 1, 1/kilo, 1/mega, etc.
             start_list = [self.kilo_prefix**(-power)
-                                         for power in xrange(self.bit_conversions)]
+                                         for power in range(self.bit_conversions)]
             self._prefix_conversions = self.conversions(conversion_factor=1,
                                                         start_list=start_list)
         return self._prefix_conversions
@@ -165,7 +160,7 @@ class BaseConverter(dict):
         # start with byte_factor times the base conversions (1, 1/kilo, etc.)
         converter_list = [[conversion_factor * conversion
                            for conversion in start_list]]
-        for previous in xrange(self.bit_conversions - 1):
+        for previous in range(self.bit_conversions - 1):
             # 'pop' last item from previous list
             # and prepend one higher-power conversion
             next_conversions = ([self.kilo_prefix**(previous+1) * conversion_factor] +
@@ -187,8 +182,6 @@ class BaseConverter(dict):
             self[units] = dict(zip(self.to_units, self.bytes_to_bits[index] +
                                    self.prefix_conversions[index]))
         return
-# end class BaseConverter
-
 
 bit_units = [UnitNames.bits,
              UnitNames.kbits,
@@ -212,11 +205,7 @@ byte_units = [UnitNames.bytes,
 
 decimal_to_units = bit_units + byte_units
 
-    
-
-
 KILO = 10**3
-
 
 class UnitConverter(BaseConverter):
     """
@@ -227,37 +216,12 @@ class UnitConverter(BaseConverter):
                                             kilo_prefix=KILO)
         self.build_conversions()
         return
-# end class UnitConverter    
 
 
-DecimalUnitConverter = UnitConverter
 
-
-to_bits = [BinaryUnitNames.bits,
-           BinaryUnitNames.kibibits,
-           BinaryUnitNames.mebibits,
-           BinaryUnitNames.gibibits,
-           BinaryUnitNames.tebibits,
-           BinaryUnitNames.pebibits,
-           BinaryUnitNames.exbibits,
-           BinaryUnitNames.zebibits,
-           BinaryUnitNames.yobibits]
-
-to_bytes = [BinaryUnitNames.bytes,
-            BinaryUnitNames.kibibytes,
-            BinaryUnitNames.mebibytes,
-            BinaryUnitNames.gibibytes,
-            BinaryUnitNames.tebibytes,
-            BinaryUnitNames.pebibytes,
-            BinaryUnitNames.exbibytes,
-            BinaryUnitNames.zebibytes,
-            BinaryUnitNames.yobibytes]
-
-binary_to_units = to_bits + to_bytes
 
 
 KIBI = 2**10
-
 
 class BinaryUnitconverter(BaseConverter):
     """
@@ -274,8 +238,6 @@ class BinaryUnitconverter(BaseConverter):
                                                   kilo_prefix=KIBI)
         self.build_conversions()
         return
-# end class BinaryUnitConverter    
-
 
 to_bits = [BinaryUnitNames.bits,
            BinaryUnitNames.kibibits,
@@ -299,7 +261,6 @@ to_bytes = [BinaryUnitNames.iperf_bytes,
 
 iperf_binary_to_units = to_bits + to_bytes
 
-
 class IperfbinaryConverter(BaseConverter):
     """
     The IperfbinaryConverter is a conversion lookup table for binary data
@@ -315,23 +276,3 @@ class IperfbinaryConverter(BaseConverter):
                                                   kilo_prefix=KIBI)
         self.build_conversions()
         return
-# end class BinaryUnitConverter    
-
-
-if __name__ == "__builtin__":
-    unit_converter = UnitConverter()
-    bits = 10**6
-    converted = bits * unit_converter['bits']['Mbits']
-    print("{0} Mbits".format(converted))
-
-
-if __name__ == "__builtin__":
-    binary_converter = BinaryUnitconverter()
-    MBytes = 1
-    bits = MBytes * binary_converter[BinaryUnitNames.mebibytes][UnitNames.bits]
-    print("{0:,} bits".format(bits))
-
-
-if __name__ == '__builtin__':
-    mbits = bits * unit_converter[UnitNames.bits][UnitNames.mbits]
-    print('{0} Mbits'.format(mbits))

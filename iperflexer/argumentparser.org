@@ -1,57 +1,48 @@
-The Argument Parser
-===================
-<<name='imports', echo=False>>=
+#+TITLE: The Argument Parser
+
+* The Tangle
+#+BEGIN_SRC python :tangle argumentparser.py
+<<imports>>
+
+<<arguments>>
+#+END_SRC
+
+* Imports
+
+#+BEGIN_SRC python :noweb-ref imports
 # python standard library
 import argparse
 import subprocess
-@
-
+#+END_SRC
 
 The ArgumentParser provides the main user interface to the *IperfLexer*.
 
-.. _argumentparser-arguments-class:
-
-The Arguments Class
--------------------
+* The Arguments Class
 
 This was originally called the `ArgumentParser` but re-named `Arguments` so as not to be confused with the python `ArgumentParser`. Its only real purpose is to separate the defining of the command-line arguments from the ``main`` module so that it can be documented a little better and possibly swapped out later for docopt without needing to clobber it entirely.
 
-.. ifconfig:: repository != 'rtfd'
+Example Use:
 
-    .. uml::
-    
-       Arguments o-- argparse.ArgumentParser
-       Arguments : Namespace parse_args()
-
-.. currentmodule:: iperflexer.argumentparser       
-.. autosummary::
-   :toctree: api
-
-   Arguments
-
-Example Use::
-
+#+BEGIN_EXAMPLE
    parser = Arguments()
    args = parser.parse_args()
+#+END_EXAMPLE
 
-
-.. _argumentparser-command-line-arguments:
    
-Command Line Arguments
-----------------------
+* Command Line Arguments
 
 This is a dump of the ``parseiperf --help`` output.
 
-<<name='help', echo=False, wrap=False>>=
-if __name__ == '__builtin__':
-    # we're in pweave
-    print(subprocess.check_output('parseiperf -h'.split()))
-@
+#+BEGIN_SRC sh
+!parseiperf -h
+#+END_SRC
 
-.. note:: The short-form of the `threads` argument is `p`, not `t` to match *iperf's* '--parallel' and avoid the *parseiperf's* '--tee'.
+#+RESULTS:
+
+**note**: The short-form of the `threads` argument is `p`, not `t` to match *iperf's* '--parallel' and avoid the *parseiperf's* '--tee'.
 
    
-<<name='Arguments', echo=False>>=
+#+BEGIN_SRC python :noweb-ref arguments
 class Arguments(object):
     """
     An adapter for the argparse.ArgumentParser
@@ -126,5 +117,5 @@ class Arguments(object):
                                 help="Get Iperf's final reported data transfer (default=%(default)s)",
                                  default=False, action="store_true")
         return self.parser.parse_args()
-# end class Arguments
-@
+
+#+END_SRC
